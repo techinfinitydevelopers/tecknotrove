@@ -35,25 +35,25 @@ const TILES = [
 
 export default function PartnerCareers() {
   return (
-    <section className="bg-bg-elevated pb-24 sm:pb-32">
+    <section className="bg-bg-elevated py-16 sm:py-20">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <p className="mono-label mb-5 text-[11px] text-blue-500">
+        <p className="mono-label mb-3 text-[11px] text-blue-500">
           Work With Tecknotrove
         </p>
         <RevealLines
           as="h2"
-          lines={["Build the next simulator", "with us."]}
-          className="max-w-2xl text-3xl font-black leading-[1.05] tracking-tight sm:text-5xl"
+          lines={["Build the next simulator with us."]}
+          className="max-w-2xl text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl"
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
           {TILES.map((t, i) => {
             const Icon = t.icon;
             return (
               <FadeUp
                 key={t.title}
                 delay={i * 0.1}
-                className="group relative flex min-h-[400px] flex-col overflow-hidden rounded-2xl p-8 text-white sm:min-h-[460px] sm:p-10"
+                className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl p-6 text-white sm:min-h-[330px] sm:p-8"
                 style={{ background: t.gradient }}
               >
                 {/* top accent bar, grows on hover */}
@@ -77,24 +77,24 @@ export default function PartnerCareers() {
                 <div className="relative z-10 flex items-start justify-between">
                   <span className="font-mono text-sm text-white/35">{t.index}</span>
                   <Icon
-                    size={40}
+                    size={32}
                     weight="light"
                     className="text-white/50 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-6"
                   />
                 </div>
 
                 <div className="relative z-10 mt-auto">
-                  <span className="mono-label mb-4 inline-block text-[10.5px] text-orange-300">
+                  <span className="mono-label mb-2 inline-block text-[10.5px] text-orange-300">
                     {t.tag}
                   </span>
-                  <h3 className="text-3xl font-black tracking-tight sm:text-4xl">
+                  <h3 className="text-2xl font-black tracking-tight sm:text-3xl">
                     {t.title}
                   </h3>
-                  <p className="mt-3 max-w-sm text-sm text-white/65">{t.desc}</p>
+                  <p className="mt-2 max-w-sm text-sm text-white/65">{t.desc}</p>
 
-                  <div className="mt-7 flex flex-wrap items-end justify-between gap-6 border-t border-white/10 pt-6">
+                  <div className="mt-5 flex flex-wrap items-end justify-between gap-6 border-t border-white/10 pt-4">
                     <div>
-                      <p className="font-mono text-2xl font-medium text-white">
+                      <p className="font-mono text-xl font-medium text-white">
                         {t.stat.value}
                       </p>
                       <p className="mt-0.5 text-xs text-white/50">{t.stat.label}</p>
@@ -103,7 +103,7 @@ export default function PartnerCareers() {
                       href={t.href}
                       variant="outline-light"
                       sweep={t.sweep}
-                      className="px-5 py-2.5 text-xs"
+                      className="px-4 py-2 text-xs"
                     >
                       {t.cta}
                       <ArrowUpRight size={14} />

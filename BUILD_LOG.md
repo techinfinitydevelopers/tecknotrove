@@ -66,6 +66,8 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 **Verified:** `tsc --noEmit` clean, fresh-tab console clean, both sections screenshotted at 732px including a hover state on the Partner card.
 
+**Partner/Careers, single-viewport pass:** section was taller than a typical 900px viewport (two-line heading, tall cards, generous padding). Collapsed heading to one line, cut card `min-h` 400/460→300/330, padding p-8/10→p-6/8, inner spacing (icon 40→32px, stat figure text-2xl→xl, button py-2.5→2) and section py-24/32→16/20. Measured via `getBoundingClientRect()` on the section rather than eyeballing — confirmed 588px tall at a 1440×900 viewport.
+
 ---
 
 **Known follow-ups / open items:**
