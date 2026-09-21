@@ -70,6 +70,8 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 **Sector cards, mobile spacing:** stacked-column gap between the 4 sector cards below `sm` (`gap-4`) read as too loose once the site is checked on an actual phone viewport, not just the 732px preview pane — dropped to `gap-2`. The `sm:` row layout (negative-margin overlap + fan interaction) is untouched.
 
+**Footer, wordmark color swapped to dark ghost-emboss:** client sent a reference showing the wordmark almost invisible against the black background with a faint top-to-bottom highlight fade (an emboss/pressed look). Swapped the solid muted-blue fill for a gradient-clip text treatment (`rgba(255,255,255,0.12)` top → `rgba(255,255,255,0.02)` bottom, `background-clip: text`) — this is the same technique the very first footer draft used, reapplied here.
+
 **Footer, diamond nudge, corrected:** client asked to nudge left (`right-[-0.1em]`→`0.02em`), then immediately corrected to right instead, then asked for further right again — settled at `right-[-0.14em]`.
 
 **Footer, diamond too far from "E":** the previous no-overlap fix overcorrected — client wanted it touching the corner, not floating clear of it. Pulled back in (`right-[-0.19em]`→`-0.1em`, `top-[-0.14em]`→`-0.03em`, size `0.22em`→`0.2em`), confirmed visually at 1440px: sits right at the letter's top-right corner without clipping into it.

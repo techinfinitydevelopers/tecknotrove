@@ -21,7 +21,13 @@ export default function Footer() {
               <div className="overflow-hidden">
                 <p
                   className="-ml-1 select-none whitespace-nowrap font-black uppercase leading-[0.82] tracking-tighter"
-                  style={{ color: "rgba(157, 177, 255, 0.55)" }}
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
                 >
                   Tecknotrove
                 </p>
