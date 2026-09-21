@@ -56,14 +56,14 @@ const ARTICLES = [
 
 export default function NewsInsights() {
   return (
-    <section className="border-t border-line bg-bg-elevated py-24 sm:py-32">
+    <section className="border-t border-line bg-bg-elevated py-14 sm:py-16">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <p className="mono-label mb-5 text-[11px] text-blue-500">Media</p>
+        <p className="mono-label mb-3 text-[11px] text-blue-500">Media</p>
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <RevealLines
             as="h2"
             lines={["Latest News & Insights"]}
-            className="text-3xl font-black tracking-tight sm:text-5xl"
+            className="text-3xl font-black tracking-tight sm:text-4xl"
           />
           <a
             href="#news"
@@ -77,7 +77,7 @@ export default function NewsInsights() {
           </a>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {ARTICLES.map((a, i) => {
             const titleColor = a.dark ? "#ffffff" : "#14161c";
             const bodyColor = a.dark
@@ -93,7 +93,7 @@ export default function NewsInsights() {
                 as="a"
                 href="#news"
                 delay={i * 0.08}
-                className="group relative block aspect-[4/5] rounded-[30px] p-[7px] shadow-[0_22px_48px_-26px_rgba(15,18,30,0.5)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5"
+                className="group relative block aspect-[4/3.1] rounded-[30px] p-[7px] shadow-[0_22px_48px_-26px_rgba(15,18,30,0.5)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5"
                 style={{ background: a.frame }}
               >
                 <div
