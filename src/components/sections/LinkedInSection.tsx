@@ -48,7 +48,7 @@ const POSTS = [
 
 export default function LinkedInSection() {
   return (
-    <section className="bg-bg py-24 sm:py-32">
+    <section className="bg-bg pb-24 pt-12 sm:pb-32 sm:pt-16">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
           {/* account details */}

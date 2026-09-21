@@ -35,7 +35,7 @@ const TILES = [
 
 export default function PartnerCareers() {
   return (
-    <section className="bg-bg-elevated py-16 sm:py-20">
+    <section className="bg-bg-elevated pb-12 pt-16 sm:pb-16 sm:pt-20">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <p className="mono-label mb-3 text-[11px] text-blue-500">
           Work With Tecknotrove
