@@ -1,153 +1,74 @@
-import Image from "next/image";
-import { LinkedinLogo, YoutubeLogo, XLogo, EnvelopeSimple, Phone, MapPin } from "@phosphor-icons/react/ssr";
+const EXPLORE = ["Simulation", "Software", "About", "Careers", "Contact"];
 
-const COLUMNS = [
-  {
-    title: "Simulation",
-    links: ["Defence", "Aviation", "Automobile", "OESD"],
-  },
-  {
-    title: "Software",
-    links: ["Training Management System"],
-  },
-  {
-    title: "Company",
-    links: ["About", "Careers", "News", "Contact"],
-  },
-];
-
-const SOCIALS = [
-  { icon: LinkedinLogo, href: "https://www.linkedin.com/company/tecknotrove-systems-i-pvt-ltd/" },
-  { icon: YoutubeLogo, href: "https://youtu.be/hb-hqyMnMLw" },
-  { icon: XLogo, href: "#" },
+const FOLLOW = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/tecknotrove-systems-i-pvt-ltd/" },
+  { label: "YouTube", href: "https://youtu.be/hb-hqyMnMLw" },
+  { label: "X", href: "#" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-footer-bg pt-10 text-white">
-      <div className="absolute inset-x-0 top-0 h-[2px] bg-orange" />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.5]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-          maskImage: "linear-gradient(to bottom, black, transparent 85%)",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-8 sm:flex-row sm:items-center">
-          <div>
-            <Image
-              src="/images/logo-white.png"
-              alt="Tecknotrove"
-              width={158}
-              height={40}
-              className="h-7 w-auto"
-            />
-            <p className="mt-3 max-w-[280px] text-sm text-white/55">
-              Simulation &amp; training technology for demanding industries,
-              since 2002.
+    <footer className="relative overflow-hidden bg-footer-bg pt-16 text-white">
+      <div className="flex flex-col justify-between gap-10 sm:flex-row sm:items-start">
+        <div className="min-w-0 pl-5 sm:pl-8">
+          <div className="overflow-hidden">
+            <p
+              className="-ml-1 select-none whitespace-nowrap text-[19vw] font-black uppercase leading-[0.82] tracking-tighter sm:text-[10vw] lg:text-[7.5rem]"
+              style={{ color: "rgba(157, 177, 255, 0.55)" }}
+            >
+              Tecknotrove
             </p>
           </div>
-          <div className="flex gap-3">
-            {SOCIALS.map(({ icon: Icon, href }, i) => (
-              <a
-                key={i}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Social link"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-orange/60 hover:text-orange-300"
-              >
-                <Icon size={16} weight="fill" />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* oversized wordmark */}
-        <div className="overflow-hidden border-b border-white/10 py-2 sm:py-3">
-          <p
-            className="select-none whitespace-nowrap text-[13vw] font-black uppercase leading-none tracking-tighter sm:text-[7vw] lg:text-[5rem]"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              color: "transparent",
-            }}
-          >
-            Tecknotrove
+          <p className="mt-3 text-[11px] text-white/35">
+            &copy; {new Date().getFullYear()} Tecknotrove Systems India Pvt
+            Ltd. All rights reserved.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 border-b border-white/10 py-10 sm:grid-cols-4">
-          {COLUMNS.map((col) => (
-            <div key={col.title}>
-              <p className="mono-label mb-5 text-[10.5px] text-white/35">
-                {col.title}
-              </p>
-              <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#simulation"
-                      className="text-sm text-white/55 transition-colors hover:text-white"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          <div className="col-span-2 sm:col-span-1">
-            <p className="mono-label mb-5 text-[10.5px] text-white/35">
-              Get in Touch
+        <div className="flex gap-16 px-5 sm:px-8">
+          <div>
+            <p className="mono-label mb-4 text-[10.5px] text-white/35">
+              Explore
             </p>
-            <ul className="space-y-3.5">
-              <li>
-                <a
-                  href="tel:+912261513002"
-                  className="group flex items-start gap-2.5 text-sm text-white/55 transition-colors hover:text-white"
-                >
-                  <Phone size={16} weight="duotone" className="mt-0.5 shrink-0 text-orange-300" />
-                  +91 22 6151 3002
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.tecknotrove.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-start gap-2.5 text-sm text-white/55 transition-colors hover:text-white"
-                >
-                  <EnvelopeSimple size={16} weight="duotone" className="mt-0.5 shrink-0 text-orange-300" />
-                  www.tecknotrove.com
-                </a>
-              </li>
-              <li className="flex items-start gap-2.5 text-sm leading-relaxed text-white/55">
-                <MapPin size={16} weight="duotone" className="mt-0.5 shrink-0 text-orange-300" />
-                Andheri (East), Mumbai 400059
-              </li>
+            <ul className="space-y-2.5">
+              {EXPLORE.map((link) => (
+                <li key={link}>
+                  <a
+                    href="#simulation"
+                    className="text-sm text-white/55 transition-colors hover:text-white"
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="mono-label mb-4 text-[10.5px] text-white/35">
+              Follow
+            </p>
+            <ul className="space-y-2.5">
+              {FOLLOW.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/55 transition-colors hover:text-white"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
+      </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/35 sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Tecknotrove Systems India Pvt Ltd.</p>
-          <div className="flex gap-6">
-            <a href="#privacy" className="hover:text-white/60">
-              Privacy Policy
-            </a>
-            <a href="#terms" className="hover:text-white/60">
-              Terms
-            </a>
-          </div>
-        </div>
+      <div className="mt-10 border-t border-white/10 px-5 py-5 sm:px-8">
+        <p className="text-xs text-white/30">
+          Precise today. Perfect tomorrow.
+        </p>
       </div>
     </footer>
   );
