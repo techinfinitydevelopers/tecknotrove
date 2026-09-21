@@ -70,6 +70,8 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 **Sector cards, mobile spacing:** stacked-column gap between the 4 sector cards below `sm` (`gap-4`) read as too loose once the site is checked on an actual phone viewport, not just the 732px preview pane — dropped to `gap-2`. The `sm:` row layout (negative-margin overlap + fan interaction) is untouched.
 
+**Footer, diamond nudged left:** `right-[-0.1em]`→`0.02em` to sit closer against the "E" per a final visual tweak.
+
 **Footer, diamond too far from "E":** the previous no-overlap fix overcorrected — client wanted it touching the corner, not floating clear of it. Pulled back in (`right-[-0.19em]`→`-0.1em`, `top-[-0.14em]`→`-0.03em`, size `0.22em`→`0.2em`), confirmed visually at 1440px: sits right at the letter's top-right corner without clipping into it.
 
 **Footer, diamond overlapping "E":** the right/top offsets that put the mark in the correct general spot still let its bottom-left corner clip into the top of the last letter. Pushed further clear (`right-[-0.06em]`→`-0.19em`, `top-[-0.06em]`→`-0.14em`), confirmed no overlap visually at 1440px.
