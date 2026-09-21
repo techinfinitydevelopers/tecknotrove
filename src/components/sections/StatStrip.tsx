@@ -82,8 +82,8 @@ export default function StatStrip() {
             return (
               <div
                 key={s.label}
-                className={`flex flex-col ${
-                  i > 0 ? "md:border-l md:border-line-strong/70 md:pl-8" : ""
+                className={`flex flex-col items-center text-center md:px-4 ${
+                  i > 0 ? "md:border-l md:border-line-strong/70" : ""
                 }`}
               >
                 <Icon size={20} weight="duotone" className="mb-3 text-orange-400" />
