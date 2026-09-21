@@ -3,15 +3,22 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight } from "@phosphor-icons/react";
+import {
+  ArrowUpRight,
+  GlobeHemisphereWest,
+  Wrench,
+  CalendarBlank,
+  Headset,
+} from "@phosphor-icons/react";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { value: 35, suffix: "+", label: "Countries served" },
-  { value: 1500, suffix: "+", label: "Simulators delivered" },
-  { value: 2002, suffix: "", label: "Established", plain: true },
-  { value: 24, suffix: "×7", label: "Technical support" },
+  { value: 35, suffix: "+", label: "Countries served", icon: GlobeHemisphereWest },
+  { value: 1500, suffix: "+", label: "Simulators delivered", icon: Wrench },
+  { value: 2002, suffix: "", label: "Established", plain: true, icon: CalendarBlank },
+  { value: 24, suffix: "×7", label: "Technical support", icon: Headset },
 ];
 
 export default function StatStrip() {
@@ -54,34 +61,52 @@ export default function StatStrip() {
   }, []);
 
   return (
-    <section className="border-y border-line bg-bg-cream py-8 sm:py-10">
+    <section className="relative overflow-hidden border-y border-line bg-bg-cream py-10 sm:py-12">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(23,8,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(23,8,0,0.06) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "linear-gradient(to right, black, transparent 85%)",
+        }}
+      />
+
       <div
         ref={ref}
-        className="mx-auto flex max-w-[1400px] flex-col gap-6 px-5 sm:px-8 md:flex-row md:items-center md:justify-between md:gap-10"
+        className="relative mx-auto flex max-w-[1400px] flex-col gap-8 px-5 sm:px-8 md:flex-row md:items-center md:justify-between md:gap-10"
       >
-        <div className="grid grid-cols-2 gap-y-8 md:max-w-[980px] md:flex-1 md:grid-cols-4 md:gap-x-10">
-          {STATS.map((s) => (
-            <div key={s.label} className="flex flex-col">
-              <div className="font-mono text-4xl font-medium tabular-nums text-ink sm:text-5xl">
-                <span data-stat={s.value} data-plain={s.plain ? "true" : "false"}>
-                  0
-                </span>
-                <span className="text-orange-400">{s.suffix}</span>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-9 md:max-w-[1020px] md:flex-1 md:grid-cols-4 md:gap-x-0">
+          {STATS.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.label}
+                className={`flex flex-col ${
+                  i > 0 ? "md:border-l md:border-line-strong/70 md:pl-8" : ""
+                }`}
+              >
+                <Icon size={20} weight="duotone" className="mb-3 text-orange-400" />
+                <div className="font-mono text-4xl font-medium tabular-nums text-ink sm:text-5xl">
+                  <span data-stat={s.value} data-plain={s.plain ? "true" : "false"}>
+                    0
+                  </span>
+                  <span className="text-orange-400">{s.suffix}</span>
+                </div>
+                <p className="mt-2 text-sm text-ink-dim">{s.label}</p>
               </div>
-              <p className="mt-2 text-sm text-ink-dim">{s.label}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        <a
+        <MagneticButton
           href="#why"
-          className="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-ink-dim transition-colors hover:text-orange-400"
+          variant="outline"
+          sweep="dark"
+          className="shrink-0 self-start px-5 py-2.5 text-xs md:self-auto"
         >
           Know more
-          <ArrowUpRight
-            size={16}
-            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </a>
+          <ArrowUpRight size={14} />
+        </MagneticButton>
       </div>
     </section>
   );

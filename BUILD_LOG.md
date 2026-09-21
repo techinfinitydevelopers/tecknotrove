@@ -56,6 +56,16 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 **Verified:** `tsc --noEmit` clean, fresh-tab console clean, fan confirmed numerically at both 732px and 1440px, folder-tab geometry confirmed numerically (tab 20%/38%, body 28%) and the slide confirmed visually.
 
+## 2026-09-21 — Partner/Careers + Stat strip revamp
+
+**Partner/Careers:** section had no heading before (naked two-tile grid) — added a mono-label eyebrow + `RevealLines` heading matching the rest of the page. Tiles gained: index number (01/02), a dot-grid texture (radial-gradient, ellipse-masked) replacing the flat radial blob, a top accent bar that scale-x's in on hover, an icon that lifts/rotates on hover, a stat readout (countries / years) in a bottom row, and a real `MagneticButton` CTA in place of the plain text+arrow link, for consistency with the rest of the site's buttons.
+
+**Bug caught mid-build:** first pass kept the outer `FadeUp` as `as="a" href={...}` while nesting a `MagneticButton` (also an anchor) inside it — invalid `<a>`-in-`<a>` HTML, caught via `read_console_messages` (hydration nesting error), not visually. Fixed by dropping the outer anchor; the card is a plain `div` now and the `MagneticButton` is the only real link. Stale console-error caching in the same tab made the fix look like it hadn't landed — opening a fresh tab confirmed it had.
+
+**Stat strip:** added a per-stat Phosphor icon, vertical divider lines between stats (`md:border-l`), a subtle blueprint-grid background (same pattern language as the orange Callout band, left-fade masked), and swapped the plain "Know more" text link for a `MagneticButton` outline for button consistency.
+
+**Verified:** `tsc --noEmit` clean, fresh-tab console clean, both sections screenshotted at 732px including a hover state on the Partner card.
+
 ---
 
 **Known follow-ups / open items:**
