@@ -14,20 +14,18 @@ export default function Footer() {
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-start">
           <div className="min-w-0">
-            <Image
-              src="/images/logo-mark.png"
-              alt=""
-              width={128}
-              height={128}
-              className="h-9 w-9"
-            />
-            <div className="overflow-hidden">
-              <p
-                className="-ml-1 select-none whitespace-nowrap text-[19vw] font-black uppercase leading-[0.82] tracking-tighter sm:text-[10vw] lg:text-[7.5rem]"
-                style={{ color: "rgba(157, 177, 255, 0.55)" }}
-              >
-                Tecknotrove
-              </p>
+            <div className="relative text-[19vw] sm:text-[10vw] lg:text-[7.5rem]">
+              <div className="pointer-events-none absolute left-[0.03em] top-[-0.2em] h-[0.22em] w-[0.22em]">
+                <Image src="/images/logo-mark.png" alt="" fill className="object-contain" />
+              </div>
+              <div className="overflow-hidden">
+                <p
+                  className="-ml-1 select-none whitespace-nowrap font-black uppercase leading-[0.82] tracking-tighter"
+                  style={{ color: "rgba(157, 177, 255, 0.55)" }}
+                >
+                  Tecknotrove
+                </p>
+              </div>
             </div>
             <p className="mt-3 text-[11px] text-white/35">
               &copy; {new Date().getFullYear()} Tecknotrove Systems India Pvt
