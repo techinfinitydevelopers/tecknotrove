@@ -23,7 +23,7 @@ export default function Footer() {
                   className="-ml-1 select-none whitespace-nowrap font-black uppercase leading-[0.82] tracking-tighter"
                   style={{
                     background:
-                      "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.55) 100%)",
+                      "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.55) 25%, rgba(255,255,255,0.15) 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
