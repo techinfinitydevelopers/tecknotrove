@@ -68,6 +68,8 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 **Partner/Careers, single-viewport pass:** section was taller than a typical 900px viewport (two-line heading, tall cards, generous padding). Collapsed heading to one line, cut card `min-h` 400/460→300/330, padding p-8/10→p-6/8, inner spacing (icon 40→32px, stat figure text-2xl→xl, button py-2.5→2) and section py-24/32→16/20. Measured via `getBoundingClientRect()` on the section rather than eyeballing — confirmed 588px tall at a 1440×900 viewport.
 
+**Sector cards, mobile spacing:** stacked-column gap between the 4 sector cards below `sm` (`gap-4`) read as too loose once the site is checked on an actual phone viewport, not just the 732px preview pane — dropped to `gap-2`. The `sm:` row layout (negative-margin overlap + fan interaction) is untouched.
+
 **Stat strip, centered numbers:** icon/number/label stack in each of the 4 stat columns was left-aligned by default; switched to `items-center text-center` with symmetric `md:px-4` (dropping the old one-sided `pl-8`) so each stat centres within its column and the divider lines land centred between them.
 
 **Gap between Partner/Careers and LinkedIn sections:** two adjacent large `py-*` values (Partner/Careers `pb-16/20` + LinkedIn `pt-24/32`) stacked into ~230px of dead white space with no visual anchor. Split each section's padding asymmetrically — Partner/Careers `pb-12/16` (top kept at 16/20), LinkedIn `pt-12/16` (bottom kept at 24/32) — closing the gap without touching the spacing either section keeps relative to its other neighbour.

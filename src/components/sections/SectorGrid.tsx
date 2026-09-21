@@ -194,7 +194,7 @@ export default function SectorGrid() {
 
         <div
           ref={listRef}
-          className="mt-14 flex flex-col gap-4 sm:flex-row sm:gap-0"
+          className="mt-14 flex flex-col gap-2 sm:flex-row sm:gap-0"
         >
           {SECTORS.map((s, i) => {
             const Icon = s.icon;
