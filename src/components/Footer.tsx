@@ -24,7 +24,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-footer-bg pt-16 text-white">
+    <footer className="relative overflow-hidden bg-footer-bg pt-10 text-white">
       <div className="absolute inset-x-0 top-0 h-[2px] bg-orange" />
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.5]"
@@ -37,16 +37,16 @@ export default function Footer() {
       />
 
       <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/10 pb-14 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-8 sm:flex-row sm:items-center">
           <div>
             <Image
               src="/images/logo-white.png"
               alt="Tecknotrove"
               width={158}
               height={40}
-              className="h-8 w-auto"
+              className="h-7 w-auto"
             />
-            <p className="mt-4 max-w-[280px] text-sm text-white/55">
+            <p className="mt-3 max-w-[280px] text-sm text-white/55">
               Simulation &amp; training technology for demanding industries,
               since 2002.
             </p>
@@ -59,18 +59,18 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Social link"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-orange/60 hover:text-orange-300"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-orange/60 hover:text-orange-300"
               >
-                <Icon size={17} weight="fill" />
+                <Icon size={16} weight="fill" />
               </a>
             ))}
           </div>
         </div>
 
         {/* oversized wordmark */}
-        <div className="overflow-hidden border-b border-white/10 py-6 sm:py-8">
+        <div className="overflow-hidden border-b border-white/10 py-2 sm:py-3">
           <p
-            className="select-none whitespace-nowrap text-[19vw] font-black uppercase leading-none tracking-tighter sm:text-[11vw] lg:text-[9rem]"
+            className="select-none whitespace-nowrap text-[13vw] font-black uppercase leading-none tracking-tighter sm:text-[7vw] lg:text-[5rem]"
             style={{
               background:
                 "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 100%)",
@@ -83,7 +83,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 border-b border-white/10 py-14 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 border-b border-white/10 py-10 sm:grid-cols-4">
           {COLUMNS.map((col) => (
             <div key={col.title}>
               <p className="mono-label mb-5 text-[10.5px] text-white/35">
@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 py-8 text-xs text-white/35 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/35 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} Tecknotrove Systems India Pvt Ltd.</p>
           <div className="flex gap-6">
             <a href="#privacy" className="hover:text-white/60">
