@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LinkedinLogo, YoutubeLogo, XLogo } from "@phosphor-icons/react/ssr";
+import { LinkedinLogo, YoutubeLogo, XLogo, EnvelopeSimple, Phone, MapPin } from "@phosphor-icons/react/ssr";
 
 const COLUMNS = [
   {
@@ -16,12 +16,29 @@ const COLUMNS = [
   },
 ];
 
+const SOCIALS = [
+  { icon: LinkedinLogo, href: "https://www.linkedin.com/company/tecknotrove-systems-i-pvt-ltd/" },
+  { icon: YoutubeLogo, href: "https://youtu.be/hb-hqyMnMLw" },
+  { icon: XLogo, href: "#" },
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-footer-bg pt-20 text-white">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="grid grid-cols-2 gap-10 border-b border-white/10 pb-16 md:grid-cols-5">
-          <div className="col-span-2">
+    <footer className="relative overflow-hidden bg-footer-bg pt-16 text-white">
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-orange" />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.5]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "linear-gradient(to bottom, black, transparent 85%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8">
+        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/10 pb-14 sm:flex-row sm:items-center">
+          <div>
             <Image
               src="/images/logo-white.png"
               alt="Tecknotrove"
@@ -29,23 +46,44 @@ export default function Footer() {
               height={40}
               className="h-8 w-auto"
             />
-            <p className="mt-4 max-w-[240px] text-sm text-white/55">
-              Precise today. Perfect tomorrow.
+            <p className="mt-4 max-w-[280px] text-sm text-white/55">
+              Simulation &amp; training technology for demanding industries,
+              since 2002.
             </p>
-            <div className="mt-6 flex gap-3">
-              {[LinkedinLogo, YoutubeLogo, XLogo].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="Social link"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-orange/60 hover:text-orange-300"
-                >
-                  <Icon size={16} weight="fill" />
-                </a>
-              ))}
-            </div>
           </div>
+          <div className="flex gap-3">
+            {SOCIALS.map(({ icon: Icon, href }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Social link"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-orange/60 hover:text-orange-300"
+              >
+                <Icon size={17} weight="fill" />
+              </a>
+            ))}
+          </div>
+        </div>
 
+        {/* oversized wordmark */}
+        <div className="overflow-hidden border-b border-white/10 py-6 sm:py-8">
+          <p
+            className="select-none whitespace-nowrap text-[19vw] font-black uppercase leading-none tracking-tighter sm:text-[11vw] lg:text-[9rem]"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+          >
+            Tecknotrove
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 border-b border-white/10 py-14 sm:grid-cols-4">
           {COLUMNS.map((col) => (
             <div key={col.title}>
               <p className="mono-label mb-5 text-[10.5px] text-white/35">
@@ -65,6 +103,38 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          <div className="col-span-2 sm:col-span-1">
+            <p className="mono-label mb-5 text-[10.5px] text-white/35">
+              Get in Touch
+            </p>
+            <ul className="space-y-3.5">
+              <li>
+                <a
+                  href="tel:+912261513002"
+                  className="group flex items-start gap-2.5 text-sm text-white/55 transition-colors hover:text-white"
+                >
+                  <Phone size={16} weight="duotone" className="mt-0.5 shrink-0 text-orange-300" />
+                  +91 22 6151 3002
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tecknotrove.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-2.5 text-sm text-white/55 transition-colors hover:text-white"
+                >
+                  <EnvelopeSimple size={16} weight="duotone" className="mt-0.5 shrink-0 text-orange-300" />
+                  www.tecknotrove.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5 text-sm leading-relaxed text-white/55">
+                <MapPin size={16} weight="duotone" className="mt-0.5 shrink-0 text-orange-300" />
+                Andheri (East), Mumbai 400059
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 py-8 text-xs text-white/35 sm:flex-row">
