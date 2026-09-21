@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-start">
           <div className="min-w-0">
             <div className="relative text-[19vw] sm:text-[10vw] lg:text-[7.5rem]">
-              <div className="pointer-events-none absolute left-[0.03em] top-[-0.2em] h-[0.22em] w-[0.22em]">
+              <div className="pointer-events-none absolute right-[-0.06em] top-[-0.06em] h-[0.24em] w-[0.24em]">
                 <Image src="/images/logo-mark.png" alt="" fill className="object-contain" />
               </div>
               <div className="overflow-hidden">
