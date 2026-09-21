@@ -222,7 +222,7 @@ export default function SectorGrid() {
                       className="absolute inset-0"
                       style={{
                         background:
-                          "linear-gradient(to top, rgb(233,238,251) 0%, rgb(233,238,251) 44%, rgba(233,238,251,0.55) 70%, rgba(233,238,251,0) 100%)",
+                          "linear-gradient(to top, rgb(233,238,251) 0%, rgb(233,238,251) 30%, rgba(233,238,251,0) 58%)",
                       }}
                     />
                   </div>
