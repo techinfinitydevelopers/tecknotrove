@@ -168,7 +168,7 @@ export default function SectorGrid() {
   return (
     <section
       id="simulation"
-      className="relative z-10 -mt-px overflow-hidden rounded-t-[2.5rem] bg-bg-elevated pb-28 pt-20 sm:rounded-t-[3rem] sm:pb-36 sm:pt-28"
+      className="relative z-10 -mt-px overflow-hidden rounded-t-[2.5rem] bg-bg-elevated pb-12 pt-20 sm:rounded-t-[3rem] sm:pb-36 sm:pt-28"
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <p className="mono-label mb-5 text-[11px] text-blue-500">

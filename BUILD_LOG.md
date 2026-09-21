@@ -70,6 +70,8 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 **Sector cards, mobile spacing:** stacked-column gap between the 4 sector cards below `sm` (`gap-4`) read as too loose once the site is checked on an actual phone viewport, not just the 732px preview pane — dropped to `gap-2`. The `sm:` row layout (negative-margin overlap + fan interaction) is untouched.
 
+**Sector section, mobile bottom padding:** reported from the live deploy (tecknotrove.vercel.app on an actual phone) as "a lot of space" after the last sector card before the cream stat strip. Root cause: the section's `pb-28` (112px), sized for the single-row desktop layout, was carried unchanged into the 4-card-tall mobile stack, where it reads as dead space rather than breathing room. Split to `pb-12` mobile / `sm:pb-36` desktop — confirmed via `getBoundingClientRect()` that the gap dropped from 112px to 48px at 375px width, `sm:` layout untouched.
+
 **Stat strip, centered numbers:** icon/number/label stack in each of the 4 stat columns was left-aligned by default; switched to `items-center text-center` with symmetric `md:px-4` (dropping the old one-sided `pl-8`) so each stat centres within its column and the divider lines land centred between them.
 
 **Gap between Partner/Careers and LinkedIn sections:** two adjacent large `py-*` values (Partner/Careers `pb-16/20` + LinkedIn `pt-24/32`) stacked into ~230px of dead white space with no visual anchor. Split each section's padding asymmetrically — Partner/Careers `pb-12/16` (top kept at 16/20), LinkedIn `pt-12/16` (bottom kept at 24/32) — closing the gap without touching the spacing either section keeps relative to its other neighbour.
