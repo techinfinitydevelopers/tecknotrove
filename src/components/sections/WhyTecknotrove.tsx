@@ -43,8 +43,8 @@ export default function WhyTecknotrove() {
     <section id="why" ref={sectionRef} className="relative overflow-hidden py-28 sm:py-40">
       <div ref={imgRef} className="absolute inset-0">
         <Image
-          src="/images/oesd-hero.jpg"
-          alt="Tecknotrove full-motion training simulator platform"
+          src="/images/why-simulator.jpg"
+          alt="Engineers assembling a full-motion training simulator platform"
           fill
           className="object-cover"
         />
