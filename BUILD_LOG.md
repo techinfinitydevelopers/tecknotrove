@@ -70,6 +70,8 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 **Sector cards, mobile spacing:** stacked-column gap between the 4 sector cards below `sm` (`gap-4`) read as too loose once the site is checked on an actual phone viewport, not just the 732px preview pane — dropped to `gap-2`. The `sm:` row layout (negative-margin overlap + fan interaction) is untouched.
 
+**Footer, wordmark color, white gradient (final):** previewed a brighter white version (`rgba(255,255,255,0.95)`→`0.55`) locally on request without pushing, client asked to revert to the dark grey, then decided on the white gradient after all — settled and pushed.
+
 **Footer, wordmark color swapped to dark ghost-emboss:** client sent a reference showing the wordmark almost invisible against the black background with a faint top-to-bottom highlight fade (an emboss/pressed look). Swapped the solid muted-blue fill for a gradient-clip text treatment (`rgba(255,255,255,0.12)` top → `rgba(255,255,255,0.02)` bottom, `background-clip: text`) — this is the same technique the very first footer draft used, reapplied here.
 
 **Footer, diamond nudge, corrected:** client asked to nudge left (`right-[-0.1em]`→`0.02em`), then immediately corrected to right instead, then asked for further right again — settled at `right-[-0.14em]`.
