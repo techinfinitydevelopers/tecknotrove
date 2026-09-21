@@ -202,7 +202,7 @@ export default function SectorGrid() {
               <div
                 key={s.key}
                 data-card
-                className="relative min-h-[320px] sm:-ml-3 sm:min-h-[430px] sm:flex-1 lg:min-h-[480px] first:sm:ml-0"
+                className="relative h-[320px] sm:-ml-3 sm:h-[430px] sm:flex-1 lg:h-[480px] first:sm:ml-0"
                 style={{ zIndex: i }}
               >
                 <div
