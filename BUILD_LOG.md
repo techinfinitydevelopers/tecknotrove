@@ -108,7 +108,32 @@ Post dates are shown as month-level ("Sep 2026") rather than the relative "2d / 
 
 ---
 
-**Known follow-ups / open items:**
+**Known follow-ups / open items (superseded 2026-09-21, see below):**
 - Hero, sector cards (Defence/Aviation/Automobile), Why-Tecknotrove background, and News cards currently use abstract/gradient treatments or the one available OESD photo set, not sector-specific real photography — swap in real photos/video once available (client's own asset folders need re-syncing from OneDrive, or image-gen credits need topping up).
 - Corporate Video hero button links to the real YouTube link found in the client's asset export (`https://youtu.be/hb-hqyMnMLw`).
 - Other wireframe pages (PDP, Defence/Aviation/Driving/OESD sector pages) not yet built.
+
+## 2026-09-21 — Product page (PDP) + 4 sector pages
+
+**Scope:** Built the remaining wireframe pages from `tecknotrove_wireframe.xlsx` sheets 2–6 (Product Page, Defence/Aviation/Driving/Industrial sector pages), which had been open items since the homepage build. Read the xlsx directly with `openpyxl` (Read tool can't parse binary xlsx) to pull the exact section order, copy and stat values per sheet, rather than re-deriving structure from memory.
+
+**Architecture:** one data-driven template instead of 4 bespoke pages — `src/data/sectors.ts` holds all copy/stats/products/applications/tech bullets per sector (including the wireframe's per-sector accent colours: defence dark green, aviation sky blue, driving magenta, OESD amber), and `src/components/sector/*` (Hero, StatStrip, Benefits, Products, Applications, Technology, Trust, Callout) are the shared section components each sector's `page.tsx` composes. Defence gets `SectorBenefits` (wireframe-only-Defence "01/Benefits of Simulation" section); the other 3 get `SectorTrust` (wireframe's dark "04/Track Record" band) instead — matches each sheet's actual section list rather than forcing identical structure everywhere. News + LinkedIn sections are reused as-is from the homepage rather than fabricated per-sector, since inventing distinct fake articles/posts per sector would be worse than one real shared feed.
+
+**Routes:** `/defence`, `/aviation`, `/automobile`, `/oesd` — chosen to match the existing `SECTORS[].key` values already used by the homepage `SectorGrid` and `Nav` mega-menu labels, so no renaming was needed anywhere else.
+
+**PDP:** `/products/[slug]`, App Router dynamic route with `generateStaticParams`/`generateMetadata`, backed by `src/data/products.ts`. Only one product exists (`tank-driving-simulator` / TDS-6F) since that's the only one the wireframe spells out in full (breadcrumb, quick-specs band, overview, 7 key features, 8 applications, convertible-kit band, TMS callout with a mocked session-monitor panel, spec table + blue CTA panel, gallery, 4-question FAQ accordion, related products, callout) — other sector product cards intentionally have no `href` and render as static (non-clickable) tiles rather than linking to pages that don't exist yet.
+
+**Imagery:** reused the existing fal.ai-generated sector photos (`sector-defence.jpg` etc.) as both sector-hero backgrounds and PDP hero/overview images, tinted per-sector via `mix-blend-color` at hero level. Gallery's 4 secondary tiles use icon+gradient treatment (matching the brand book's no-stock-photo rule) rather than reusing the same single photo 5 times.
+
+**Bug caught — sector-hero eyebrow badge illegible:** first pass coloured the eyebrow pill's text with the sector's own accent (`style={{color: sector.accent}}`), which for Defence's dark green landed almost invisible against the green-tinted hero photo. Fixed by making the badge text always white with a small accent-coloured dot instead — legible regardless of how light/dark a given sector's accent is.
+
+**FAQ accordion, false alarm:** while testing via the Browser pane, repeated `getComputedStyle(...).gridTemplateRows` reads after clicking appeared to show no state change across many attempts (including native OS-level clicks and full `mousedown/up` event dispatch), which looked like a broken click handler. Verified via direct React fiber inspection (`__reactFiber$` key → walk to the `Faq` fiber → read `memoizedState`) that the `open` state was in fact updating correctly on every click, and a final clean re-test reading the DOM's actual inline `style` attribute (rather than `getComputedStyle`) confirmed the accordion opens/closes/rotates correctly — the earlier computed-style reads were the unreliable signal, not the code.
+
+**Also fixed in passing:** `Nav.tsx` mega-menu's Simulation column now links to the 4 real sector routes (was `#simulation` for every item); `SectorGrid.tsx`'s homepage sector cards are now real `next/link` `<Link>`s to those routes (they were previously non-interactive divs with no `href` at all); added `sizes`/`priority` to several `fill` images that were missing them (Next.js dev warnings, not visible bugs).
+
+**Verified:** `tsc --noEmit` clean; all 4 sector pages + the PDP checked for console errors via a fresh browser tab (avoids stale-HMR-cache false positives seen earlier in this project); mobile (375px) checked on the Defence page — no horizontal overflow, eyebrow badge fix confirmed visually once its fade-in animation settled.
+
+**Known follow-ups / open items:**
+- Only the Tank Driving Simulator has a real PDP; other 27 product names across the 4 sectors are copy-only tiles with no linked page.
+- PDP's TMS "session monitor" panel and gallery's 4 icon tiles are stylised mockups, not real product screenshots/photos.
+- Corporate Video hero button links to the real YouTube link found in the client's asset export (`https://youtu.be/hb-hqyMnMLw`).

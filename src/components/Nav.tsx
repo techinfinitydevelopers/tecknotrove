@@ -16,15 +16,25 @@ const NAV_LINKS = [
 const MENU_COLUMNS = [
   {
     title: "Simulation",
-    links: ["Defence", "Aviation", "Automobile", "OESD"],
+    links: [
+      { label: "Defence", href: "/defence" },
+      { label: "Aviation", href: "/aviation" },
+      { label: "Automobile", href: "/automobile" },
+      { label: "OESD", href: "/oesd" },
+    ],
   },
   {
     title: "Software",
-    links: ["Training Management System"],
+    links: [{ label: "Training Management System", href: "/#software" }],
   },
   {
     title: "Company",
-    links: ["About Us", "Careers", "News", "Contact"],
+    links: [
+      { label: "About Us", href: "/#why" },
+      { label: "Careers", href: "/#careers" },
+      { label: "News", href: "/#news" },
+      { label: "Contact", href: "/#contact" },
+    ],
   },
 ];
 
@@ -102,7 +112,7 @@ export default function Nav() {
                   <ul className="space-y-4">
                     {col.links.map((link, li) => (
                       <motion.li
-                        key={link}
+                        key={link.label}
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
@@ -112,11 +122,11 @@ export default function Nav() {
                         }}
                       >
                         <a
-                          href="#simulation"
+                          href={link.href}
                           onClick={() => setOpen(false)}
                           className="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl"
                         >
-                          {link}
+                          {link.label}
                           <ArrowUpRight
                             size={20}
                             className="opacity-0 transition-opacity group-hover:opacity-100"

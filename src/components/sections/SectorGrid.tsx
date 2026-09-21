@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -205,9 +206,10 @@ export default function SectorGrid() {
                 className="relative h-[320px] sm:-ml-3 sm:h-[430px] sm:flex-1 lg:h-[480px] first:sm:ml-0"
                 style={{ zIndex: i }}
               >
-                <div
+                <Link
+                  href={`/${s.key}`}
                   data-card-face
-                  className="group relative h-full overflow-hidden rounded-2xl border border-line bg-bg-panel p-5 shadow-[0_20px_45px_-24px_rgba(15,18,30,0.35)] lg:p-7"
+                  className="group relative block h-full overflow-hidden rounded-2xl border border-line bg-bg-panel p-5 shadow-[0_20px_45px_-24px_rgba(15,18,30,0.35)] lg:p-7"
                 >
                   <div className="pointer-events-none absolute inset-0">
                     <Image
@@ -248,7 +250,7 @@ export default function SectorGrid() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             );
           })}
