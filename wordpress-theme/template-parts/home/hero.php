@@ -25,16 +25,16 @@
 
 		<div class="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-5 pt-16 sm:px-8">
 			<p class="mono-label mb-6 text-[11px] text-orange-300" data-reveal>
-				Simulation &amp; Training Technology &middot; Est. 2002
+				<?php echo esc_html( tecknotrove_home_hero_eyebrow() ); ?>
 			</p>
 
 			<h1 class="max-w-3xl text-[13vw] font-black leading-[0.95] tracking-tight sm:text-[7.5vw] lg:text-[5.6rem]">
-				<span class="block overflow-hidden"><span class="block" data-reveal>Precise today.</span></span>
-				<span class="block overflow-hidden"><span class="block" data-reveal>Perfect tomorrow.</span></span>
+				<span class="block overflow-hidden"><span class="block" data-reveal><?php echo esc_html( tecknotrove_home_hero_line1() ); ?></span></span>
+				<span class="block overflow-hidden"><span class="block" data-reveal><?php echo esc_html( tecknotrove_home_hero_line2() ); ?></span></span>
 			</h1>
 
 			<p class="mt-7 max-w-md text-base text-white/75 sm:text-lg" data-reveal>
-				Building technologies for demanding industries, from full-motion armoured vehicle trainers to airport ground-support simulators.
+				<?php echo esc_html( tecknotrove_home_hero_subhead() ); ?>
 			</p>
 
 			<div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>

@@ -1,26 +1,18 @@
 <?php
 $company_url = 'https://www.linkedin.com/company/tecknotrove-systems-i-pvt-ltd/';
-$hashtags = [ '#Tecknotrove', '#CoalMining', '#MakeInIndia' ];
-$posts = [
-	[
-		'time' => '2d',
-		'text' => "A single incident during training can cost a coal mine far more than most leaders account for: lost production, investigations, regulatory scrutiny, and above all, the human impact.",
-		'doc_title' => 'Tecknotrove_Coal_Mining_Incident_Reduction_HSE',
-		'pages' => 4, 'reactions' => 8,
-		'image' => get_template_directory_uri() . '/assets/images/li-post-1.jpg',
-		'href'  => 'https://www.linkedin.com/posts/tecknotrove-systems-i-pvt-ltd_tecknotrovecoalminingincidentreductionhse-activity-7506952375555739649-5lnD',
-		'place' => 'z-10 sm:left-0 sm:top-0 sm:-rotate-3 sm:group-hover:-translate-x-3 sm:group-hover:-translate-y-3',
-	],
-	[
-		'time' => '5d',
-		'text' => 'How long does it really take for a new operator to become productive? On-site training on live machines is slow and costly. Scenario-based simulation gets crews to full competency up to 4x faster.',
-		'doc_title' => 'Time-to-Competency_Tecknotrove',
-		'pages' => 4, 'reactions' => 6,
-		'image' => get_template_directory_uri() . '/assets/images/li-post-2.jpg',
-		'href'  => 'https://www.linkedin.com/posts/tecknotrove-systems-i-pvt-ltd_time-to-competencytecknotrove-activity-7505524623187488770-QzAV',
-		'place' => 'z-20 sm:left-[52px] sm:top-[44px] sm:rotate-3 sm:group-hover:translate-x-3 sm:group-hover:translate-y-3',
-	],
+$hashtags = tecknotrove_home_hashtags();
+// Stacked-card positioning is a fixed visual per slot; content comes from
+// wp-admin > Homepage, see inc/homepage-options.php.
+$places = [
+	'z-10 sm:left-0 sm:top-0 sm:-rotate-3 sm:group-hover:-translate-x-3 sm:group-hover:-translate-y-3',
+	'z-20 sm:left-[52px] sm:top-[44px] sm:rotate-3 sm:group-hover:translate-x-3 sm:group-hover:translate-y-3',
 ];
+$raw_posts = tecknotrove_home_linkedin_posts();
+$posts = array_map(
+	fn( $p, $i ) => array_merge( $p, [ 'place' => $places[ $i % count( $places ) ] ] ),
+	$raw_posts,
+	array_keys( $raw_posts )
+);
 ?>
 <section class="bg-bg pb-24 pt-12 sm:pb-32 sm:pt-16">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
@@ -41,11 +33,11 @@ $posts = [
 
 				<div class="mt-8 flex gap-14 border-y border-line py-6">
 					<div>
-						<p class="font-mono text-4xl font-medium text-ink">9,232</p>
+						<p class="font-mono text-4xl font-medium text-ink"><?php echo esc_html( tecknotrove_home_linkedin_followers() ); ?></p>
 						<p class="mt-1 text-sm text-ink-dim">Followers</p>
 					</div>
 					<div>
-						<p class="font-mono text-4xl font-medium text-ink">35+</p>
+						<p class="font-mono text-4xl font-medium text-ink"><?php echo esc_html( tecknotrove_home_linkedin_countries() ); ?></p>
 						<p class="mt-1 text-sm text-ink-dim">Countries reached</p>
 					</div>
 				</div>
@@ -73,7 +65,7 @@ $posts = [
 								<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/li-logo.png' ); ?>" alt="" class="h-11 w-11 shrink-0 rounded-md object-cover" />
 								<div class="min-w-0 flex-1">
 									<p class="truncate text-[13.5px] font-bold text-[#14161c]">Tecknotrove Systems (I) Pvt Ltd</p>
-									<p class="truncate text-xs text-[#565a6b]">9,232 followers</p>
+									<p class="truncate text-xs text-[#565a6b]"><?php echo esc_html( tecknotrove_home_linkedin_followers() ); ?> followers</p>
 									<p class="mt-0.5 flex items-center gap-1 text-xs text-[#565a6b]">
 										<?php echo esc_html( $p['time'] ); ?> &middot; <?php tecknotrove_the_icon( 'Globe', 12 ); ?>
 									</p>

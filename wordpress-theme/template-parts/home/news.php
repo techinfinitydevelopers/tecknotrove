@@ -1,31 +1,17 @@
 <?php
 $panel_path = 'M0,116 A16,16 0 0 1 16,100 L146,100 Q154,100 159,109 L177,131 Q182,140 190,140 L384,140 A16,16 0 0 1 400,156 L400,500 L0,500 Z';
-$articles = [
-	[
-		'title' => "Tank Driving Simulator delivered to the Indian Army",
-		'meta'  => '12 Aug 2025 · 4 min read',
-		'image' => get_template_directory_uri() . '/assets/images/news-army.jpg',
-		'dark'  => true,
-		'frame' => '#0a1440',
-		'surface' => '#101c52',
-	],
-	[
-		'title' => 'What we showcased and signed at DefExpo 2025',
-		'meta'  => '02 Jun 2025 · 3 min read',
-		'image' => get_template_directory_uri() . '/assets/images/news-expo.jpg',
-		'dark'  => false,
-		'frame' => '#d5dae4',
-		'surface' => '#eef0f5',
-	],
-	[
-		'title' => 'Why 6-DOF matters for full-motion training',
-		'meta'  => '21 Apr 2025 · 6 min read',
-		'image' => get_template_directory_uri() . '/assets/images/news-motion.jpg',
-		'dark'  => true,
-		'frame' => '#08080a',
-		'surface' => '#141417',
-	],
+// Visual treatment (dark/frame/surface) cycles per card position — content
+// (title/meta/image) comes from wp-admin > Homepage, see inc/homepage-options.php.
+$styles = [
+	[ 'dark' => true, 'frame' => '#0a1440', 'surface' => '#101c52' ],
+	[ 'dark' => false, 'frame' => '#d5dae4', 'surface' => '#eef0f5' ],
+	[ 'dark' => true, 'frame' => '#08080a', 'surface' => '#141417' ],
 ];
+$articles = array_map(
+	fn( $a, $i ) => array_merge( $a, $styles[ $i % count( $styles ) ] ),
+	tecknotrove_home_news(),
+	array_keys( tecknotrove_home_news() )
+);
 ?>
 <section class="border-t border-line bg-bg-elevated py-14 sm:py-16">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">

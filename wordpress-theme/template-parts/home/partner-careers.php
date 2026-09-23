@@ -1,24 +1,16 @@
 <?php
-$tiles = [
-	[
-		'index'    => '01', 'tag' => 'Partnerships', 'title' => 'Partner With Us',
-		'desc'     => 'Distribution, integration and technology partnerships across our global network.',
-		'stat_value' => '35+', 'stat_label' => 'Countries',
-		'cta'      => 'Get in Touch', 'href' => '#contact', 'icon' => 'Handshake',
-		'accent'   => 'var(--orange)',
-		'gradient' => 'linear-gradient(160deg, var(--blue-brand) 0%, var(--blue-950) 100%)',
-		'sweep'    => 'blue',
-	],
-	[
-		'index'    => '02', 'tag' => 'Careers', 'title' => 'Join Our Team',
-		'desc'     => 'Work on full-motion simulation systems, from motion platforms to visuals.',
-		'stat_value' => '20+', 'stat_label' => 'Years running',
-		'cta'      => 'View Open Roles', 'href' => '#careers', 'icon' => 'UsersThree',
-		'accent'   => '#ffffff',
-		'gradient' => 'linear-gradient(160deg, #24262d 0%, #0a0a0c 100%)',
-		'sweep'    => 'orange',
-	],
+// Visual treatment cycles per tile position — content (tag/title/desc/stat/
+// cta) comes from wp-admin > Homepage, see inc/homepage-options.php.
+$styles = [
+	[ 'icon' => 'Handshake', 'accent' => 'var(--orange)', 'gradient' => 'linear-gradient(160deg, var(--blue-brand) 0%, var(--blue-950) 100%)', 'sweep' => 'blue' ],
+	[ 'icon' => 'UsersThree', 'accent' => '#ffffff', 'gradient' => 'linear-gradient(160deg, #24262d 0%, #0a0a0c 100%)', 'sweep' => 'orange' ],
 ];
+$partners = tecknotrove_home_partners();
+$tiles = array_map(
+	fn( $t, $i ) => array_merge( $t, $styles[ $i % count( $styles ) ], [ 'index' => str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ] ),
+	$partners,
+	array_keys( $partners )
+);
 ?>
 <section class="bg-bg-elevated pb-12 pt-16 sm:pb-16 sm:pt-20">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">

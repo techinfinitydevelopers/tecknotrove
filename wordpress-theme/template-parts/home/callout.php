@@ -6,10 +6,10 @@
 
 	<div class="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
 		<div>
-			<h2 class="text-4xl font-black leading-[1.03] tracking-tight sm:text-6xl" data-reveal>See a simulator<br />in action.</h2>
+			<h2 class="text-4xl font-black leading-[1.03] tracking-tight sm:text-6xl" data-reveal><?php echo esc_html( tecknotrove_home_callout_line1() ); ?><br /><?php echo esc_html( tecknotrove_home_callout_line2() ); ?></h2>
 			<div data-reveal>
 				<p class="mt-6 max-w-lg text-base text-[#170800]/75 sm:text-lg">
-					Visit our Mumbai facility for a live demonstration, or request a virtual walkthrough with our engineering team.
+					<?php echo esc_html( tecknotrove_home_callout_body() ); ?>
 				</p>
 				<div class="mt-9 flex flex-wrap items-center gap-4">
 					<?php tecknotrove_the_button( 'Book a demo', [ 'href' => 'tel:+912261513002', 'variant' => 'dark', 'sweep' => 'blue' ] ); ?>

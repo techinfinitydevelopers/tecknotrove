@@ -12,11 +12,11 @@
 	<div class="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-8">
 		<div class="max-w-2xl">
 			<h2 class="text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl" data-reveal>
-				Every subsystem.<br />One source.
+				<?php echo esc_html( tecknotrove_home_why_line1() ); ?><br /><?php echo esc_html( tecknotrove_home_why_line2() ); ?>
 			</h2>
 			<div data-reveal>
 				<p class="mt-6 max-w-lg text-base text-ink-dim sm:text-lg">
-					Motion platforms, visuals, controls and instructor software are all engineered in-house, so every simulator ships as one integrated system instead of a stack of vendors.
+					<?php echo esc_html( tecknotrove_home_why_body() ); ?>
 				</p>
 				<div class="mt-9">
 					<?php tecknotrove_the_button( 'Our Technology', [ 'href' => '#simulation', 'variant' => 'outline' ] ); ?>

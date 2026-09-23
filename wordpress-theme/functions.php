@@ -5,6 +5,8 @@ define( 'TECKNOTROVE_VERSION', '1.0.0' );
 
 require get_template_directory() . '/inc/theme-setup.php';
 require get_template_directory() . '/inc/repeater-field.php';
+require get_template_directory() . '/inc/repeater-option.php';
+require get_template_directory() . '/inc/homepage-options.php';
 require get_template_directory() . '/inc/cpts.php';
 require get_template_directory() . '/inc/rewrite-fix.php';
 require get_template_directory() . '/inc/helpers.php';

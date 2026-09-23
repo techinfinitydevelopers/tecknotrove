@@ -1,5 +1,15 @@
 # WordPress theme — Build Log
 
+## 2026-09-23 — Full homepage now editable from wp-admin
+
+**Scope:** client asked to be able to edit "homepage and all pages" from WordPress, not just the Sector/Product CPTs. Added a "Homepage" top-level admin menu (`inc/homepage-options.php`) covering the content a marketing editor would realistically want to change: Hero (eyebrow/headline/subhead), Why Tecknotrove (headline/body), News (3-article repeater: title/meta/image URL), Partner/Careers (tile repeater: tag/title/desc/stat/CTA), LinkedIn (followers/countries + hashtag repeater + posts repeater), Callout (headline/body). Fixed visual-only constants (icons, gradients, card positioning, folder-card colours) stay in the template, cycled by array position, so editors change words and numbers without being able to break the layout.
+
+**Storage:** `wp_options`, not a CPT/Page — the homepage has no post of its own since `front-page.php` renders unconditionally regardless of the Reading-settings static-page choice. Reused the existing post-meta repeater UI (`inc/repeater-field.php`) via a new `inc/repeater-option.php` that swaps `get_post_meta`/`update_post_meta` for `get_option`/`update_option`, same markup, same admin JS, no duplication.
+
+**Every getter has a hardcoded fallback** matching the original design copy (`tecknotrove_home_hero_line1()` etc. in `inc/homepage-options.php`), so an empty/unconfigured option never breaks the page — confirmed by loading the homepage before touching the new admin page at all.
+
+**Verified live end-to-end:** changed Hero line 1 to "Excellence today." via the new wp-admin page, confirmed it appeared on the public homepage immediately, then reverted it back — no code edit, no git push, matching the client's actual ask.
+
 ## 2026-09-23 — Sector pages + Product page (PDP) complete
 
 **Scope:** `page-sector.php` (`/defence`, `/aviation`, `/automobile`, `/oesd`) and `single-product.php` (`/products/tank-driving-simulator`) ported from the Next.js `SectorHero`/`SectorStatStrip`/etc. and PDP components. `template-parts/sector/*.php` holds the reusable sector sections (hero, stats, benefits — only rendered if the sector has any, technology, trust — only if set, callout); News and LinkedIn are reused as-is from `template-parts/home/`. The Products section on each sector page queries the `product` CPT by `tt_sector_id` rather than a manually maintained list, so a new product posted in wp-admin appears automatically on its sector's page.
