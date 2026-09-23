@@ -14,7 +14,9 @@ function tecknotrove_register_cpts() {
 		'show_in_rest' => true,
 		'menu_icon'    => 'dashicons-shield',
 		'supports'     => [ 'title' ],
-		'rewrite'      => [ 'slug' => 'sector' ],
+		// Its own default rewrite is disabled — flat URLs (/defence, not
+		// /sector/defence) are registered separately in inc/rewrite-fix.php.
+		'rewrite'      => false,
 	] );
 
 	register_post_type( 'product', [
@@ -33,13 +35,3 @@ function tecknotrove_register_cpts() {
 	] );
 }
 add_action( 'init', 'tecknotrove_register_cpts' );
-
-/**
- * Sectors have a small, fixed set of URL slugs the rest of the site links
- * to directly (/defence, /aviation, /automobile, /oesd) rather than
- * /sector/defence, matching the routes the Next.js version already used.
- */
-function tecknotrove_sector_rewrite_rules() {
-	add_rewrite_rule( '^(defence|aviation|automobile|oesd)/?$', 'index.php?sector=$matches[1]', 'top' );
-}
-add_action( 'init', 'tecknotrove_sector_rewrite_rules' );
