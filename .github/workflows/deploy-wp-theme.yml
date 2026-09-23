@@ -1,0 +1,56 @@
+name: Deploy WordPress theme
+
+# Runs whenever wordpress-theme/ changes on main — rebuilds the Tailwind
+# CSS, then FTP/SFTP-uploads the theme folder straight into
+# wp-content/themes/tecknotrove on the live shared-hosting server.
+#
+# One-time setup (see wordpress-theme/DEPLOY.md for the full walkthrough):
+#   1. In the GitHub repo: Settings > Secrets and variables > Actions, add:
+#        FTP_SERVER    - the host's FTP/SFTP hostname
+#        FTP_USERNAME  - FTP/SFTP username
+#        FTP_PASSWORD  - FTP/SFTP password
+#        FTP_REMOTE_DIR - full path to wp-content/themes/tecknotrove/
+#                         on the server (ask the host's file manager or
+#                         support if unsure, e.g.
+#                         /public_html/wp-content/themes/tecknotrove/)
+#   2. Push to main — this workflow does the rest automatically.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wordpress-theme/**'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Tailwind and build CSS
+        working-directory: wordpress-theme
+        run: |
+          npm install
+          npm run build:css
+
+      - name: Deploy over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./wordpress-theme/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+          exclude: |
+            **/node_modules/**
+            **/src/**
+            **/.git*
+            **/package.json
+            **/package-lock.json
