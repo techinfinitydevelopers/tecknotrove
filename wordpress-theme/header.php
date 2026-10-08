@@ -10,23 +10,32 @@
 
 <div class="grain" aria-hidden="true"></div>
 
-<header id="tt-nav" class="fixed inset-x-0 top-0 z-50 bg-nav-bg transition-shadow duration-300">
-	<nav class="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 sm:h-[72px] sm:px-8">
+<header id="tt-nav" class="tt-nav fixed inset-x-0 top-0 z-50 transition-all duration-300">
+	<nav class="relative mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 sm:h-16 sm:px-8 lg:h-[56px]">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="relative z-10 flex items-center">
 			<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-white.png' ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="h-7 w-auto sm:h-8" />
 		</a>
 
-		<div class="hidden items-center gap-9 lg:flex">
-			<a href="/#simulation" class="text-[14.5px] font-medium text-white/65 transition-colors hover:text-white">Simulation</a>
-			<a href="/#software" class="text-[14.5px] font-medium text-white/65 transition-colors hover:text-white">Software</a>
-			<a href="/#why" class="text-[14.5px] font-medium text-white/65 transition-colors hover:text-white">Company</a>
+		<div class="tt-nav-center absolute left-1/2 top-0 hidden h-[96px] w-[680px] -translate-x-1/2 lg:block">
+			<svg class="absolute inset-0 h-full w-full" viewBox="0 0 680 96" preserveAspectRatio="none" fill="#050507" aria-hidden="true"><path d="M0 0H680V56C648 56 636 62 628 76C622 88 614 96 596 96H84C66 96 58 88 52 76C44 62 32 56 0 56Z"/></svg>
+			<div class="absolute inset-x-0 top-[38px] flex h-11 items-center justify-center gap-3">
+			<?php
+			$nav_links = [
+				'Home'       => home_url( '/' ),
+				'Simulation' => home_url( '/#simulation' ),
+				'Software'   => home_url( '/#software' ),
+				'Company'    => home_url( '/#why' ),
+			];
+			foreach ( $nav_links as $label => $href ) :
+				?>
+				<a href="<?php echo esc_url( $href ); ?>" class="tt-nav-link rounded-full px-4 py-1.5 text-[15.5px] font-medium text-white/75 transition-colors hover:bg-white/10 hover:text-white"><?php echo esc_html( $label ); ?></a>
+			<?php endforeach; ?>
+			</div>
 		</div>
 
 		<div class="flex items-center gap-3">
-			<span class="hidden sm:inline-flex">
-				<?php tecknotrove_the_button( 'Get in Touch', [ 'href' => '#contact', 'variant' => 'light' ] ); ?>
-			</span>
-			<button id="tt-menu-toggle" aria-label="Open menu" class="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-orange/60">
+			<a href="#contact" class="hidden rounded-full border border-white/60 px-5 py-2 text-[15px] font-medium text-white transition-colors hover:bg-white hover:text-ink sm:inline-flex lg:hidden xl:inline-flex">Get in Touch</a>
+			<button id="tt-menu-toggle" aria-label="Open menu" class="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:border-orange/60">
 				<svg id="tt-menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
 				<svg id="tt-menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor" style="display:none"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
 			</button>

@@ -28,12 +28,11 @@
 				<?php echo esc_html( tecknotrove_home_hero_eyebrow() ); ?>
 			</p>
 
-			<h1 class="max-w-3xl text-[13vw] font-black leading-[0.95] tracking-tight sm:text-[7.5vw] lg:text-[5.6rem]">
-				<span class="block overflow-hidden"><span class="block" data-reveal><?php echo esc_html( tecknotrove_home_hero_line1() ); ?></span></span>
-				<span class="block overflow-hidden"><span class="block" data-reveal><?php echo esc_html( tecknotrove_home_hero_line2() ); ?></span></span>
+			<h1 class="max-w-3xl text-[13vw] font-black leading-[0.95] tracking-tight sm:text-[7.5vw] lg:text-[5.6rem]" data-split-title>
+				<?php echo esc_html( tecknotrove_home_hero_line1() ); ?><br /><?php echo esc_html( tecknotrove_home_hero_line2() ); ?>
 			</h1>
 
-			<p class="mt-7 max-w-md text-base text-white/75 sm:text-lg" data-reveal>
+			<p class="mt-7 max-w-md text-base text-white/75 sm:text-lg" data-split-lines>
 				<?php echo esc_html( tecknotrove_home_hero_subhead() ); ?>
 			</p>
 

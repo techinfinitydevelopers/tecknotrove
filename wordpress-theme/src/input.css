@@ -98,116 +98,64 @@ body {
   color: transparent;
 }
 
-.tt-nav-scrolled {
-  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.35);
+.tt-nav {
+  background: #050507;
 }
-
-#tt-mobile-menu.tt-open {
-  display: flex;
-}
-
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-[data-reveal].tt-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.tt-faq-a {
-  display: grid;
-  grid-template-rows: 0fr;
-  overflow: hidden;
-  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.tt-faq-a > div {
-  overflow: hidden;
-}
-.tt-faq-icon {
-  transition: transform 0.3s;
-}
-
-.tt-folder-card:hover .tt-folder-panel {
-  transform: translateY(22%);
-}
-
-.mono-label {
-  font-family: var(--font-mono-tech);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.grain {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  opacity: 0.02;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
+/* Compact the bar and shrink the dip once the page is scrolled */
+@media (min-width: 1024px) {
+  .tt-nav nav {
+    transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .tt-nav-center {
+    transform-origin: top center;
+    transition: scale 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .tt-nav-scrolled nav {
+    height: 50px;
+  }
+  .tt-nav-scrolled .tt-nav-center {
+    scale: 0.9;
   }
 }
-@keyframes spin-slow-reverse {
-  to {
-    transform: rotate(-360deg);
-  }
-}
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1.9);
-    opacity: 0;
-  }
-}
-@keyframes marquee-x {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 34s linear infinite;
-}
-.animate-spin-slow-reverse {
-  animation: spin-slow-reverse 46s linear infinite;
-}
-.animate-marquee {
-  animation: marquee-x 28s linear infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .animate-spin-slow,
-  .animate-spin-slow-reverse,
-  .animate-marquee {
-    animation: none !important;
+  .tt-nav nav,
+  .tt-nav-center {
+    transition: none;
   }
+}
+/* "Every subsystem. One source." split section */
+.tt-why-grid {
+  background-color: #faf8f5;
+  background-image:
+    linear-gradient(to right, rgba(228, 222, 210, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(228, 222, 210, 0.45) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.tt-why-title,
+.tt-why-stat {
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.tt-why-stat {
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
 
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
+/* Typewriter caret on the character just typed */
+.tt-caret {
+  position: relative;
+}
+.tt-caret::after {
+  content: "";
+  position: absolute;
+  top: 0.12em;
+  bottom: 0.08em;
+  right: -0.06em;
+  width: 0.07em;
+  background: currentColor;
+  animation: tt-blink 0.8s steps(1) infinite;
+}
+@keyframes tt-blink {
+  50% { opacity: 0; }
 }

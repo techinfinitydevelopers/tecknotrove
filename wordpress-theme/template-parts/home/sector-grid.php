@@ -27,23 +27,23 @@ foreach ( $sector_order as $key ) {
 
 		<div id="tt-sector-list" class="mt-14 flex flex-col gap-2 sm:flex-row sm:gap-0" data-reveal>
 			<?php foreach ( $sectors_for_grid as $i => $s ) : ?>
-				<div data-card class="relative h-[320px] sm:-ml-3 sm:h-[430px] sm:flex-1 lg:h-[480px] first:sm:ml-0" style="z-index: <?php echo (int) $i; ?>;">
-					<a href="/<?php echo esc_attr( $s['key'] ); ?>" data-card-face class="group relative block h-full overflow-hidden rounded-2xl border border-line bg-bg-panel p-5 shadow-[0_20px_45px_-24px_rgba(15,18,30,0.35)] lg:p-7">
+				<div data-card style="--sector: <?php echo esc_attr( $s['accent'] ); ?>; z-index: <?php echo (int) $i; ?>;" class="relative h-[320px] sm:-ml-3 sm:h-[430px] sm:flex-1 lg:h-[480px] first:sm:ml-0">
+					<a href="/<?php echo esc_attr( $s['key'] ); ?>" data-card-face style="border-color: var(--sector);" class="group relative block h-full overflow-hidden rounded-2xl border-2 bg-bg-panel p-5 shadow-[0_20px_45px_-24px_rgba(15,18,30,0.35)] lg:p-7">
 						<div class="pointer-events-none absolute inset-0">
 							<?php if ( $s['image'] ) : ?>
 								<img src="<?php echo esc_url( $s['image'] ); ?>" alt="" class="absolute inset-0 h-full w-full object-cover" />
 							<?php endif; ?>
-							<div class="absolute inset-0" style="background: linear-gradient(to top, rgb(233,238,251) 0%, rgb(233,238,251) 30%, rgba(233,238,251,0) 58%);"></div>
+							<div class="absolute inset-0" style="background: linear-gradient(to top, color-mix(in srgb, var(--sector) 12%, #fff) 0%, color-mix(in srgb, var(--sector) 12%, #fff) 34%, color-mix(in srgb, var(--sector) 12%, transparent) 62%, transparent 82%);"></div>
 						</div>
 						<div class="relative z-10 flex h-full flex-col">
-							<div class="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-bg/60 text-orange-400">
+							<div class="flex h-11 w-11 items-center justify-center rounded-full text-white shadow-[0_8px_20px_-8px_var(--sector)]" style="background: var(--sector);">
 								<?php tecknotrove_the_icon( $sector_icons[ $s['key'] ] ?? 'Factory', 20 ); ?>
 							</div>
 							<div class="mt-auto pt-10">
-								<p class="mono-label mb-2 text-[10.5px] text-ink-faint"><?php echo esc_html( $s['name'] ); ?></p>
+								<p class="mono-label mb-2 flex items-center gap-2 text-[10.5px]" style="color: var(--sector);"><span class="h-[3px] w-4 rounded-full" style="background: var(--sector);"></span><?php echo esc_html( $s['name'] ); ?></p>
 								<h3 class="text-lg font-bold leading-snug lg:text-2xl"><?php echo esc_html( $s['h1'] ?: $s['name'] ); ?></h3>
 								<p class="mt-2 hidden max-w-sm text-sm text-ink-dim lg:block"><?php echo esc_html( $s['subhead'] ); ?></p>
-								<span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+								<span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style="color: var(--sector);">
 									Discover
 									<?php tecknotrove_the_icon( 'ArrowUpRight', 15 ); ?>
 								</span>

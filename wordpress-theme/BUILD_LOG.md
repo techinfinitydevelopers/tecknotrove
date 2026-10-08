@@ -37,3 +37,20 @@
 - Sector/Product single templates (`page-sector.php`, `single-product.php`) not yet built — CPT data exists and is ready to consume, this session ran out of scope before reaching them.
 - Homepage sector-grid card body text currently reuses the sector's `h1` (long marketing headline) rather than the Next.js version's separate short card blurb — sectors.ts had two distinct strings per sector (a homepage card title + a full page H1); the WP content model only captured one. Minor content nuance, not a bug — flagging for a possible `tt_card_title` field later if the client wants it back.
 - Mobile viewport wasn't pixel-checked in this session (relied on the responsive classes being copied unchanged from the already-mobile-verified Next.js site) — worth a real phone-width pass before launch.
+
+## Local setup on second machine (2026-10-06)
+- Installed XAMPP 8.2 via winget, WP + wp-cli, DB `tecknotrove`, junction theme -> `wordpress-theme/`, `.htaccess`, permalinks `/%postname%/`.
+- Added `tools/seed.php` + `tools/seed-data.json` (sectors/product from old TS data). Run: `TT_IMAGES=<public/images> php wp-cli.phar eval-file wordpress-theme/tools/seed.php`.
+- Local admin: http://localhost/tecknotrove/wp-admin (admin / admin123, local only).
+- Start: XAMPP Control Panel -> Apache + MySQL.
+
+## "Every subsystem. One source." revamp (2026-10-08)
+- `template-parts/home/why.php` rebuilt as a 52/48 split: left = grid-paper column with Syne headline, body, CTA and the stat block (merged in); right = framed, crisp photo. Source: Stitch export `stitch_engineering_simulator_hero_redesign.zip`.
+- `stat-strip` partial removed from `front-page.php` (file kept). Added Syne font, `.tt-why-*` styles. Dropped the mock's invented labels (REV/ARCH, FIG 04, "motion coupling active").
+- Navbar restyled earlier (centre black tab); asset versions now use filemtime.
+- `PRODUCT.md` created (impeccable init).
+
+## GSAP text animation (2026-10-08)
+- Bundled gsap 3.15 + ScrollTrigger + SplitText (free) in `assets/js/vendor/`, enqueued in `inc/theme-setup.php`; logic in `assets/js/text-anim.js`.
+- Hooks: `data-split-title` (chars rise through line mask), `data-split-lines`, `data-anim-up`. Applied to hero and "Every subsystem" sections. Skipped under prefers-reduced-motion.
+- Also: sector cards use brand-book colours + borders; news cards hover fixed; navbar redrawn as one SVG shape with scroll compaction.
