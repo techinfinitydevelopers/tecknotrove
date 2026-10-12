@@ -78,3 +78,4 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 ## Two variations + static export for Vercel (2026-10-12)
 - `tools/static-export.py` crawls the local WP site into `static-export/fan` (homepage = sector fan) and `static-export/carousel` (homepage = Framer carousel). Vercel cannot run PHP/WordPress, so these static copies are what Vercel serves. Contact form is disabled in the static copies.
 - Deploy: two Vercel projects, root directory `static-export/fan` and `static-export/carousel`, framework preset "Other", no build command.
+- Vercel projects (account developers-8273): `tecknotrove-fan` (root `static-export/fan`) and `tecknotrove-carousel` (root `static-export/carousel`), deployed with `vercel deploy --prod` after `vercel link`. Re-export with `python tools/static-export.py` (keeps `.vercel`), then run `vercel deploy --prod --yes` in each folder. On Windows PowerShell use `vercel.cmd` (vercel.ps1 is blocked by execution policy).

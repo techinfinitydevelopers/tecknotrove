@@ -113,8 +113,21 @@ def main():
 
     for key, home in VARIANTS.items():
         d = os.path.join(OUT, key)
+        # keep the Vercel project link (.vercel, .env.local, .gitignore) across re-exports
+        keep = {}
+        for name in (".vercel", ".env.local", ".gitignore"):
+            path = os.path.join(d, name)
+            if os.path.isdir(path):
+                keep[name] = ("dir", path + ".keep")
+                shutil.move(path, path + ".keep")
+            elif os.path.isfile(path):
+                keep[name] = ("file", path + ".keep")
+                shutil.move(path, path + ".keep")
         shutil.rmtree(d, ignore_errors=True)
         os.makedirs(d)
+        for name, (_, saved) in keep.items():
+            if os.path.exists(saved):
+                shutil.move(saved, os.path.join(d, name))
         for rel, body in assets.items():
             target = os.path.join(d, rel)
             os.makedirs(os.path.dirname(target), exist_ok=True)
