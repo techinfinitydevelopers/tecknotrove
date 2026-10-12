@@ -174,8 +174,3 @@ body {
   height: 16px;
 }
 
-/* Section headings in Lato italic */
-main h1,
-main h2 {
-  font-style: italic;
-}
