@@ -128,8 +128,6 @@ def main():
             os.makedirs(os.path.dirname(target), exist_ok=True)
             with open(target, "w", encoding="utf-8") as f:
                 f.write(html)
-        with open(os.path.join(d, "vercel.json"), "w") as f:
-            json.dump({"cleanUrls": True, "trailingSlash": True}, f, indent=2)
         print(key, "->", d, len(assets), "assets")
 
 
