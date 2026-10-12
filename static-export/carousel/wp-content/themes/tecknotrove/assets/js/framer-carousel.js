@@ -54,6 +54,28 @@
           reactRoot.render(React.createElement(Carousel, p));
         }
         render(Math.max(0, (props.startSlide || 1) - 1));
+        // Hover a collapsed strip to open it (same as clicking it). A short intent delay and a
+        // lock during the transition stop the strips from ping-ponging as they resize under the cursor.
+        var hoverTimer = null;
+        var lockUntil = 0;
+        var canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+        if (canHover) {
+          node.addEventListener("mouseover", function (e) {
+            var slide = e.target.closest && e.target.closest('[role="group"][aria-roledescription="slide"]');
+            if (!slide) return;
+            var show = slide.querySelector('button[aria-label^="Show "]');
+            if (!show) return; // already the open slide
+            clearTimeout(hoverTimer);
+            var wait = Math.max(90, lockUntil - Date.now());
+            hoverTimer = setTimeout(function () {
+              if (slide.matches(":hover") && slide.querySelector('button[aria-label^="Show "]')) {
+                lockUntil = Date.now() + 750;
+                show.click();
+              }
+            }, wait);
+          });
+          node.addEventListener("mouseleave", function () { clearTimeout(hoverTimer); });
+        }
         // The component announces "N of M: title" in an aria-live region; follow it.
         new MutationObserver(function () {
           var live = node.querySelector("[aria-live]");
