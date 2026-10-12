@@ -101,25 +101,17 @@ body {
 .tt-nav {
   background: #050507;
 }
-/* Compact the bar and shrink the dip once the page is scrolled */
+/* Compact the bar once the page is scrolled; the centre dip is morphed by assets/js/nav-morph.js */
 @media (min-width: 1024px) {
   .tt-nav nav {
-    transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .tt-nav-center {
-    transform-origin: top center;
-    transition: scale 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .tt-nav-scrolled nav {
     height: 50px;
   }
-  .tt-nav-scrolled .tt-nav-center {
-    scale: 0.9;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tt-nav nav,
-  .tt-nav-center {
+  .tt-nav nav {
     transition: none;
   }
 }
@@ -158,4 +150,32 @@ body {
 }
 @keyframes tt-blink {
   50% { opacity: 0; }
+}
+
+/* Keep the fixed navbar below the WordPress admin bar when logged in */
+.admin-bar #tt-nav {
+  top: 32px;
+}
+@media (max-width: 782px) {
+  .admin-bar #tt-nav {
+    top: 46px;
+  }
+}
+
+/* Framer carousel: slimmer control bar so the images get the room */
+[data-tt-framer] button[aria-label="Previous slide"],
+[data-tt-framer] button[aria-label="Next slide"] {
+  width: 34px !important;
+  height: 34px !important;
+}
+[data-tt-framer] button[aria-label="Previous slide"] svg,
+[data-tt-framer] button[aria-label="Next slide"] svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Section headings in Lato italic */
+main h1,
+main h2 {
+  font-style: italic;
 }

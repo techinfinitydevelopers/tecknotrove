@@ -54,3 +54,27 @@
 - Bundled gsap 3.15 + ScrollTrigger + SplitText (free) in `assets/js/vendor/`, enqueued in `inc/theme-setup.php`; logic in `assets/js/text-anim.js`.
 - Hooks: `data-split-title` (chars rise through line mask), `data-split-lines`, `data-anim-up`. Applied to hero and "Every subsystem" sections. Skipped under prefers-reduced-motion.
 - Also: sector cards use brand-book colours + borders; news cards hover fixed; navbar redrawn as one SVG shape with scroll compaction.
+
+## Elementor editing (2026-10-08)
+- Client wants every page editable in Elementor. Kept the custom theme; added 22 Elementor widgets (`inc/elementor/`) wrapping the existing section partials, data-driven from `definitions.php`.
+- Header/footer: `tt_layout` CPT + `tecknotrove_the_layout()`, Elementor-editable with PHP fallback. `page.php`, Elementor-aware `front-page.php`/`single-product.php`.
+- Pages created by `tools/seed-elementor.php`: Home, Defence, Aviation, Automobile, OESD, About, Careers, News, Contact; sector URLs now resolve to those pages (CPT route is fallback). Contact form handler in `inc/contact-form.php`.
+- Fixed Elementor-vs-Tailwind cascade (Elementor CSS loaded into `@layer elementor`). Verified in the Elementor editor: widgets listed, controls render, live preview updates.
+- Guide: `ELEMENTOR.md`.
+
+## Framer carousel variant (2026-10-09)
+- New Elementor widget `tt_framer_carousel` mounting Framer's Modern Carousel via import map (react/framer-motion from esm.sh, local `framer` stub). Page `/home-carousel/` = Home with the sector fan swapped for it; `/` keeps the fan. Sector card labels moved beside the icon.
+
+## Wireframe review (2026-10-09)
+Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). Gap plan:
+1. Sector nav (sector logo | Home, Products, Technology, TMS, Tecknotrove.com) on sector pages.
+2. Products: 24 products across sectors (Defence 8, Aviation 6, Driving 5, OESD 5); only Tank Driving Simulator exists. Product cards need images.
+3. PDP: sticky in-page sub-nav, breadcrumb, TMS callout, spec lead-gen panel, gallery of 5, related products.
+4. Homepage: nav dropdowns, news tags, LinkedIn right panel, footer Software column + socials + Privacy/Terms bar.
+5. Sector pages: per-sector news/social, applications/technology images, hero 100vh, "Explore other industries" band.
+6. Content gaps: Aviation/Driving/OESD subheads, stats and trust copy are placeholders in the wireframe; follower count 12,400+ (wireframe) vs 9,232 (live).
+7. Pages not in wireframe: TMS/Software, Privacy Policy, Terms (linked from nav/footer).
+
+## Two variations + static export for Vercel (2026-10-12)
+- `tools/static-export.py` crawls the local WP site into `static-export/fan` (homepage = sector fan) and `static-export/carousel` (homepage = Framer carousel). Vercel cannot run PHP/WordPress, so these static copies are what Vercel serves. Contact form is disabled in the static copies.
+- Deploy: two Vercel projects, root directory `static-export/fan` and `static-export/carousel`, framework preset "Other", no build command.

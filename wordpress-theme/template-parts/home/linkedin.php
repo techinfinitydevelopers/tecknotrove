@@ -60,7 +60,7 @@ $posts = array_map(
 			<div data-reveal>
 				<div class="group relative flex flex-col items-center gap-8 sm:mx-auto sm:block sm:h-[660px] sm:w-[432px]">
 					<?php foreach ( $posts as $p ) : ?>
-						<a href="<?php echo esc_url( $p['href'] ); ?>" target="_blank" rel="noopener noreferrer" class="relative flex w-full max-w-[380px] flex-col overflow-hidden rounded-xl border border-line-strong bg-white text-left shadow-[0_16px_36px_-14px_rgba(15,18,30,0.3)] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-30 hover:shadow-[0_28px_56px_-16px_rgba(15,18,30,0.4)] sm:absolute sm:w-[380px] <?php echo esc_attr( $p['place'] ); ?>">
+						<a href="<?php echo esc_url( $p['href'] ); ?>" target="_blank" rel="noopener noreferrer" class="relative flex w-full max-w-[380px] flex-col overflow-hidden rounded-xl border border-[#b9bfcc] bg-white text-left shadow-[0_16px_36px_-14px_rgba(15,18,30,0.3)] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-30 hover:shadow-[0_28px_56px_-16px_rgba(15,18,30,0.4)] sm:absolute sm:w-[380px] <?php echo esc_attr( $p['place'] ); ?>">
 							<div class="flex items-start gap-2.5 px-4 pt-4">
 								<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/li-logo.png' ); ?>" alt="" class="h-11 w-11 shrink-0 rounded-md object-cover" />
 								<div class="min-w-0 flex-1">

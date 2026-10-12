@@ -113,19 +113,30 @@ function tecknotrove_render_home_options_page() {
 	<?php
 }
 
+/**
+ * Option lookup that Elementor widgets can override per render: a widget sets
+ * $GLOBALS['tt_override'][ 'tt_home_x' ] = value before including a partial.
+ */
+function tecknotrove_opt( $key, $default = false ) {
+	if ( isset( $GLOBALS['tt_override'] ) && array_key_exists( $key, $GLOBALS['tt_override'] ) ) {
+		return $GLOBALS['tt_override'][ $key ];
+	}
+	return get_option( $key, $default );
+}
+
 /* ---------- Getters with hardcoded fallbacks (original design copy) ---------- */
 
-function tecknotrove_home_hero_eyebrow() { return get_option( 'tt_home_hero_eyebrow' ) ?: 'Simulation & Training Technology · Est. 2002'; }
-function tecknotrove_home_hero_line1() { return get_option( 'tt_home_hero_line1' ) ?: 'Precise today.'; }
-function tecknotrove_home_hero_line2() { return get_option( 'tt_home_hero_line2' ) ?: 'Perfect tomorrow.'; }
-function tecknotrove_home_hero_subhead() { return get_option( 'tt_home_hero_subhead' ) ?: 'Building technologies for demanding industries, from full-motion armoured vehicle trainers to airport ground-support simulators.'; }
+function tecknotrove_home_hero_eyebrow() { return tecknotrove_opt( 'tt_home_hero_eyebrow' ) ?: 'Simulation & Training Technology · Est. 2002'; }
+function tecknotrove_home_hero_line1() { return tecknotrove_opt( 'tt_home_hero_line1' ) ?: 'Precise today.'; }
+function tecknotrove_home_hero_line2() { return tecknotrove_opt( 'tt_home_hero_line2' ) ?: 'Perfect tomorrow.'; }
+function tecknotrove_home_hero_subhead() { return tecknotrove_opt( 'tt_home_hero_subhead' ) ?: 'Building technologies for demanding industries, from full-motion armoured vehicle trainers to airport ground-support simulators.'; }
 
-function tecknotrove_home_why_line1() { return get_option( 'tt_home_why_line1' ) ?: 'Every subsystem.'; }
-function tecknotrove_home_why_line2() { return get_option( 'tt_home_why_line2' ) ?: 'One source.'; }
-function tecknotrove_home_why_body() { return get_option( 'tt_home_why_body' ) ?: 'Motion platforms, visuals, controls and instructor software are all engineered in-house, so every simulator ships as one integrated system instead of a stack of vendors.'; }
+function tecknotrove_home_why_line1() { return tecknotrove_opt( 'tt_home_why_line1' ) ?: 'Every subsystem.'; }
+function tecknotrove_home_why_line2() { return tecknotrove_opt( 'tt_home_why_line2' ) ?: 'One source.'; }
+function tecknotrove_home_why_body() { return tecknotrove_opt( 'tt_home_why_body' ) ?: 'Motion platforms, visuals, controls and instructor software are all engineered in-house, so every simulator ships as one integrated system instead of a stack of vendors.'; }
 
 function tecknotrove_home_news() {
-	$rows = get_option( 'tt_home_news' );
+	$rows = tecknotrove_opt( 'tt_home_news' );
 	if ( is_array( $rows ) && $rows ) return $rows;
 	$u = get_template_directory_uri() . '/assets/images/';
 	return [
@@ -136,7 +147,7 @@ function tecknotrove_home_news() {
 }
 
 function tecknotrove_home_partners() {
-	$rows = get_option( 'tt_home_partners' );
+	$rows = tecknotrove_opt( 'tt_home_partners' );
 	if ( is_array( $rows ) && $rows ) return $rows;
 	return [
 		[ 'tag' => 'Partnerships', 'title' => 'Partner With Us', 'desc' => 'Distribution, integration and technology partnerships across our global network.', 'stat_value' => '35+', 'stat_label' => 'Countries', 'cta' => 'Get in Touch', 'href' => '#contact' ],
@@ -144,17 +155,17 @@ function tecknotrove_home_partners() {
 	];
 }
 
-function tecknotrove_home_linkedin_followers() { return get_option( 'tt_home_linkedin_followers' ) ?: '9,232'; }
-function tecknotrove_home_linkedin_countries() { return get_option( 'tt_home_linkedin_countries' ) ?: '35+'; }
+function tecknotrove_home_linkedin_followers() { return tecknotrove_opt( 'tt_home_linkedin_followers' ) ?: '9,232'; }
+function tecknotrove_home_linkedin_countries() { return tecknotrove_opt( 'tt_home_linkedin_countries' ) ?: '35+'; }
 
 function tecknotrove_home_hashtags() {
-	$rows = get_option( 'tt_home_hashtags' );
+	$rows = tecknotrove_opt( 'tt_home_hashtags' );
 	if ( is_array( $rows ) && $rows ) return array_column( $rows, 'text' );
 	return [ '#Tecknotrove', '#CoalMining', '#MakeInIndia' ];
 }
 
 function tecknotrove_home_linkedin_posts() {
-	$rows = get_option( 'tt_home_linkedin_posts' );
+	$rows = tecknotrove_opt( 'tt_home_linkedin_posts' );
 	if ( is_array( $rows ) && $rows ) return $rows;
 	$u = get_template_directory_uri() . '/assets/images/';
 	return [
@@ -163,6 +174,6 @@ function tecknotrove_home_linkedin_posts() {
 	];
 }
 
-function tecknotrove_home_callout_line1() { return get_option( 'tt_home_callout_line1' ) ?: 'See a simulator'; }
-function tecknotrove_home_callout_line2() { return get_option( 'tt_home_callout_line2' ) ?: 'in action.'; }
-function tecknotrove_home_callout_body() { return get_option( 'tt_home_callout_body' ) ?: 'Visit our Mumbai facility for a live demonstration, or request a virtual walkthrough with our engineering team.'; }
+function tecknotrove_home_callout_line1() { return tecknotrove_opt( 'tt_home_callout_line1' ) ?: 'See a simulator'; }
+function tecknotrove_home_callout_line2() { return tecknotrove_opt( 'tt_home_callout_line2' ) ?: 'in action.'; }
+function tecknotrove_home_callout_body() { return tecknotrove_opt( 'tt_home_callout_body' ) ?: 'Visit our Mumbai facility for a live demonstration, or request a virtual walkthrough with our engineering team.'; }

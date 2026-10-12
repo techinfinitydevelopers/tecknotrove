@@ -5,19 +5,25 @@ $sector_icons = [
 	'aviation'   => 'AirplaneTilt',
 	'automobile' => 'SteeringWheel',
 	'oesd'       => 'Factory',
+	'driving'    => 'SteeringWheel',
 ];
 $sectors_for_grid = [];
-foreach ( $sector_order as $key ) {
-	$p = tecknotrove_get_sector_by_key( $key );
-	if ( $p ) $sectors_for_grid[] = tecknotrove_get_sector_data( $p );
+if ( ! empty( $GLOBALS['tt_sector_grid'] ) ) {
+	$sectors_for_grid = $GLOBALS['tt_sector_grid'];
+} else {
+	foreach ( $sector_order as $key ) {
+		$p = tecknotrove_get_sector_by_key( $key );
+		if ( $p ) $sectors_for_grid[] = tecknotrove_get_sector_data( $p );
+	}
 }
+$grid_heading = tecknotrove_opt( 'tt_home_sectors_heading' ) ?: "Built for the world's most demanding industries.";
 ?>
 <section id="simulation" class="relative z-10 -mt-px overflow-hidden rounded-t-[2.5rem] bg-bg-elevated pb-12 pt-20 sm:rounded-t-[3rem] sm:pb-36 sm:pt-28">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
 		<p class="mono-label mb-5 text-[11px] text-blue-500">Simulation Solutions</p>
 		<div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
 			<h2 class="max-w-2xl text-3xl font-black leading-[1.05] tracking-tight sm:text-5xl" data-reveal>
-				Built for the world's most demanding industries.
+				<?php echo esc_html( $grid_heading ); ?>
 			</h2>
 			<a href="#simulation" class="group flex shrink-0 items-center gap-2 text-sm font-semibold text-ink-dim transition-colors hover:text-orange-400">
 				View all simulation solutions
@@ -28,7 +34,7 @@ foreach ( $sector_order as $key ) {
 		<div id="tt-sector-list" class="mt-14 flex flex-col gap-2 sm:flex-row sm:gap-0" data-reveal>
 			<?php foreach ( $sectors_for_grid as $i => $s ) : ?>
 				<div data-card style="--sector: <?php echo esc_attr( $s['accent'] ); ?>; z-index: <?php echo (int) $i; ?>;" class="relative h-[320px] sm:-ml-3 sm:h-[430px] sm:flex-1 lg:h-[480px] first:sm:ml-0">
-					<a href="/<?php echo esc_attr( $s['key'] ); ?>" data-card-face style="border-color: var(--sector);" class="group relative block h-full overflow-hidden rounded-2xl border-2 bg-bg-panel p-5 shadow-[0_20px_45px_-24px_rgba(15,18,30,0.35)] lg:p-7">
+					<a href="<?php echo esc_url( $s['url'] ?? home_url( '/' . $s['key'] . '/' ) ); ?>" data-card-face style="border-color: var(--sector);" class="group relative block h-full overflow-hidden rounded-2xl border-2 bg-bg-panel p-5 shadow-[0_20px_45px_-24px_rgba(15,18,30,0.35)] lg:p-7">
 						<div class="pointer-events-none absolute inset-0">
 							<?php if ( $s['image'] ) : ?>
 								<img src="<?php echo esc_url( $s['image'] ); ?>" alt="" class="absolute inset-0 h-full w-full object-cover" />
@@ -36,11 +42,15 @@ foreach ( $sector_order as $key ) {
 							<div class="absolute inset-0" style="background: linear-gradient(to top, color-mix(in srgb, var(--sector) 12%, #fff) 0%, color-mix(in srgb, var(--sector) 12%, #fff) 34%, color-mix(in srgb, var(--sector) 12%, transparent) 62%, transparent 82%);"></div>
 						</div>
 						<div class="relative z-10 flex h-full flex-col">
-							<div class="flex h-11 w-11 items-center justify-center rounded-full text-white shadow-[0_8px_20px_-8px_var(--sector)]" style="background: var(--sector);">
-								<?php tecknotrove_the_icon( $sector_icons[ $s['key'] ] ?? 'Factory', 20 ); ?>
+							<div class="flex items-center gap-3">
+								<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white shadow-[0_8px_20px_-8px_var(--sector)]" style="background: var(--sector);">
+									<?php tecknotrove_the_icon( $s['icon'] ?? ( $sector_icons[ $s['key'] ] ?? 'Factory' ), 20 ); ?>
+								</div>
+								<span class="mono-label inline-flex items-center gap-2 text-[11px] font-semibold text-white" style="text-shadow: 0 1px 8px rgba(0,0,0,0.65);">
+									<span class="h-[3px] w-4 rounded-full" style="background: var(--sector);"></span><?php echo esc_html( $s['name'] ); ?>
+								</span>
 							</div>
 							<div class="mt-auto pt-10">
-								<p class="mono-label mb-2 flex items-center gap-2 text-[10.5px]" style="color: var(--sector);"><span class="h-[3px] w-4 rounded-full" style="background: var(--sector);"></span><?php echo esc_html( $s['name'] ); ?></p>
 								<h3 class="text-lg font-bold leading-snug lg:text-2xl"><?php echo esc_html( $s['h1'] ?: $s['name'] ); ?></h3>
 								<p class="mt-2 hidden max-w-sm text-sm text-ink-dim lg:block"><?php echo esc_html( $s['subhead'] ); ?></p>
 								<span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style="color: var(--sector);">

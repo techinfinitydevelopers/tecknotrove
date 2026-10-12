@@ -25,7 +25,15 @@ add_filter( 'rewrite_rules_array', 'tecknotrove_fix_corrupted_rewrite_rules' );
  * instead of /sector/defence, matching the routes the Next.js version used.
  */
 function tecknotrove_sector_rewrite_rules() {
-	add_rewrite_rule( '^(defence|aviation|automobile|oesd)/?$', 'index.php?sector=$matches[1]', 'top' );
+	// A real WordPress Page (e.g. one built in Elementor) with the same slug wins over the CPT fallback.
+	$keys = [];
+	foreach ( [ 'defence', 'aviation', 'automobile', 'oesd' ] as $key ) {
+		$page = get_page_by_path( $key );
+		if ( ! $page || 'publish' !== $page->post_status ) $keys[] = $key;
+	}
+	if ( $keys ) {
+		add_rewrite_rule( '^(' . implode( '|', $keys ) . ')/?$', 'index.php?sector=$matches[1]', 'top' );
+	}
 }
 add_action( 'init', 'tecknotrove_sector_rewrite_rules' );
 

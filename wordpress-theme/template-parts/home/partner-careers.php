@@ -15,7 +15,7 @@ $tiles = array_map(
 <section class="bg-bg-elevated pb-12 pt-16 sm:pb-16 sm:pt-20">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
 		<?php tecknotrove_eyebrow( 'Work With Tecknotrove' ); ?>
-		<h2 class="max-w-2xl text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl" data-reveal>Build the next simulator with us.</h2>
+		<h2 class="max-w-2xl text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl" data-reveal><?php echo esc_html( tecknotrove_opt( 'tt_home_partners_heading' ) ?: 'Build the next simulator with us.' ); ?></h2>
 
 		<div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
 			<?php foreach ( $tiles as $t ) : ?>

@@ -1,10 +1,14 @@
 <?php
-$stats = [
-	[ 'value' => 35, 'suffix' => '+', 'label' => 'Countries served', 'icon' => 'GlobeHemisphereWest' ],
-	[ 'value' => 1500, 'suffix' => '+', 'label' => 'Simulators delivered', 'icon' => 'Wrench' ],
-	[ 'value' => 2002, 'suffix' => '', 'label' => 'Established', 'icon' => 'CalendarBlank', 'plain' => true ],
-	[ 'value' => 24, 'suffix' => '×7', 'label' => 'Technical support', 'icon' => 'Headset' ],
-];
+$stats = tecknotrove_opt( 'tt_home_why_stats' );
+if ( ! is_array( $stats ) || ! $stats ) {
+	$stats = [
+		[ 'value' => 35, 'suffix' => '+', 'label' => 'Countries served', 'icon' => 'GlobeHemisphereWest' ],
+		[ 'value' => 1500, 'suffix' => '+', 'label' => 'Simulators delivered', 'icon' => 'Wrench' ],
+		[ 'value' => 2002, 'suffix' => '', 'label' => 'Established', 'icon' => 'CalendarBlank', 'plain' => true ],
+		[ 'value' => 24, 'suffix' => '×7', 'label' => 'Technical support', 'icon' => 'Headset' ],
+	];
+}
+$why_image = tecknotrove_opt( 'tt_home_why_image' ) ?: get_template_directory_uri() . '/assets/images/why-simulator.jpg';
 ?>
 <section id="why" class="tt-why grid lg:min-h-[88vh] lg:grid-cols-[minmax(0,52fr)_minmax(0,48fr)]">
 	<div class="tt-why-grid flex flex-col justify-between gap-12 border-b border-line px-5 py-14 sm:px-10 sm:py-16 lg:border-b-0 lg:border-r lg:px-14 lg:py-16 xl:px-16">
@@ -33,7 +37,7 @@ $stats = [
 			<div class="grid grid-cols-2 gap-x-5 gap-y-7 rounded-2xl border border-line bg-white/60 p-5 sm:grid-cols-4 sm:gap-x-3">
 				<?php foreach ( $stats as $s ) : ?>
 					<div>
-						<?php tecknotrove_the_icon( $s['icon'], 16, 'mb-3 text-orange-400' ); ?>
+						<?php tecknotrove_the_icon( $s['icon'] ?: 'Wrench', 16, 'mb-3 text-orange-400' ); ?>
 						<div class="tt-why-stat text-2xl font-black tabular-nums text-ink sm:text-[1.65rem]">
 							<span data-count-to="<?php echo (int) $s['value']; ?>" data-plain="<?php echo ! empty( $s['plain'] ) ? 'true' : 'false'; ?>">0</span><span class="text-orange-400"><?php echo esc_html( $s['suffix'] ); ?></span>
 						</div>
@@ -47,7 +51,7 @@ $stats = [
 	<div class="flex items-center justify-center bg-bg-elevated p-5 sm:p-10 lg:p-12 xl:p-14">
 		<figure class="relative h-[420px] w-full overflow-hidden rounded-3xl border border-line bg-white shadow-[0_24px_50px_-20px_rgba(20,22,24,0.18)] sm:h-[560px] lg:h-full lg:max-h-[880px]">
 			<img
-				src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/why-simulator.jpg' ); ?>"
+				src="<?php echo esc_url( $why_image ); ?>"
 				alt="Engineers assembling a full-motion training simulator platform"
 				class="h-full w-full object-cover object-[70%_center]"
 				loading="lazy"
