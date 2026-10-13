@@ -18,7 +18,7 @@ $props = [
 	'slides'      => $slides,
 	'colors'      => $colors,
 	'background'  => $v['background'],
-	'textColor'   => $v['textColor'],
+	'textColor'   => '#170800',
 	'accent'      => $v['accent'],
 	'radius'      => (int) $v['radius'],
 	'padding'     => 12,
@@ -34,7 +34,7 @@ $h = max( 420, (int) $v['height'] );
 		<p class="mono-label mb-3 text-[11px] text-blue-500">Simulation Solutions</p>
 		<h2 class="max-w-4xl text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl" data-reveal><?php echo esc_html( $v['heading'] ); ?></h2>
 		<div class="mt-6 overflow-hidden" style="height: clamp(440px, calc(100svh - 240px), <?php echo (int) $h; ?>px); border-radius: <?php echo (int) $v['radius']; ?>px;">
-			<div data-tt-framer data-props="<?php echo esc_attr( wp_json_encode( $props ) ); ?>" style="width:100%;height:100%;background:<?php echo esc_attr( $v['background'] ); ?>;"></div>
+			<div data-tt-framer data-props="<?php echo esc_attr( wp_json_encode( $props ) ); ?>" style="width:100%;height:100%;"></div>
 		</div>
 	</div>
 </section>

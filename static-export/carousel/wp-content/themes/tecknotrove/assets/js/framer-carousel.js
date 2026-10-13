@@ -36,24 +36,30 @@
         var colors = props.colors || [];
         var baseBg = props.background || "#0b1230";
         var current = -1;
+        function paint() {
+          // Give every slide its sector colour (CSS in input.css turns it into the card look).
+          node.querySelectorAll('[aria-roledescription="slide"]').forEach(function (el, i) {
+            if (colors[i]) el.style.setProperty("--sector", colors[i]);
+          });
+        }
         function render(index) {
           current = index;
           var c = colors[index];
-          var p = Object.assign({}, props, { style: { width: "100%", height: "100%" } });
-          if (c) {
-            p.accent = mix(c, "#ffffff", 0.3); // lighter shade for button/progress so it reads on the tinted stage
-            p.background = mix(baseBg, c, 0.55); // stage is mostly the sector colour
-            node.style.background = p.background;
-            var frame = node.parentElement;
-            if (frame) {
-              frame.style.transition = "box-shadow 0.6s ease, border-color 0.6s ease";
-              frame.style.border = "3px solid " + c;
-              frame.style.boxShadow = "0 18px 36px -28px " + c;
-            }
-          }
+          var p = Object.assign({}, props, { style: { width: node.clientWidth || 1200, height: "100%" } });
+          if (c) p.accent = c; // button, progress and dots in the active sector colour
+          node.style.background = "transparent";
           reactRoot.render(React.createElement(Carousel, p));
+          paint();
+          setTimeout(paint, 60);
         }
         render(Math.max(0, (props.startSlide || 1) - 1));
+        // The component lays itself out from the width it is given; keep it in step with the container.
+        var lastW = node.clientWidth;
+        if (window.ResizeObserver) {
+          new ResizeObserver(function () {
+            if (node.clientWidth && Math.abs(node.clientWidth - lastW) > 2) { lastW = node.clientWidth; render(Math.max(0, current)); }
+          }).observe(node);
+        }
         // Hover a collapsed strip to open it (same as clicking it). A short intent delay and a
         // lock during the transition stop the strips from ping-ponging as they resize under the cursor.
         var hoverTimer = null;
@@ -81,6 +87,7 @@
           var live = node.querySelector("[aria-live]");
           var m = live && live.textContent.match(/^(\d+) of/);
           if (m && parseInt(m[1], 10) - 1 !== current) render(parseInt(m[1], 10) - 1);
+          else paint();
         }).observe(node, { subtree: true, childList: true, characterData: true });
       });
     }).catch(function (err) {

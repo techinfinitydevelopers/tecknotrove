@@ -102,8 +102,8 @@ $defs['tt_framer_carousel'] = [
 			'description' => $c['subhead'], 'buttonText' => 'Discover', 'link' => $c['url'], 'color' => $c['accent'],
 		], $grid_defaults ), 'title' ),
 		[ 'section' => 'Style' ],
-		$col( 'background', 'Background', '#0b1230' ),
-		$col( 'textColor', 'Text colour', '#ffffff' ),
+		
+		
 		$col( 'accent', 'Accent colour', '#ff5100' ),
 		[ 'id' => 'radius', 'label' => 'Corner radius (px)', 'type' => 'number', 'default' => 24 ],
 		[ 'id' => 'height', 'label' => 'Height (px)', 'type' => 'number', 'default' => 820 ],
