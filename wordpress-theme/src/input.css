@@ -366,18 +366,23 @@ body {
   transition: background-color 0.4s ease;
 }
 
-/* Carousel: the white Tecknotrove sector logo (orange star, sector-colour dash) replaces the text label */
+/* Carousel: the white Tecknotrove sector logo (orange star, sector-colour dash) sits top-right of the open slide,
+   replacing the text label. Drawn on the slide itself so it reaches the slide's real right edge. */
 [data-tt-framer] [aria-roledescription="slide"] > a > div:first-child > span:first-child {
   display: none !important;
 }
-[data-tt-framer] [aria-roledescription="slide"] > a > div:first-child::before {
+[data-tt-framer] [aria-roledescription="slide"]:has(> a[aria-hidden="false"])::after {
   content: "";
-  display: block;
-  width: 156px;
-  height: 44px;
+  position: absolute;
+  top: 30px;
+  right: 34px;
+  width: 168px;
+  height: 48px;
+  z-index: 3;
+  pointer-events: none;
   background-image: var(--logo);
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: right center;
   background-size: contain;
   filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.55));
 }
