@@ -221,3 +221,8 @@ body {
 [data-tt-framer] button[aria-label="Next slide"] {
   border-color: rgba(23, 8, 0, 0.25) !important;
 }
+
+/* Framer carousel: sit the text block lower, closer to the bottom edge */
+[data-tt-framer] [aria-roledescription="slide"] > a {
+  padding-bottom: 20px !important;
+}
