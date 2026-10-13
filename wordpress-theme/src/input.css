@@ -365,6 +365,3 @@ body {
 .tt-nav {
   transition: background-color 0.4s ease;
 }
-.tt-nav.tt-menu-open {
-  background: var(--blue-brand);
-}

@@ -27,26 +27,43 @@ $nv = wp_parse_args( $args ?? [], tecknotrove_navbar_defaults() );
 	</nav>
 </header>
 
-<?php $menu_cols = $nv['menu_columns']; ?>
-<div id="tt-mobile-menu" class="tt-menu fixed inset-0 z-40 hidden flex-col overflow-y-auto bg-blue-brand pt-20 text-white lg:pt-24" style="clip-path: inset(0 0 100% 0);">
-	<div class="mx-auto grid w-full max-w-[1500px] flex-1 grid-cols-1 gap-y-10 px-6 pb-12 pt-6 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:gap-y-0 lg:px-4">
+<?php
+$menu_cols   = $nv['menu_columns'];
+// Sector accent colours (brand book), lightened to read on the dark menu.
+$menu_colors = [ 'defence' => '#8fb76a', 'aviation' => '#4cc0f0', 'driving' => '#e0609a', 'automobile' => '#e0609a', 'oesd' => '#e3a14f' ];
+$sector_key  = function ( $label ) {
+	$k = strtolower( strtok( $label, ' /' ) );
+	return $k;
+};
+?>
+<div id="tt-mobile-menu" class="tt-menu fixed inset-0 z-40 hidden flex-col overflow-y-auto bg-[#050507] pt-20 text-white lg:pt-24" style="clip-path: inset(0 0 100% 0);">
+	<div class="tt-menu-grid pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true"></div>
+
+	<div class="relative mx-auto grid w-full max-w-[1500px] flex-1 grid-cols-1 gap-y-10 px-6 pb-12 pt-6 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:gap-y-0 lg:px-4">
 		<?php foreach ( $menu_cols as $ci => $col ) : ?>
-			<div class="tt-menu-item px-0 lg:px-10 <?php echo $ci > 0 ? 'lg:border-l lg:border-white/15' : 'lg:pl-6'; ?>">
-				<p class="mono-label text-[11px] text-white/45"><?php echo esc_html( $col['label'] ); ?></p>
+			<div class="tt-menu-item <?php echo $ci > 0 ? 'lg:border-l lg:border-white/10 lg:px-9' : 'lg:pl-6 lg:pr-9'; ?>">
+				<p class="mono-label text-[11px] text-white/40"><?php echo esc_html( $col['label'] ); ?></p>
 				<?php foreach ( $col['sections'] as $si => $sec ) : ?>
-					<h3 class="<?php echo $si > 0 ? 'mt-12' : 'mt-8'; ?> text-3xl font-light tracking-tight text-white sm:text-4xl"><?php echo esc_html( $sec['heading'] ); ?></h3>
-					<ul class="mt-6">
-						<?php foreach ( $sec['links'] as $l ) : ?>
-							<li class="border-b border-white/15 last:border-b-0">
-								<a href="<?php echo esc_url( $l['url'] ); ?>" class="block py-3 text-[17px] font-light text-white/75 transition-all duration-200 hover:translate-x-1 hover:text-white"><?php echo esc_html( $l['label'] ); ?></a>
+					<h3 class="<?php echo $si > 0 ? 'mt-11' : 'mt-7'; ?> text-3xl font-black leading-none tracking-tight text-white sm:text-[2.1rem]"><?php echo esc_html( $sec['heading'] ); ?></h3>
+					<ul class="mt-5">
+						<?php foreach ( $sec['links'] as $l ) :
+							$color = $menu_colors[ $sector_key( $l['label'] ) ] ?? '';
+							// sector names get their colour dot only inside the "Simulation" list
+							if ( 'Simulation' !== $sec['heading'] ) $color = '';
+							?>
+							<li class="border-t border-white/10 last:border-b" <?php echo $color ? 'style="--c: ' . esc_attr( $color ) . ';"' : ''; ?>>
+								<a href="<?php echo esc_url( $l['url'] ); ?>" class="group flex items-center gap-3 py-3 text-[17px] text-white/70 transition-all duration-200 hover:translate-x-1 <?php echo $color ? 'font-semibold hover:text-[var(--c)]' : 'hover:text-white'; ?>">
+									<?php if ( $color ) : ?><span class="h-2 w-2 shrink-0 rounded-full" style="background: var(--c);"></span><?php endif; ?>
+									<?php echo esc_html( $l['label'] ); ?>
+								</a>
 							</li>
 						<?php endforeach; ?>
 					</ul>
 				<?php endforeach; ?>
 				<?php if ( ! empty( $col['card'] ) ) : ?>
-					<div class="mt-12 rounded-2xl border border-white/15 bg-white/[0.07] p-7">
-						<p class="mono-label text-[11px] text-white/45"><?php echo esc_html( $col['card']['label'] ); ?></p>
-						<div class="mt-5 space-y-1.5 text-[17px] font-light text-white/90">
+					<div class="mt-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+						<p class="mono-label text-[11px] text-orange-300"><?php echo esc_html( $col['card']['label'] ); ?></p>
+						<div class="mt-4 space-y-1.5 text-[17px] text-white/85">
 							<?php foreach ( $col['card']['lines'] as $line ) : ?>
 								<p><?php echo esc_html( $line ); ?></p>
 							<?php endforeach; ?>
