@@ -34,7 +34,7 @@ $articles = array_map(
 					<div class="relative h-full w-full overflow-hidden rounded-[24px]" style="background: <?php echo esc_attr( $a['surface'] ); ?>;">
 						<img src="<?php echo esc_url( $a['image'] ); ?>" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]" />
 
-						<div class="tt-folder-panel absolute inset-0 transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-[22%]">
+						<div class="tt-folder-panel absolute inset-0 transition-transform duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
 							<svg viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true" class="absolute inset-0 h-full w-full">
 								<path d="<?php echo esc_attr( $panel_path ); ?>" fill="<?php echo esc_attr( $a['surface'] ); ?>"></path>
 							</svg>
