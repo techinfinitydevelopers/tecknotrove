@@ -24,14 +24,18 @@
       menuOpen = !menuOpen;
       if (menuOpen) {
         mobileMenu.classList.add("tt-open");
-        requestAnimationFrame(function () {
+        if (nav) nav.classList.add("tt-menu-open");
+        setTimeout(function () {
+          mobileMenu.classList.add("tt-menu-in");
           mobileMenu.style.transition = "clip-path 0.55s cubic-bezier(0.76,0,0.24,1)";
           mobileMenu.style.clipPath = "inset(0 0 0% 0)";
-        });
+        }, 30);
         iconOpen.style.display = "none";
         iconClose.style.display = "block";
         document.body.style.overflow = "hidden";
       } else {
+        mobileMenu.classList.remove("tt-menu-in");
+        if (nav) nav.classList.remove("tt-menu-open");
         mobileMenu.style.clipPath = "inset(0 0 100% 0)";
         iconOpen.style.display = "block";
         iconClose.style.display = "none";
@@ -44,6 +48,8 @@
     mobileMenu.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
         menuOpen = false;
+        mobileMenu.classList.remove("tt-menu-in");
+        if (nav) nav.classList.remove("tt-menu-open");
         mobileMenu.style.clipPath = "inset(0 0 100% 0)";
         iconOpen.style.display = "block";
         iconClose.style.display = "none";

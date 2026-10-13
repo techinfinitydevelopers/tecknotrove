@@ -27,20 +27,65 @@ $nv = wp_parse_args( $args ?? [], tecknotrove_navbar_defaults() );
 	</nav>
 </header>
 
-<div id="tt-mobile-menu" class="fixed inset-0 z-40 flex-col bg-nav-bg pt-24 hidden" style="clip-path: inset(0 0 100% 0);">
-	<div class="mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 gap-12 px-6 pb-16 sm:px-8 md:grid-cols-3 md:gap-8">
-		<?php foreach ( $nv['menu_groups'] as $g ) : ?>
+<?php
+// Sector accent colours (brand book), lightened so they read on the dark menu.
+$menu_colors = [ 'defence' => '#8fb76a', 'aviation' => '#4cc0f0', 'automobile' => '#e0609a', 'driving' => '#e0609a', 'oesd' => '#e3a14f', 'industrial' => '#e3a14f' ];
+$menu_main   = $nv['menu_groups'][0] ?? null;
+$menu_rest   = array_slice( $nv['menu_groups'], 1 );
+$menu_social = array_filter( tecknotrove_footer_defaults()['follow'], fn( $l ) => '#' !== $l['url'] );
+?>
+<div id="tt-mobile-menu" class="tt-menu fixed inset-0 z-40 hidden flex-col overflow-y-auto bg-[#050507] pt-24 text-white" style="clip-path: inset(0 0 100% 0);">
+	<div class="tt-menu-grid pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true"></div>
+
+	<div class="relative mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 gap-10 px-6 pb-10 pt-6 sm:px-8 lg:grid-cols-[1.35fr_1fr] lg:gap-20 lg:pt-12">
+		<?php if ( $menu_main ) : ?>
 			<div>
-				<p class="mono-label mb-6 text-[11px] text-white/40"><?php echo esc_html( $g['title'] ); ?></p>
-				<ul class="space-y-4">
-					<?php foreach ( $g['links'] as $l ) : ?>
-						<li><a href="<?php echo esc_url( $l['url'] ); ?>" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl"><?php echo esc_html( $l['label'] ); ?></a></li>
+				<p class="tt-menu-item mono-label mb-6 text-[11px] text-white/40"><?php echo esc_html( $menu_main['title'] ); ?></p>
+				<ul>
+					<?php foreach ( $menu_main['links'] as $i => $l ) :
+						$key   = sanitize_title( $l['label'] );
+						$color = $menu_colors[ $key ] ?? '#ff5100';
+						?>
+						<li class="tt-menu-item border-t border-white/10 last:border-b" style="--c: <?php echo esc_attr( $color ); ?>;">
+							<a href="<?php echo esc_url( $l['url'] ); ?>" class="tt-menu-link group flex items-center gap-5 py-4 sm:py-5">
+								<span class="font-mono text-xs text-white/30 transition-colors group-hover:text-[var(--c)]"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+								<span class="text-4xl font-black leading-none tracking-tight transition-all duration-300 group-hover:translate-x-2 group-hover:text-[var(--c)] sm:text-6xl"><?php echo esc_html( $l['label'] ); ?></span>
+								<span class="ml-auto h-3 w-3 shrink-0 rounded-full opacity-60 transition-transform duration-300 group-hover:scale-150 group-hover:opacity-100" style="background: var(--c);"></span>
+							</a>
+						</li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
-		<?php endforeach; ?>
+		<?php endif; ?>
+
+		<div class="flex flex-col gap-10 lg:pt-1">
+			<?php foreach ( $menu_rest as $g ) : ?>
+				<div>
+					<p class="tt-menu-item mono-label mb-4 text-[11px] text-white/40"><?php echo esc_html( $g['title'] ); ?></p>
+					<ul class="space-y-1">
+						<?php foreach ( $g['links'] as $l ) : ?>
+							<li class="tt-menu-item">
+								<a href="<?php echo esc_url( $l['url'] ); ?>" class="group inline-flex items-center gap-2 py-1 text-2xl font-bold tracking-tight text-white/85 transition-colors hover:text-orange-300 sm:text-3xl">
+									<?php echo esc_html( $l['label'] ); ?>
+									<span class="translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"><?php tecknotrove_the_icon( 'ArrowUpRight', 20 ); ?></span>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			<?php endforeach; ?>
+		</div>
 	</div>
-	<div class="border-t border-white/10 px-6 py-6 text-sm text-white/40 sm:px-8">
-		<?php echo esc_html( $nv['address'] ); ?>
+
+	<div class="tt-menu-item relative border-t border-white/10 px-6 py-5 sm:px-8">
+		<div class="mx-auto flex max-w-[1400px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+			<p class="text-sm text-white/45"><?php echo esc_html( $nv['address'] ); ?></p>
+			<div class="flex flex-wrap items-center gap-5">
+				<?php foreach ( $menu_social as $l ) : ?>
+					<a href="<?php echo esc_url( $l['url'] ); ?>" target="_blank" rel="noopener noreferrer" class="text-sm text-white/55 transition-colors hover:text-white"><?php echo esc_html( $l['label'] ); ?></a>
+				<?php endforeach; ?>
+				<a href="<?php echo esc_url( $nv['cta_url'] ); ?>" class="rounded-full bg-orange px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-400"><?php echo esc_html( $nv['cta_label'] ); ?></a>
+			</div>
+		</div>
 	</div>
 </div>

@@ -43,7 +43,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 /*# sourceURL=global-styles-inline-css */
 </style>
 <link rel='stylesheet' id='tecknotrove-fonts-css' href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&#038;family=JetBrains+Mono:wght@400;500&#038;display=swap' media='all' />
-<link rel='stylesheet' id='tecknotrove-style-css' href='/wp-content/themes/tecknotrove/assets/css/style.css?ver=1791874208' media='all' />
+<link rel='stylesheet' id='tecknotrove-style-css' href='/wp-content/themes/tecknotrove/assets/css/style.css?ver=1791874360' media='all' />
 <style id="elementor-frontend-css">@import url("/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.3.4") layer(elementor);</style>
 <style id="elementor-frontend-inline-css">
 .e-heading-base a, .e-paragraph-base a { all: unset; cursor: pointer; }form[data-element_type="e-form"].form-state-success [data-element_type="e-form-success-message"],form[data-element_type="e-form"].form-state-error [data-element_type="e-form-error-message"]{ display: block; }.elementor-edit-mode [data-element_type="e-form-success-message"]:is(.elementor-element-editable, :has(.elementor-element-editable), :has(> .elementor-empty-view)),.elementor-edit-mode [data-element_type="e-form-error-message"]:is(.elementor-element-editable, :has(.elementor-element-editable), :has(> .elementor-empty-view)){ display: block; }.e-background-video { position: relative; overflow: hidden; }.e-background-video__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; z-index: 0; }.e-background-video__content { position: relative; z-index: 1; flex: 1 1 auto; }.elementor-edit-mode .e-background-video__content.e-atomic-element:has(> .elementor-empty-view) { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }.elementor-edit-mode .e-background-video__content.e-atomic-element:has(> .elementor-empty-view) > .elementor-empty-view.elementor-empty-view { position: relative; flex: 1 1 auto; min-height: 120px; height: auto; width: 100%; }.elementor-edit-mode .e-background-video__content.e-atomic-element:has(> .elementor-empty-view) > .elementor-empty-view > .elementor-first-add { position: absolute; inset: 0; width: 100%; height: 100%; }.e-background-video__controls { z-index: 2; }.e-background-video__play, .e-background-video__pause { appearance: none; -webkit-appearance: none; }.e-background-video.e-background-video--playing .e-background-video__play { display: none; }.e-background-video.e-background-video--paused .e-background-video__pause { display: none; }.e-background-video:not(.e-background-video--playing):not(.e-background-video--paused) .e-background-video__controls,.e-background-video:not(.e-background-video--playing):not(.e-background-video--paused) .e-background-video__play,.e-background-video:not(.e-background-video--playing):not(.e-background-video--paused) .e-background-video__pause { display: none; }.e-accordion-item-header-base { list-style: none; }.e-accordion-item-header-base::-webkit-details-marker { display: none; }.e-accordion-item-base { interpolate-size: allow-keywords; }.e-accordion-item-base::details-content {block-size: 0; overflow: hidden;transition: block-size .3s ease, content-visibility .3s ease allow-discrete;}.e-accordion-item-base[open]::details-content { block-size: auto; }.e-accordion-item-icon-base.e-accordion-item-icon-base .e-svg-base { width: auto; height: 100%; max-width: 100%; }.e-accordion-item-icon-base.e-accordion-item-icon-base .e-svg-base svg { width: auto !important; }.e-accordion-item-icon-base svg { transition: transform .3s ease; }.e-accordion-item-base[open] > summary .e-accordion-item-icon-base svg { transform: rotate(180deg); }
@@ -111,35 +111,93 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 	</nav>
 </header>
 
-<div id="tt-mobile-menu" class="fixed inset-0 z-40 flex-col bg-nav-bg pt-24 hidden" style="clip-path: inset(0 0 100% 0);">
-	<div class="mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 gap-12 px-6 pb-16 sm:px-8 md:grid-cols-3 md:gap-8">
+<div id="tt-mobile-menu" class="tt-menu fixed inset-0 z-40 hidden flex-col overflow-y-auto bg-[#050507] pt-24 text-white" style="clip-path: inset(0 0 100% 0);">
+	<div class="tt-menu-grid pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true"></div>
+
+	<div class="relative mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 gap-10 px-6 pb-10 pt-6 sm:px-8 lg:grid-cols-[1.35fr_1fr] lg:gap-20 lg:pt-12">
 					<div>
-				<p class="mono-label mb-6 text-[11px] text-white/40">Simulation</p>
-				<ul class="space-y-4">
-											<li><a href="/defence/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">Defence</a></li>
-											<li><a href="/aviation/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">Aviation</a></li>
-											<li><a href="/automobile/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">Automobile</a></li>
-											<li><a href="/oesd/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">OESD</a></li>
+				<p class="tt-menu-item mono-label mb-6 text-[11px] text-white/40">Simulation</p>
+				<ul>
+											<li class="tt-menu-item border-t border-white/10 last:border-b" style="--c: #8fb76a;">
+							<a href="/defence/" class="tt-menu-link group flex items-center gap-5 py-4 sm:py-5">
+								<span class="font-mono text-xs text-white/30 transition-colors group-hover:text-[var(--c)]">01</span>
+								<span class="text-4xl font-black leading-none tracking-tight transition-all duration-300 group-hover:translate-x-2 group-hover:text-[var(--c)] sm:text-6xl">Defence</span>
+								<span class="ml-auto h-3 w-3 shrink-0 rounded-full opacity-60 transition-transform duration-300 group-hover:scale-150 group-hover:opacity-100" style="background: var(--c);"></span>
+							</a>
+						</li>
+											<li class="tt-menu-item border-t border-white/10 last:border-b" style="--c: #4cc0f0;">
+							<a href="/aviation/" class="tt-menu-link group flex items-center gap-5 py-4 sm:py-5">
+								<span class="font-mono text-xs text-white/30 transition-colors group-hover:text-[var(--c)]">02</span>
+								<span class="text-4xl font-black leading-none tracking-tight transition-all duration-300 group-hover:translate-x-2 group-hover:text-[var(--c)] sm:text-6xl">Aviation</span>
+								<span class="ml-auto h-3 w-3 shrink-0 rounded-full opacity-60 transition-transform duration-300 group-hover:scale-150 group-hover:opacity-100" style="background: var(--c);"></span>
+							</a>
+						</li>
+											<li class="tt-menu-item border-t border-white/10 last:border-b" style="--c: #e0609a;">
+							<a href="/automobile/" class="tt-menu-link group flex items-center gap-5 py-4 sm:py-5">
+								<span class="font-mono text-xs text-white/30 transition-colors group-hover:text-[var(--c)]">03</span>
+								<span class="text-4xl font-black leading-none tracking-tight transition-all duration-300 group-hover:translate-x-2 group-hover:text-[var(--c)] sm:text-6xl">Automobile</span>
+								<span class="ml-auto h-3 w-3 shrink-0 rounded-full opacity-60 transition-transform duration-300 group-hover:scale-150 group-hover:opacity-100" style="background: var(--c);"></span>
+							</a>
+						</li>
+											<li class="tt-menu-item border-t border-white/10 last:border-b" style="--c: #e3a14f;">
+							<a href="/oesd/" class="tt-menu-link group flex items-center gap-5 py-4 sm:py-5">
+								<span class="font-mono text-xs text-white/30 transition-colors group-hover:text-[var(--c)]">04</span>
+								<span class="text-4xl font-black leading-none tracking-tight transition-all duration-300 group-hover:translate-x-2 group-hover:text-[var(--c)] sm:text-6xl">OESD</span>
+								<span class="ml-auto h-3 w-3 shrink-0 rounded-full opacity-60 transition-transform duration-300 group-hover:scale-150 group-hover:opacity-100" style="background: var(--c);"></span>
+							</a>
+						</li>
 									</ul>
 			</div>
-					<div>
-				<p class="mono-label mb-6 text-[11px] text-white/40">Software</p>
-				<ul class="space-y-4">
-											<li><a href="/#software" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">Training Management System</a></li>
-									</ul>
+		
+		<div class="flex flex-col gap-10 lg:pt-1">
+							<div>
+					<p class="tt-menu-item mono-label mb-4 text-[11px] text-white/40">Software</p>
+					<ul class="space-y-1">
+													<li class="tt-menu-item">
+								<a href="/#software" class="group inline-flex items-center gap-2 py-1 text-2xl font-bold tracking-tight text-white/85 transition-colors hover:text-orange-300 sm:text-3xl">
+									Training Management System									<span class="translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" class=""><path d="M192,64V168L88,64Z" opacity="0.2"></path><path d="M192,56H88a8,8,0,0,0-5.66,13.66L128.69,116,58.34,186.34a8,8,0,0,0,11.32,11.32L140,127.31l46.34,46.35A8,8,0,0,0,200,168V64A8,8,0,0,0,192,56Zm-8,92.69-38.34-38.34h0L107.31,72H184Z"></path></svg></span>
+								</a>
+							</li>
+											</ul>
+				</div>
+							<div>
+					<p class="tt-menu-item mono-label mb-4 text-[11px] text-white/40">Company</p>
+					<ul class="space-y-1">
+													<li class="tt-menu-item">
+								<a href="/about/" class="group inline-flex items-center gap-2 py-1 text-2xl font-bold tracking-tight text-white/85 transition-colors hover:text-orange-300 sm:text-3xl">
+									About Us									<span class="translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" class=""><path d="M192,64V168L88,64Z" opacity="0.2"></path><path d="M192,56H88a8,8,0,0,0-5.66,13.66L128.69,116,58.34,186.34a8,8,0,0,0,11.32,11.32L140,127.31l46.34,46.35A8,8,0,0,0,200,168V64A8,8,0,0,0,192,56Zm-8,92.69-38.34-38.34h0L107.31,72H184Z"></path></svg></span>
+								</a>
+							</li>
+													<li class="tt-menu-item">
+								<a href="/careers/" class="group inline-flex items-center gap-2 py-1 text-2xl font-bold tracking-tight text-white/85 transition-colors hover:text-orange-300 sm:text-3xl">
+									Careers									<span class="translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" class=""><path d="M192,64V168L88,64Z" opacity="0.2"></path><path d="M192,56H88a8,8,0,0,0-5.66,13.66L128.69,116,58.34,186.34a8,8,0,0,0,11.32,11.32L140,127.31l46.34,46.35A8,8,0,0,0,200,168V64A8,8,0,0,0,192,56Zm-8,92.69-38.34-38.34h0L107.31,72H184Z"></path></svg></span>
+								</a>
+							</li>
+													<li class="tt-menu-item">
+								<a href="/news/" class="group inline-flex items-center gap-2 py-1 text-2xl font-bold tracking-tight text-white/85 transition-colors hover:text-orange-300 sm:text-3xl">
+									News									<span class="translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" class=""><path d="M192,64V168L88,64Z" opacity="0.2"></path><path d="M192,56H88a8,8,0,0,0-5.66,13.66L128.69,116,58.34,186.34a8,8,0,0,0,11.32,11.32L140,127.31l46.34,46.35A8,8,0,0,0,200,168V64A8,8,0,0,0,192,56Zm-8,92.69-38.34-38.34h0L107.31,72H184Z"></path></svg></span>
+								</a>
+							</li>
+													<li class="tt-menu-item">
+								<a href="/contact/" class="group inline-flex items-center gap-2 py-1 text-2xl font-bold tracking-tight text-white/85 transition-colors hover:text-orange-300 sm:text-3xl">
+									Contact									<span class="translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" class=""><path d="M192,64V168L88,64Z" opacity="0.2"></path><path d="M192,56H88a8,8,0,0,0-5.66,13.66L128.69,116,58.34,186.34a8,8,0,0,0,11.32,11.32L140,127.31l46.34,46.35A8,8,0,0,0,200,168V64A8,8,0,0,0,192,56Zm-8,92.69-38.34-38.34h0L107.31,72H184Z"></path></svg></span>
+								</a>
+							</li>
+											</ul>
+				</div>
+					</div>
+	</div>
+
+	<div class="tt-menu-item relative border-t border-white/10 px-6 py-5 sm:px-8">
+		<div class="mx-auto flex max-w-[1400px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+			<p class="text-sm text-white/45">505, Windfall, Sahar Plaza, Chakala, Andheri (East), Mumbai 400059</p>
+			<div class="flex flex-wrap items-center gap-5">
+									<a href="https://www.linkedin.com/company/tecknotrove-systems-i-pvt-ltd/" target="_blank" rel="noopener noreferrer" class="text-sm text-white/55 transition-colors hover:text-white">LinkedIn</a>
+									<a href="https://youtu.be/hb-hqyMnMLw" target="_blank" rel="noopener noreferrer" class="text-sm text-white/55 transition-colors hover:text-white">YouTube</a>
+								<a href="/contact/" class="rounded-full bg-orange px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-400">Get in Touch</a>
 			</div>
-					<div>
-				<p class="mono-label mb-6 text-[11px] text-white/40">Company</p>
-				<ul class="space-y-4">
-											<li><a href="/about/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">About Us</a></li>
-											<li><a href="/careers/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">Careers</a></li>
-											<li><a href="/news/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">News</a></li>
-											<li><a href="/contact/" class="group flex items-center gap-2 text-2xl font-semibold text-white transition-colors hover:text-orange-300 sm:text-3xl">Contact</a></li>
-									</ul>
-			</div>
-			</div>
-	<div class="border-t border-white/10 px-6 py-6 text-sm text-white/40 sm:px-8">
-		505, Windfall, Sahar Plaza, Chakala, Andheri (East), Mumbai 400059	</div>
+		</div>
+	</div>
 </div>
 				</div>
 				</div>
@@ -316,7 +374,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <script id="gsap-splittext-js" src="/wp-content/themes/tecknotrove/assets/js/vendor/SplitText.min.js?ver=3.15.0"></script>
 <script id="tecknotrove-text-anim-js" src="/wp-content/themes/tecknotrove/assets/js/text-anim.js?ver=1791450912"></script>
 <script id="tecknotrove-nav-morph-js" src="/wp-content/themes/tecknotrove/assets/js/nav-morph.js?ver=1791527186"></script>
-<script id="tecknotrove-main-js" src="/wp-content/themes/tecknotrove/assets/js/main.js?ver=1791870584"></script>
+<script id="tecknotrove-main-js" src="/wp-content/themes/tecknotrove/assets/js/main.js?ver=1791874383"></script>
 <script id="wp-emoji-settings" type="application/json">
 {"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"/wp-includes/js/wp-emoji-release.min.js?ver=7.1.3"}}
 </script>
