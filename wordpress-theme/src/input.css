@@ -175,54 +175,42 @@ body {
 }
 
 
-/* Framer carousel dressed as the sector cards: sector border, light sector-tinted gradient, dark text.
+/* Framer carousel dressed as the sector cards: sector-coloured border, white text over a dark gradient.
    The component's markup per slide is: 1 image, 2 shade, 3 dim, 4 content link, 5 strip label, 6 button. */
 [data-tt-framer] [aria-roledescription="slide"] {
-  --tint: color-mix(in srgb, var(--sector, #9aa3b5) 12%, #fff);
   border: 2px solid var(--sector, #9aa3b5);
-  background: var(--tint) !important;
+  background: #101318 !important;
   box-sizing: border-box;
   box-shadow: 0 20px 45px -26px rgba(15, 18, 30, 0.35);
 }
 [data-tt-framer] [aria-roledescription="slide"] > div:nth-child(2) {
-  background: linear-gradient(to top, var(--tint) 0%, var(--tint) 20%, color-mix(in srgb, var(--sector, #9aa3b5) 12%, transparent) 44%, transparent 66%) !important;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 75%) !important;
 }
 [data-tt-framer] [aria-roledescription="slide"] > div:nth-child(3) {
   opacity: 0 !important;
 }
+[data-tt-framer] [aria-roledescription="slide"] > a,
 [data-tt-framer] [aria-roledescription="slide"] > a h2,
 [data-tt-framer] [aria-roledescription="slide"] > a p,
 [data-tt-framer] [aria-roledescription="slide"] > a > div:first-child span,
 [data-tt-framer] [aria-roledescription="slide"] > a > div:last-child > span {
-  color: #170800 !important;
-  opacity: 1 !important;
+  color: #fff !important;
 }
 [data-tt-framer] [aria-roledescription="slide"] > a p {
-  color: rgba(23, 8, 0, 0.7) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
-/* top row (label + number) sits on the photo: white with a soft shadow, like the cards */
 [data-tt-framer] [aria-roledescription="slide"] > a > div:first-child span {
-  color: #fff !important;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
 }
-[data-tt-framer] [aria-roledescription="slide"] > a > div:last-child > span span,
-[data-tt-framer] [aria-roledescription="slide"] > a > div:last-child > span span svg {
-  color: #fff !important;
-}
-/* collapsed strips: number stays light on the photo, name dark on the tinted bottom */
+/* strip labels stay white; the Discover circle keeps the sector colour with a white arrow */
 [data-tt-framer] [aria-roledescription="slide"] > div:nth-child(5) {
-  color: #170800 !important;
-}
-[data-tt-framer] [aria-roledescription="slide"] > div:nth-child(5) > :first-child {
   color: #fff !important;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
 }
 [data-tt-framer] button[aria-label="Previous slide"],
 [data-tt-framer] button[aria-label="Next slide"] {
   border-color: rgba(23, 8, 0, 0.25) !important;
 }
-
-/* Framer carousel: sit the text block lower, closer to the bottom edge */
+/* sit the text block lower, closer to the bottom edge */
 [data-tt-framer] [aria-roledescription="slide"] > a {
   padding-bottom: 20px !important;
 }
