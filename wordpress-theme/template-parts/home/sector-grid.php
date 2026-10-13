@@ -42,13 +42,21 @@ $grid_heading = tecknotrove_opt( 'tt_home_sectors_heading' ) ?: "Built for the w
 							<div class="absolute inset-0" style="background: linear-gradient(to top, color-mix(in srgb, var(--sector) 12%, #fff) 0%, color-mix(in srgb, var(--sector) 12%, #fff) 34%, color-mix(in srgb, var(--sector) 12%, transparent) 62%, transparent 82%);"></div>
 						</div>
 						<div class="relative z-10 flex h-full flex-col">
-							<div class="flex items-center gap-3">
+							<?php
+							// Official white sector logo (Tecknotrove + sector name); text label if none exists for this sector.
+							$logo_key  = 'driving' === $s['key'] ? 'automobile' : $s['key'];
+							$logo_file = get_template_directory() . '/assets/images/sector-logo-' . $logo_key . '-white.png';
+							$logo_url  = file_exists( $logo_file ) ? get_template_directory_uri() . '/assets/images/sector-logo-' . $logo_key . '-white.png' : '';
+							?>
+							<div class="flex items-start justify-between gap-3">
 								<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white shadow-[0_8px_20px_-8px_var(--sector)]" style="background: var(--sector);">
 									<?php tecknotrove_the_icon( $s['icon'] ?? ( $sector_icons[ $s['key'] ] ?? 'Factory' ), 20 ); ?>
 								</div>
-								<span class="mono-label inline-flex items-center gap-2 text-[11px] font-semibold text-white" style="text-shadow: 0 1px 8px rgba(0,0,0,0.65);">
-									<span class="h-[3px] w-4 rounded-full" style="background: var(--sector);"></span><?php echo esc_html( $s['name'] ); ?>
-								</span>
+								<?php if ( $logo_url ) : ?>
+									<span role="img" aria-label="Tecknotrove <?php echo esc_attr( $s['name'] ); ?>" class="block aspect-[3.6/1] h-10 bg-contain bg-right bg-no-repeat lg:h-11" style="background-image: url('<?php echo esc_url( $logo_url ); ?>'); filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));"></span>
+								<?php else : ?>
+									<span class="mono-label inline-flex items-center gap-2 text-[11px] font-semibold text-white" style="text-shadow: 0 1px 8px rgba(0,0,0,0.65);"><span class="h-[3px] w-4 rounded-full" style="background: var(--sector);"></span><?php echo esc_html( $s['name'] ); ?></span>
+								<?php endif; ?>
 							</div>
 							<div class="mt-auto pt-10">
 								<h3 class="text-lg font-bold leading-snug lg:text-2xl"><?php echo esc_html( $s['h1'] ?: $s['name'] ); ?></h3>
