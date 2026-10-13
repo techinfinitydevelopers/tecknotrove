@@ -31,9 +31,9 @@ $grid_heading = tecknotrove_opt( 'tt_home_sectors_heading' ) ?: "Built for the w
 			</a>
 		</div>
 
-		<div id="tt-sector-list" class="mt-14 flex flex-col gap-2 sm:flex-row sm:gap-0" data-reveal>
+		<div id="tt-sector-list" class="mt-14 flex flex-col gap-3 sm:flex-row sm:gap-4" data-reveal>
 			<?php foreach ( $sectors_for_grid as $i => $s ) : ?>
-				<div data-card style="--sector: <?php echo esc_attr( $s['accent'] ); ?>; z-index: <?php echo (int) $i; ?>;" class="relative h-[320px] sm:-ml-3 sm:h-[430px] sm:flex-1 lg:h-[480px] first:sm:ml-0">
+				<div data-card style="--sector: <?php echo esc_attr( $s['accent'] ); ?>; z-index: <?php echo (int) $i; ?>;" class="relative h-[320px] sm:h-[430px] sm:flex-1 lg:h-[480px]">
 					<a href="<?php echo esc_url( $s['url'] ?? home_url( '/' . $s['key'] . '/' ) ); ?>" data-card-face style="border-color: var(--sector);" class="group relative block h-full overflow-hidden rounded-2xl border-2 bg-bg-panel p-5 shadow-[0_20px_45px_-24px_rgba(15,18,30,0.35)] lg:p-7">
 						<div class="pointer-events-none absolute inset-0">
 							<?php if ( $s['image'] ) : ?>

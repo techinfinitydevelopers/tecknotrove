@@ -208,7 +208,7 @@
     var active = 0;
     var dur = reduceMotion ? "0.25s" : "0.85s";
     var ease = reduceMotion ? "cubic-bezier(0.22,1,0.36,1)" : "cubic-bezier(0.34,1.56,0.64,1)";
-    var jitter = reduceMotion ? 0 : 1;
+    var jitter = 0; // cards rest straight (no random tilt/offset); hover motion is unchanged
 
     function rand(range) {
       return (Math.random() - 0.5) * range * jitter;
