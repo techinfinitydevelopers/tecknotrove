@@ -53,7 +53,7 @@ $grid_heading = tecknotrove_opt( 'tt_home_sectors_heading' ) ?: "Built for the w
 									<?php tecknotrove_the_icon( $s['icon'] ?? ( $sector_icons[ $s['key'] ] ?? 'Factory' ), 20 ); ?>
 								</div>
 								<?php if ( $logo_url ) : ?>
-									<span role="img" aria-label="Tecknotrove <?php echo esc_attr( $s['name'] ); ?>" class="block aspect-[3.6/1] h-10 bg-contain bg-right bg-no-repeat lg:h-11" style="background-image: url('<?php echo esc_url( $logo_url ); ?>'); filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));"></span>
+									<span role="img" aria-label="Tecknotrove <?php echo esc_attr( $s['name'] ); ?>" class="block aspect-[3.6/1] h-7 bg-contain bg-right bg-no-repeat lg:h-8" style="background-image: url('<?php echo esc_url( $logo_url ); ?>'); filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));"></span>
 								<?php else : ?>
 									<span class="mono-label inline-flex items-center gap-2 text-[11px] font-semibold text-white" style="text-shadow: 0 1px 8px rgba(0,0,0,0.65);"><span class="h-[3px] w-4 rounded-full" style="background: var(--sector);"></span><?php echo esc_html( $s['name'] ); ?></span>
 								<?php endif; ?>
