@@ -95,10 +95,10 @@ $defs['tt_framer_carousel'] = [
 	'fields' => [
 		$t( 'heading', 'Section heading', "Built for the world's most demanding industries." ),
 		$rep( 'slides', 'Slides', [
-			$im( 'image', 'Image' ), $im( 'logo', 'Sector logo (shown on a white chip)' ), $t( 'title', 'Title' ), $t( 'category', 'Category' ), $ta( 'description', 'Description' ),
+			$im( 'image', 'Image' ), $im( 'logo', 'Sector logo (white version)' ), $t( 'title', 'Title' ), $t( 'category', 'Category' ), $ta( 'description', 'Description' ),
 			$t( 'buttonText', 'Button label', 'Discover' ), $url( 'link', 'Link' ), $col( 'color', 'Sector colour', '#ff5100' ),
 		], array_map( fn( $c ) => [
-			'image' => $c['image'], 'logo' => $img . 'sector-logo-' . ( 'driving' === sanitize_title( $c['name'] ) ? 'automobile' : sanitize_title( $c['name'] ) ) . '.png', 'title' => $c['name'], 'category' => 'Tecknotrove ' . $c['name'],
+			'image' => $c['image'], 'logo' => $img . 'sector-logo-' . ( 'driving' === sanitize_title( $c['name'] ) ? 'automobile' : sanitize_title( $c['name'] ) ) . '-white.png', 'title' => $c['name'], 'category' => 'Tecknotrove ' . $c['name'],
 			'description' => $c['subhead'], 'buttonText' => 'Discover', 'link' => $c['url'], 'color' => $c['accent'],
 		], $grid_defaults ), 'title' ),
 		[ 'section' => 'Style' ],
