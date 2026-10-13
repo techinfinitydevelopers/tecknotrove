@@ -86,3 +86,6 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 ## CSS restore + logo hover icons (2026-10-14)
 - My earlier navbar CSS edit accidentally deleted a block of base rules from `src/input.css` (mobile menu open state, `[data-reveal]` scroll reveal, FAQ accordion, `.mono-label`, `.grain`, spin/marquee/pulse keyframes, reduced-motion). Restored from commit 7213655. Mobile menu (hamburger) works again.
 - Logos (navbar, footer, hero essence) are now background images on a span (role=img) instead of `<img>`, so browser image-hover buttons (Lens / more actions) don't appear on them.
+
+## Mega menu from the supplied reference (2026-10-14)
+- Full-screen menu rebuilt to the supplied 4-column design: brand-blue panel; Products / Software & Tools / Company / Get in Touch; light Lato headings, hairline-divided link lists, Mumbai contact card. Data: `tecknotrove_navbar_defaults()['menu_columns']`; editable in the Elementor Navbar widget (links one per line as `Label | URL`). Many sub-links point to `#` until their pages exist. Phone shown is the reference's +91 22 6151 3000 (brand book/site use 6151 3002): confirm.

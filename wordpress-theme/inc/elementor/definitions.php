@@ -434,24 +434,47 @@ $defs['tt_navbar'] = [
 		$im( 'logo', 'Logo (white)', $nv['logo'] ),
 		$rep( 'links', 'Centre links', $link_fields, $nv['links'], 'label' ),
 		$t( 'cta_label', 'Button label', $nv['cta_label'] ), $url( 'cta_url', 'Button link', $nv['cta_url'] ),
-		[ 'section' => 'Full-screen menu' ],
-		$t( 'g1_title', 'Column 1 title', 'Simulation' ), $rep( 'g1', 'Column 1 links', $link_fields, $nv['menu_groups'][0]['links'], 'label' ),
-		$t( 'g2_title', 'Column 2 title', 'Software' ), $rep( 'g2', 'Column 2 links', $link_fields, $nv['menu_groups'][1]['links'], 'label' ),
-		$t( 'g3_title', 'Column 3 title', 'Company' ), $rep( 'g3', 'Column 3 links', $link_fields, $nv['menu_groups'][2]['links'], 'label' ),
-		$t( 'address', 'Address line', $nv['address'] ),
+		[ 'section' => 'Full-screen menu (links: one per line as Label | URL)' ],
 	],
 	'render' => function ( $v ) {
+		$cols = [];
+		for ( $i = 1; $i <= 4; $i++ ) {
+			$sections = [];
+			foreach ( [ 1, 2 ] as $n ) {
+				if ( '' === trim( (string) ( $v[ "c{$i}_h{$n}" ] ?? '' ) ) ) continue;
+				$sections[] = [ 'heading' => $v[ "c{$i}_h{$n}" ], 'links' => tecknotrove_parse_links( $v[ "c{$i}_l{$n}" ] ?? '' ) ];
+			}
+			$col = [ 'label' => $v[ "c{$i}_label" ], 'sections' => $sections ];
+			if ( 4 === $i ) {
+				$col['card'] = [ 'label' => $v['card_label'], 'lines' => array_values( array_filter( array_map( 'trim', preg_split( '/?
+/', (string) $v['card_lines'] ) ) ) ) ];
+			}
+			$cols[] = $col;
+		}
 		$args = [
 			'logo' => $v['logo'] ?: tecknotrove_navbar_defaults()['logo'], 'links' => $v['links'],
 			'cta_label' => $v['cta_label'], 'cta_url' => $v['cta_url'],
-			'menu_groups' => [
-				[ 'title' => $v['g1_title'], 'links' => $v['g1'] ], [ 'title' => $v['g2_title'], 'links' => $v['g2'] ], [ 'title' => $v['g3_title'], 'links' => $v['g3'] ],
-			],
-			'address' => $v['address'],
+			'menu_columns' => $cols,
 		];
 		tecknotrove_el_render_part( 'layout/navbar', [], [ 'args' => $args ] );
 	},
 ];
+
+/* menu column fields (generated: 4 columns x label + 2 sections, plus the contact card) */
+$dl = function ( $links ) { return implode( "
+", array_map( fn( $l ) => $l['label'] . ' | ' . $l['url'], $links ) ); };
+foreach ( $nv['menu_columns'] as $i => $col ) {
+	$n = $i + 1;
+	$defs['tt_navbar']['fields'][] = $t( "c{$n}_label", "Column {$n}: label", $col['label'] );
+	foreach ( [ 0, 1 ] as $k ) {
+		$sec = $col['sections'][ $k ] ?? [ 'heading' => '', 'links' => [] ];
+		$defs['tt_navbar']['fields'][] = $t( "c{$n}_h" . ( $k + 1 ), "Column {$n}: heading " . ( $k + 1 ), $sec['heading'] );
+		$defs['tt_navbar']['fields'][] = $ta( "c{$n}_l" . ( $k + 1 ), "Column {$n}: links " . ( $k + 1 ), $dl( $sec['links'] ) );
+	}
+}
+$defs['tt_navbar']['fields'][] = $t( 'card_label', 'Contact card: label', $nv['menu_columns'][3]['card']['label'] );
+$defs['tt_navbar']['fields'][] = $ta( 'card_lines', 'Contact card: lines (one per line)', implode( "
+", $nv['menu_columns'][3]['card']['lines'] ) );
 
 $defs['tt_footer'] = [
 	'title'  => 'TT Footer',

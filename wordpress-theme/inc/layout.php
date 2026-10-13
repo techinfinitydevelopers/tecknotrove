@@ -18,22 +18,58 @@ function tecknotrove_navbar_defaults() {
 		],
 		'cta_label'   => 'Get in Touch',
 		'cta_url'     => home_url( '/contact/' ),
-		'menu_groups' => [
-			[ 'title' => 'Simulation', 'links' => [
-				[ 'label' => 'Defence', 'url' => home_url( '/defence/' ) ],
-				[ 'label' => 'Aviation', 'url' => home_url( '/aviation/' ) ],
-				[ 'label' => 'Automobile', 'url' => home_url( '/automobile/' ) ],
-				[ 'label' => 'OESD', 'url' => home_url( '/oesd/' ) ],
+		'menu_columns' => [
+			[ 'label' => 'Products', 'sections' => [
+				[ 'heading' => 'Simulation', 'links' => [
+					[ 'label' => 'Defence', 'url' => home_url( '/defence/' ) ],
+					[ 'label' => 'Aviation', 'url' => home_url( '/aviation/' ) ],
+					[ 'label' => 'Driving', 'url' => home_url( '/automobile/' ) ],
+					[ 'label' => 'OESD / Industrial', 'url' => home_url( '/oesd/' ) ],
+					[ 'label' => 'Tank Driving Simulator', 'url' => home_url( '/products/tank-driving-simulator/' ) ],
+					[ 'label' => 'APC Crew Simulator', 'url' => '#' ],
+					[ 'label' => 'Field Artillery Simulator', 'url' => '#' ],
+					[ 'label' => 'Ship Bridge Simulator', 'url' => '#' ],
+					[ 'label' => 'Military Helicopter Sim', 'url' => '#' ],
+				] ],
 			] ],
-			[ 'title' => 'Software', 'links' => [
-				[ 'label' => 'Training Management System', 'url' => home_url( '/#software' ) ],
+			[ 'label' => 'Software & Tools', 'sections' => [
+				[ 'heading' => 'Software', 'links' => [
+					[ 'label' => 'TMS — Training Management', 'url' => home_url( '/#software' ) ],
+					[ 'label' => '3D Customization', 'url' => '#' ],
+					[ 'label' => 'Clinical Assessment System', 'url' => '#' ],
+					[ 'label' => 'Digital Twins', 'url' => '#' ],
+					[ 'label' => 'Mechatronics Suite', 'url' => '#' ],
+				] ],
+				[ 'heading' => 'Technology', 'links' => [
+					[ 'label' => '3-DOF Motion Platforms', 'url' => '#' ],
+					[ 'label' => '6-DOF Motion Platforms', 'url' => '#' ],
+					[ 'label' => 'Visual Display Systems', 'url' => '#' ],
+					[ 'label' => 'Indigenous Electronics', 'url' => '#' ],
+				] ],
 			] ],
-			[ 'title' => 'Company', 'links' => [
-				[ 'label' => 'About Us', 'url' => home_url( '/about/' ) ],
-				[ 'label' => 'Careers', 'url' => home_url( '/careers/' ) ],
-				[ 'label' => 'News', 'url' => home_url( '/news/' ) ],
-				[ 'label' => 'Contact', 'url' => home_url( '/contact/' ) ],
+			[ 'label' => 'Company', 'sections' => [
+				[ 'heading' => 'About Us', 'links' => [
+					[ 'label' => 'Our Story', 'url' => home_url( '/about/' ) ],
+					[ 'label' => 'Our Journey', 'url' => home_url( '/about/' ) ],
+					[ 'label' => 'Leadership Team', 'url' => home_url( '/about/' ) ],
+					[ 'label' => 'Certifications & Awards', 'url' => home_url( '/about/' ) ],
+				] ],
+				[ 'heading' => 'Media', 'links' => [
+					[ 'label' => 'News & Blogs', 'url' => home_url( '/news/' ) ],
+					[ 'label' => 'Press Releases', 'url' => home_url( '/news/' ) ],
+					[ 'label' => 'Events', 'url' => home_url( '/news/' ) ],
+					[ 'label' => 'Gallery', 'url' => home_url( '/news/' ) ],
+				] ],
 			] ],
+			[ 'label' => 'Get in Touch', 'sections' => [
+				[ 'heading' => 'Contact Us', 'links' => [
+					[ 'label' => 'Sales Enquiry', 'url' => home_url( '/contact/' ) ],
+					[ 'label' => 'Get in Touch', 'url' => home_url( '/contact/' ) ],
+					[ 'label' => 'Download Brochure', 'url' => '#brochure' ],
+					[ 'label' => 'Global Offices', 'url' => home_url( '/contact/' ) ],
+					[ 'label' => 'Support', 'url' => home_url( '/contact/' ) ],
+				] ],
+			], 'card' => [ 'label' => 'Mumbai, India', 'lines' => [ '+91 22 6151 3000', 'sales@tecknotrove.com', 'Mon–Fri · 9AM–6PM IST' ] ] ],
 		],
 		'address'     => '505, Windfall, Sahar Plaza, Chakala, Andheri (East), Mumbai 400059',
 	];
@@ -74,6 +110,19 @@ function tecknotrove_register_layout_cpt() {
 	] );
 }
 add_action( 'init', 'tecknotrove_register_layout_cpt' );
+
+/** Parse "Label | URL" lines (one per line) into link arrays. */
+function tecknotrove_parse_links( $text ) {
+	$out = [];
+	foreach ( preg_split( '/?
+/', (string) $text ) as $line ) {
+		$line = trim( $line );
+		if ( '' === $line ) continue;
+		$parts = array_map( 'trim', explode( '|', $line, 2 ) );
+		$out[] = [ 'label' => $parts[0], 'url' => $parts[1] ?? '#' ];
+	}
+	return $out;
+}
 
 /** Make Elementor available on pages, products, sectors and layouts. */
 function tecknotrove_elementor_cpt_support() {
