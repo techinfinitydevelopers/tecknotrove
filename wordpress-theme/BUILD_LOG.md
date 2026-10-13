@@ -82,3 +82,7 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 
 ## Hero per brand book (2026-10-13)
 - Hero headline is now the Brand Essence unit (Brand Book p.9-11: stacked "Precise / today / Perfect / tomorrow", one colour, never broken or recoloured; white reverse on blue). Extracted from the PDF as `assets/images/brand-essence-white.png`; real text kept in an sr-only span for SEO. Subhead trimmed to the wireframe text only. Facility card in the orange CTA now white with dark text.
+
+## CSS restore + logo hover icons (2026-10-14)
+- My earlier navbar CSS edit accidentally deleted a block of base rules from `src/input.css` (mobile menu open state, `[data-reveal]` scroll reveal, FAQ accordion, `.mono-label`, `.grain`, spin/marquee/pulse keyframes, reduced-motion). Restored from commit 7213655. Mobile menu (hamburger) works again.
+- Logos (navbar, footer, hero essence) are now background images on a span (role=img) instead of `<img>`, so browser image-hover buttons (Lens / more actions) don't appear on them.

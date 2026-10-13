@@ -30,12 +30,7 @@
 
 			<h1 class="m-0" data-anim-up>
 				<span class="sr-only"><?php echo esc_html( tecknotrove_home_hero_line1() . ' ' . tecknotrove_home_hero_line2() ); ?></span>
-				<img
-					src="<?php echo esc_url( tecknotrove_opt( 'tt_home_hero_essence' ) ?: get_template_directory_uri() . '/assets/images/brand-essence-white.png' ); ?>"
-					alt="<?php echo esc_attr( tecknotrove_home_hero_line1() . ' ' . tecknotrove_home_hero_line2() ); ?>"
-					class="block h-auto w-[min(58vw,17rem)] select-none sm:w-[min(38vw,21rem)] lg:w-[min(25vw,23rem)]"
-					width="1200" height="940" draggable="false"
-				/>
+				<span aria-hidden="true" class="block aspect-[1200/940] w-[min(58vw,17rem)] bg-contain bg-left bg-no-repeat sm:w-[min(38vw,21rem)] lg:w-[min(25vw,23rem)]" style="background-image: url('<?php echo esc_url( tecknotrove_opt( 'tt_home_hero_essence' ) ?: get_template_directory_uri() . '/assets/images/brand-essence-white.png' ); ?>');"></span>
 			</h1>
 
 			<p class="mt-7 max-w-md text-base text-white/75 sm:text-lg" >

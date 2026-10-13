@@ -5,7 +5,7 @@ $nv = wp_parse_args( $args ?? [], tecknotrove_navbar_defaults() );
 <header id="tt-nav" class="tt-nav fixed inset-x-0 top-0 z-50 transition-all duration-300">
 	<nav class="relative mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 sm:h-16 sm:px-8 lg:h-[56px]">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="relative z-10 flex items-center">
-			<img src="<?php echo esc_url( $nv['logo'] ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="h-7 w-auto sm:h-8" />
+			<span role="img" aria-label="<?php bloginfo( 'name' ); ?>" class="block aspect-[4/1] h-7 bg-contain bg-left bg-no-repeat sm:h-8" style="background-image: url('<?php echo esc_url( $nv['logo'] ); ?>');"></span>
 		</a>
 
 		<div class="tt-nav-center absolute left-1/2 top-0 hidden h-[96px] w-[680px] -translate-x-1/2 lg:block">
