@@ -39,7 +39,11 @@ $why_image = tecknotrove_opt( 'tt_home_why_image' ) ?: get_template_directory_ur
 					<div>
 						<?php tecknotrove_the_icon( $s['icon'] ?: 'Wrench', 16, 'mb-3 text-orange-400' ); ?>
 						<div class="tt-why-stat text-2xl font-black tabular-nums text-ink sm:text-[1.65rem]">
-							<span data-count-to="<?php echo (int) $s['value']; ?>" data-plain="<?php echo ! empty( $s['plain'] ) ? 'true' : 'false'; ?>">0</span><span class="text-orange-400"><?php echo esc_html( $s['suffix'] ); ?></span>
+							<span data-count-to="<?php echo (int) $s['value']; ?>" data-plain="<?php echo ! empty( $s['plain'] ) ? 'true' : 'false'; ?>">0</span><?php
+								// "×7" style suffixes: the × stays orange, what follows it (the 7) is dark.
+								$sfx = (string) $s['suffix'];
+								$pos = mb_strpos( $sfx, '×' );
+								if ( false !== $pos ) : ?><span class="text-orange-400"><?php echo esc_html( mb_substr( $sfx, 0, $pos + 1 ) ); ?></span><?php echo esc_html( mb_substr( $sfx, $pos + 1 ) ); ?><?php else : ?><span class="text-orange-400"><?php echo esc_html( $sfx ); ?></span><?php endif; ?>
 						</div>
 						<p class="mt-2 text-xs font-medium text-ink-dim"><?php echo esc_html( $s['label'] ); ?></p>
 					</div>
