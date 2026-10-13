@@ -33,7 +33,7 @@
 				<img
 					src="<?php echo esc_url( tecknotrove_opt( 'tt_home_hero_essence' ) ?: get_template_directory_uri() . '/assets/images/brand-essence-white.png' ); ?>"
 					alt="<?php echo esc_attr( tecknotrove_home_hero_line1() . ' ' . tecknotrove_home_hero_line2() ); ?>"
-					class="block h-auto w-[min(78vw,26rem)] select-none sm:w-[min(52vw,30rem)] lg:w-[min(34vw,32rem)]"
+					class="block h-auto w-[min(58vw,17rem)] select-none sm:w-[min(38vw,21rem)] lg:w-[min(25vw,23rem)]"
 					width="1200" height="940" draggable="false"
 				/>
 			</h1>
