@@ -74,7 +74,7 @@ def main():
             u = next(g for g in m.groups() if g)
             found.append(u)
         # any quoted localhost asset URL (import maps, inline JSON, escaped slashes)
-        quoted = r"""["'](http:\\?/\\?/localhost\\?/tecknotrove\\?/[^"'\s]+?\.(?:js|css|json|png|jpe?g|webp|svg|woff2?|ttf))"""
+        quoted = r"""(http:\\?/\\?/localhost\\?/tecknotrove\\?/[^"'\s&<>]+?\.(?:js|css|json|png|jpe?g|webp|svg|woff2?|ttf))"""
         for m in re.finditer(quoted, text):
             found.append(m.group(1).replace("\\/", "/"))
         for m in re.finditer(r'srcset=["\']([^"\']+)["\']', text):
