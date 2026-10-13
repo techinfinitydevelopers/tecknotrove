@@ -17,7 +17,7 @@ foreach ( $v['slides'] as $s ) {
 $props = [
 	'slides'      => $slides,
 	'colors'      => $colors,
-	'background'  => $v['background'],
+	'background'  => $v['background'] ?? '#0b1230',
 	'textColor'   => '#170800',
 	'accent'      => $v['accent'],
 	'radius'      => (int) $v['radius'],
