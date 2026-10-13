@@ -28,11 +28,17 @@
 				<?php echo esc_html( tecknotrove_home_hero_eyebrow() ); ?>
 			</p>
 
-			<h1 class="max-w-3xl text-[13vw] font-black leading-[0.95] tracking-tight sm:text-[7.5vw] lg:text-[5.6rem]" data-split-title>
-				<?php echo esc_html( tecknotrove_home_hero_line1() ); ?><br /><?php echo esc_html( tecknotrove_home_hero_line2() ); ?>
+			<h1 class="m-0" data-anim-up>
+				<span class="sr-only"><?php echo esc_html( tecknotrove_home_hero_line1() . ' ' . tecknotrove_home_hero_line2() ); ?></span>
+				<img
+					src="<?php echo esc_url( tecknotrove_opt( 'tt_home_hero_essence' ) ?: get_template_directory_uri() . '/assets/images/brand-essence-white.png' ); ?>"
+					alt="<?php echo esc_attr( tecknotrove_home_hero_line1() . ' ' . tecknotrove_home_hero_line2() ); ?>"
+					class="block h-auto w-[min(78vw,26rem)] select-none sm:w-[min(52vw,30rem)] lg:w-[min(34vw,32rem)]"
+					width="1200" height="940" draggable="false"
+				/>
 			</h1>
 
-			<p class="mt-7 max-w-md text-base text-white/75 sm:text-lg" data-split-lines>
+			<p class="mt-7 max-w-md text-base text-white/75 sm:text-lg" >
 				<?php echo esc_html( tecknotrove_home_hero_subhead() ); ?>
 			</p>
 

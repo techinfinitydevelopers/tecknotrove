@@ -129,7 +129,7 @@ function tecknotrove_opt( $key, $default = false ) {
 function tecknotrove_home_hero_eyebrow() { return tecknotrove_opt( 'tt_home_hero_eyebrow' ) ?: 'Simulation & Training Technology · Est. 2002'; }
 function tecknotrove_home_hero_line1() { return tecknotrove_opt( 'tt_home_hero_line1' ) ?: 'Precise today.'; }
 function tecknotrove_home_hero_line2() { return tecknotrove_opt( 'tt_home_hero_line2' ) ?: 'Perfect tomorrow.'; }
-function tecknotrove_home_hero_subhead() { return tecknotrove_opt( 'tt_home_hero_subhead' ) ?: 'Building technologies for demanding industries, from full-motion armoured vehicle trainers to airport ground-support simulators.'; }
+function tecknotrove_home_hero_subhead() { return tecknotrove_opt( 'tt_home_hero_subhead' ) ?: 'Building technologies for demanding industries.'; }
 
 function tecknotrove_home_why_line1() { return tecknotrove_opt( 'tt_home_why_line1' ) ?: 'Every subsystem.'; }
 function tecknotrove_home_why_line2() { return tecknotrove_opt( 'tt_home_why_line2' ) ?: 'One source.'; }

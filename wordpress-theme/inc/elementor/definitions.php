@@ -50,12 +50,13 @@ $defs['tt_hero'] = [
 		$t( 'eyebrow', 'Eyebrow', 'Simulation & Training Technology · Est. 2002' ),
 		$t( 'line1', 'Heading line 1', 'Precise today.' ),
 		$t( 'line2', 'Heading line 2', 'Perfect tomorrow.' ),
-		$ta( 'subhead', 'Sub-heading', 'Building technologies for demanding industries, from full-motion armoured vehicle trainers to airport ground-support simulators.' ),
+		$ta( 'subhead', 'Sub-heading', 'Building technologies for demanding industries.' ),
+		$im( 'essence', 'Headline (brand essence image)', $img . 'brand-essence-white.png' ),
 	],
 	'render' => function ( $v ) {
 		tecknotrove_el_render_part( 'home/hero', [
 			'tt_home_hero_eyebrow' => $v['eyebrow'], 'tt_home_hero_line1' => $v['line1'],
-			'tt_home_hero_line2' => $v['line2'], 'tt_home_hero_subhead' => $v['subhead'],
+			'tt_home_hero_line2' => $v['line2'], 'tt_home_hero_subhead' => $v['subhead'], 'tt_home_hero_essence' => $v['essence'],
 		] );
 	},
 ];
