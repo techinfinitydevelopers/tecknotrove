@@ -365,3 +365,21 @@ body {
 .tt-nav {
   transition: background-color 0.4s ease;
 }
+
+/* Carousel: the Tecknotrove sector logo (brand book: sector logos on white only) replaces the text label */
+[data-tt-framer] [aria-roledescription="slide"] > a > div:first-child > span:first-child {
+  display: none !important;
+}
+[data-tt-framer] [aria-roledescription="slide"] > a > div:first-child::before {
+  content: "";
+  display: block;
+  width: 168px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: #fff;
+  background-image: var(--logo);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 82% auto;
+  box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.5);
+}

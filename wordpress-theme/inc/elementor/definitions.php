@@ -95,10 +95,10 @@ $defs['tt_framer_carousel'] = [
 	'fields' => [
 		$t( 'heading', 'Section heading', "Built for the world's most demanding industries." ),
 		$rep( 'slides', 'Slides', [
-			$im( 'image', 'Image' ), $t( 'title', 'Title' ), $t( 'category', 'Category' ), $ta( 'description', 'Description' ),
+			$im( 'image', 'Image' ), $im( 'logo', 'Sector logo (shown on a white chip)' ), $t( 'title', 'Title' ), $t( 'category', 'Category' ), $ta( 'description', 'Description' ),
 			$t( 'buttonText', 'Button label', 'Discover' ), $url( 'link', 'Link' ), $col( 'color', 'Sector colour', '#ff5100' ),
 		], array_map( fn( $c ) => [
-			'image' => $c['image'], 'title' => $c['name'], 'category' => 'Tecknotrove ' . $c['name'],
+			'image' => $c['image'], 'logo' => $img . 'sector-logo-' . ( 'driving' === sanitize_title( $c['name'] ) ? 'automobile' : sanitize_title( $c['name'] ) ) . '.png', 'title' => $c['name'], 'category' => 'Tecknotrove ' . $c['name'],
 			'description' => $c['subhead'], 'buttonText' => 'Discover', 'link' => $c['url'], 'color' => $c['accent'],
 		], $grid_defaults ), 'title' ),
 		[ 'section' => 'Style' ],
@@ -446,7 +446,8 @@ $defs['tt_navbar'] = [
 			}
 			$col = [ 'label' => $v[ "c{$i}_label" ], 'sections' => $sections ];
 			if ( 4 === $i ) {
-				$col['card'] = [ 'label' => $v['card_label'], 'lines' => array_values( array_filter( array_map( 'trim', preg_split( '/?
+				$col['card'] = [ 'label' => $v['card_label'], 'lines' => array_values( array_filter( array_map( 'trim', preg_split( '/
+?
 /', (string) $v['card_lines'] ) ) ) ) ];
 			}
 			$cols[] = $col;

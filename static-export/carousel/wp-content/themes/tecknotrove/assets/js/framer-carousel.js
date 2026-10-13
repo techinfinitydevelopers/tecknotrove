@@ -34,12 +34,14 @@
         node.innerHTML = "";
         var reactRoot = createRoot(node);
         var colors = props.colors || [];
+        var logos = props.logos || [];
         var baseBg = props.background || "#0b1230";
         var current = -1;
         function paint() {
           // Give every slide its sector colour (CSS in input.css turns it into the card look).
           node.querySelectorAll('[aria-roledescription="slide"]').forEach(function (el, i) {
             if (colors[i]) el.style.setProperty("--sector", colors[i]);
+            if (logos[i]) el.style.setProperty("--logo", 'url("' + logos[i] + '")');
           });
         }
         function render(index) {

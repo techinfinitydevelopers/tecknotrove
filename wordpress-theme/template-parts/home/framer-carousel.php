@@ -2,6 +2,7 @@
 /** @var array $v  heading, slides[], background, textColor, accent, radius, height, overlay */
 $slides = [];
 $colors = [];
+$logos  = [];
 foreach ( $v['slides'] as $s ) {
 	$slides[] = [
 		'image'      => [ 'src' => $s['image'], 'alt' => $s['title'] ],
@@ -13,10 +14,12 @@ foreach ( $v['slides'] as $s ) {
 		'newTab'     => false,
 	];
 	$colors[] = $s['color'] ?: $v['accent'];
+	$logos[]  = $s['logo'] ?? '';
 }
 $props = [
 	'slides'      => $slides,
 	'colors'      => $colors,
+	'logos'       => $logos,
 	'background'  => 'transparent',
 	'textColor'   => '#170800',
 	'accent'      => $v['accent'],
