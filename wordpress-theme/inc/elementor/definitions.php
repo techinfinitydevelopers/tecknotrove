@@ -490,4 +490,6 @@ $defs['tt_footer'] = [
 	'render' => function ( $v ) { tecknotrove_el_render_part( 'layout/footer', [], [ 'args' => $v ] ); },
 ];
 
+require __DIR__ . '/aviation-defs.php';
+
 return $defs;

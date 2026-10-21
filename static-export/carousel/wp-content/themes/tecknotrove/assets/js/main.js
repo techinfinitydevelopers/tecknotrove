@@ -259,6 +259,20 @@
     });
   }
 
+
+  /* ---------- Aviation key-features tabs ---------- */
+  document.querySelectorAll("[data-av-tabs]").forEach(function (root) {
+    var tabs = root.querySelectorAll("[data-av-tab]");
+    var panels = root.querySelectorAll("[data-av-panel]");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var n = tab.getAttribute("data-av-tab");
+        tabs.forEach(function (t) { t.setAttribute("aria-selected", t === tab ? "true" : "false"); });
+        panels.forEach(function (p) { p.hidden = p.getAttribute("data-av-panel") !== n; });
+      });
+    });
+  });
+
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll(".tt-faq-item").forEach(function (item, i) {
     var btn = item.querySelector(".tt-faq-q");

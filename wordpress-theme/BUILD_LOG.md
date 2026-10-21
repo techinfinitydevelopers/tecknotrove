@@ -89,3 +89,8 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 
 ## Mega menu from the supplied reference (2026-10-14)
 - Full-screen menu uses the supplied reference CONTENT only (look and feel stays ours: black panel, Lato black headings, sector-colour dots); Products / Software & Tools / Company / Get in Touch; light Lato headings, hairline-divided link lists, Mumbai contact card. Data: `tecknotrove_navbar_defaults()['menu_columns']`; editable in the Elementor Navbar widget (links one per line as `Label | URL`). Many sub-links point to `#` until their pages exist. Phone shown is the reference's +91 22 6151 3000 (brand book/site use 6151 3002): confirm.
+
+## 2026-10-21: Aviation hubs, hub pages, product pages
+- Added `hub` CPT, 9 `tt_av_*` Elementor widgets (sub-menu, hero, hub sections, tiles, FAQ, key-features tabs, video, gallery, CTA), `single-hub.php`, 3 icons.
+- Seeded: industry page, 4 hubs, 8 products, Digital Twins, ISTC. Cargo Loader uses real brochure copy/images; others are draft copy.
+- Static export now includes the new URLs. Open: client copy/FAQs/videos, motion/spec details, final hub-to-tech page copy.

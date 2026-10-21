@@ -22,3 +22,11 @@ Corporate marketing site for Tecknotrove (simulation and training, Mumbai, est. 
 
 ## Open items / gaps vs wireframe (tecknotrove_wireframe.xlsx)
 See "Wireframe gap plan" in `wordpress-theme/BUILD_LOG.md`.
+
+## Aviation hub structure (client doc "Aviation Hub Menu Layout", built 2026-10-21)
+- Three levels: industry `/aviation/` (Elementor page #20) -> hub CPT `hub` at `/aviation/<slug>/` (GSE Simulators, Airside Driving Simulators, Aircraft Maintenance Training Solutions, Supported Technologies & Services) -> products at `/products/<slug>/` (8 aviation products, linked to a hub by meta `tt_hub_id`). Common pages `/digital-twins/`, `/istc/`.
+- Code: `inc/aviation.php` (CPT, hub meta box on products, menu helpers), widgets `tt_av_*` in `inc/elementor/aviation-defs.php`, partials `template-parts/aviation/*`, `single-hub.php`. Sticky sector sub-menu = `tt_av_subnav` (built automatically from hubs + products).
+- Seed: `wordpress-theme/tools/seed-aviation.php` (re-runnable; clears Elementor cache, which otherwise serves stale pages).
+- Real content: only Cargo Loader (from `Aviation/BROCHURE/Cargo High Loader (1).pdf`, images cropped into `assets/images/aviation/`). All other aviation copy is DRAFT, pending client content.
+- Doc typo: "Airside Driving Simulators" listed twice in Industry Hub line; Simulation Technologies section links Digital Twins/ISTC/TMS/Team Play (assumed).
+- Gotcha: `definitions.php` reuses `$col` in the menu loop; `aviation-defs.php` redefines it.

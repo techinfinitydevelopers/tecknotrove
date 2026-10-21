@@ -20,7 +20,11 @@ import urllib.request
 
 BASE = "http://localhost/tecknotrove/"
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "static-export")
-INNER = ["defence/", "aviation/", "automobile/", "oesd/", "about/", "careers/", "news/", "contact/", "products/tank-driving-simulator/"]
+INNER = ["defence/", "aviation/", "automobile/", "oesd/", "about/", "careers/", "news/", "contact/", "products/tank-driving-simulator/",
+         "aviation/gse-simulators/", "aviation/airside-driving-simulators/", "aviation/aircraft-maintenance-training/", "aviation/supported-technologies/",
+         "products/aircraft-pushback-simulator/", "products/cargo-loader-simulator/", "products/baggage-tractor-simulator/", "products/catering-truck-simulator/",
+         "products/passenger-bus-simulator/", "products/arff-simulator/", "products/line-maintenance-training/", "products/mro-training/",
+         "digital-twins/", "istc/"]
 VARIANTS = {"fan": "", "carousel": "home-carousel/"}
 
 ASSET_RE = re.compile(r'''(?:src|href|data-src|poster)=["']([^"']+)["']|url\(\s*["']?([^"')]+)["']?\s*\)|@import\s+["']([^"']+)["']''')

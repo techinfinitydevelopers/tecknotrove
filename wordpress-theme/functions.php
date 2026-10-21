@@ -9,6 +9,7 @@ require get_template_directory() . '/inc/repeater-option.php';
 require get_template_directory() . '/inc/homepage-options.php';
 require get_template_directory() . '/inc/cpts.php';
 require get_template_directory() . '/inc/rewrite-fix.php';
+require get_template_directory() . '/inc/aviation.php';
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/layout.php';
 require get_template_directory() . '/inc/contact-form.php';
