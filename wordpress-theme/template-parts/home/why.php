@@ -11,7 +11,7 @@ if ( ! is_array( $stats ) || ! $stats ) {
 $why_image = tecknotrove_opt( 'tt_home_why_image' ) ?: get_template_directory_uri() . '/assets/images/why-simulator.jpg';
 ?>
 <section id="why" class="tt-why grid lg:min-h-[88vh] lg:grid-cols-[minmax(0,52fr)_minmax(0,48fr)]">
-	<div class="tt-why-grid flex flex-col justify-between gap-12 border-b border-line px-5 py-14 sm:px-10 sm:py-16 lg:border-b-0 lg:border-r lg:px-14 lg:py-16 xl:px-16">
+	<div class="tt-why-grid flex flex-col justify-between gap-12 border-b border-line px-5 py-14 sm:px-10 sm:py-16 lg:border-b-0 lg:px-14 lg:py-16 xl:px-16">
 		<div class="my-auto">
 			<h2 class="tt-why-title text-[clamp(2.25rem,9vw,3.25rem)] lg:text-[clamp(2.75rem,3.9vw,3.75rem)] font-black text-ink" data-split-title>
 				<?php echo esc_html( tecknotrove_home_why_line1() ); ?><br /><?php echo esc_html( tecknotrove_home_why_line2() ); ?>
@@ -52,7 +52,7 @@ $why_image = tecknotrove_opt( 'tt_home_why_image' ) ?: get_template_directory_ur
 		</div>
 	</div>
 
-	<div class="flex items-center justify-center bg-bg-elevated p-5 sm:p-10 lg:p-12 xl:p-14">
+	<div class="flex items-center justify-center p-5 sm:p-10 lg:p-12 xl:p-14">
 		<figure class="relative h-[420px] w-full overflow-hidden rounded-3xl border border-line bg-white shadow-[0_24px_50px_-20px_rgba(20,22,24,0.18)] sm:h-[560px] lg:h-full lg:max-h-[880px]">
 			<img
 				src="<?php echo esc_url( $why_image ); ?>"

@@ -116,7 +116,7 @@ body {
   }
 }
 /* "Every subsystem. One source." split section */
-.tt-why-grid {
+.tt-why {
   background-color: #faf8f5;
   background-image:
     linear-gradient(to right, rgba(228, 222, 210, 0.45) 1px, transparent 1px),
