@@ -62,7 +62,8 @@ $defs['tt_av_tiles'] = [
 		[ 'id' => 'columns', 'label' => 'Columns', 'type' => 'select', 'options' => [ '2' => '2', '3' => '3', '4' => '4' ], 'default' => '4' ],
 		[ 'id' => 'dark', 'label' => 'Dark background', 'type' => 'select', 'options' => $av_yesno, 'default' => 'no' ],
 		$rep( 'tiles', 'Tiles', [
-			$t( 'icon', 'Icon name (Phosphor, e.g. Cube)', 'Cube' ), $t( 'title', 'Title' ), $ta( 'desc', 'Description' ), $url( 'url', 'Link (optional)' ),
+			$t( 'icon', 'Icon name (Phosphor, e.g. Cube)', 'Cube' ), $t( 'title', 'Title' ), $ta( 'desc', 'Description' ), $url( 'url', 'Link (optional; empty = not clickable)' ),
+			$t( 'cta', 'Link label (default: View)' ), $t( 'badge', 'Badge (e.g. Coming soon)' ),
 		], [], 'title' ),
 	],
 	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/tiles', [], [ 'v' => $v ] ); },
@@ -110,6 +111,26 @@ $defs['tt_av_gallery'] = [
 		$rep( 'images', 'Images (first one is shown large)', [ $im( 'image', 'Image' ), $t( 'caption', 'Caption' ) ], [], 'caption' ),
 	],
 	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/gallery', [], [ 'v' => $v ] ); },
+];
+
+$defs['tt_av_notes'] = [
+	'title'  => 'TT Aviation Info Strip (equipment types / scenarios)',
+	'icon'   => 'eicon-info-box',
+	'fields' => [ $av_accent, $rep( 'rows', 'Rows', [ $t( 'label', 'Label' ), $ta( 'text', 'Text' ) ], [], 'label' ) ],
+	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/notes', [], [ 'v' => $v ] ); },
+];
+
+$defs['tt_av_related_content'] = [
+	'title'  => 'TT Aviation Related Content (blogs / news / social)',
+	'icon'   => 'eicon-posts-grid',
+	'fields' => [
+		$av_accent, $t( 'heading', 'Heading', 'Related content' ),
+		$rep( 'items', 'Items', [
+			[ 'id' => 'type', 'label' => 'Type', 'type' => 'select', 'options' => [ 'Blog' => 'Blog', 'News' => 'News', 'Social' => 'Social post' ], 'default' => 'Blog' ],
+			$t( 'title', 'Title' ), $url( 'url', 'Link (optional)' ), $t( 'note', 'Note (optional)' ),
+		], [], 'title' ),
+	],
+	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/related-content', [], [ 'v' => $v ] ); },
 ];
 
 $defs['tt_av_cta'] = [

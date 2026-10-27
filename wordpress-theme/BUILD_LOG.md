@@ -94,3 +94,9 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - Added `hub` CPT, 9 `tt_av_*` Elementor widgets (sub-menu, hero, hub sections, tiles, FAQ, key-features tabs, video, gallery, CTA), `single-hub.php`, 3 icons.
 - Seeded: industry page, 4 hubs, 8 products, Digital Twins, ISTC. Cargo Loader uses real brochure copy/images; others are draft copy.
 - Static export now includes the new URLs. Open: client copy/FAQs/videos, motion/spec details, final hub-to-tech page copy.
+
+## 2026-10-27: Client copy applied (Aviation industry page, GSE hub, Cargo Loader product)
+- `tools/seed-aviation-copy.php` (requires seed-aviation.php) writes the exact client copy for the 3 pages, plus title tag and meta description (new `inc/seo.php`, meta box on pages/hubs/products/sectors).
+- New/changed widgets: tiles gain link label + badge ("Coming soon", non-clickable when no URL), `tt_av_notes` (equipment types / scenarios strip), `tt_av_related_content` (blogs/news/social), multi-paragraph hero intro, video anchor `#video`, 7 key-feature tabs.
+- Client markers ([confirm offered], [Placeholder ...]) kept visible on purpose. Gallery still uses brochure crops (13 client images not supplied).
+- Verified: rendered text of each page matches the docs (script in scratch), titles/descriptions output. Other hubs/products unchanged draft.

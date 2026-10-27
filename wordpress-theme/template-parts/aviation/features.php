@@ -21,11 +21,11 @@ $accent = $v['accent'] ?: '#0091d1';
 						<div>
 							<h3 class="text-2xl font-black tracking-tight"><?php echo esc_html( $g['title'] ); ?></h3>
 							<p class="mt-3 text-sm leading-relaxed text-ink-dim"><?php echo esc_html( $g['body'] ); ?></p>
-							<ul class="mt-5 space-y-2.5">
+							<?php if ( '' !== trim( $g['bullets'] ?? '' ) ) : ?><ul class="mt-5 space-y-2.5">
 								<?php foreach ( preg_split( '/\r?\n/', trim( $g['bullets'] ) ) as $b ) : if ( '' === trim( $b ) ) continue; ?>
 									<li class="flex gap-2.5 text-sm"><span class="mt-0.5 shrink-0" style="color: <?php echo esc_attr( $accent ); ?>;"><?php tecknotrove_the_icon( 'CheckCircle', 17 ); ?></span><?php echo esc_html( $b ); ?></li>
 								<?php endforeach; ?>
-							</ul>
+							</ul><?php endif; ?>
 						</div>
 						<?php if ( ! empty( $g['image'] ) ) : ?>
 							<div class="relative min-h-[220px] overflow-hidden rounded-xl bg-bg-panel"><img src="<?php echo esc_url( $g['image'] ); ?>" alt="<?php echo esc_attr( $g['title'] ); ?>" class="absolute inset-0 h-full w-full object-cover" loading="lazy" /></div>

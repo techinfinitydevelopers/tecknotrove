@@ -15,10 +15,11 @@ $accent = $v['accent'] ?: '#0091d1';
 							if ( '' === trim( $line ) ) continue;
 							$p = array_map( 'trim', explode( '|', $line ) ); ?>
 							<li>
-								<a href="<?php echo esc_url( $p[2] ?? $h['url'] ); ?>" class="group flex items-start justify-between gap-4 py-3.5">
+								<?php $href = $p[2] ?? ''; $tag = $href ? 'a' : 'div'; ?>
+								<<?php echo $tag; ?> <?php echo $href ? 'href="' . esc_url( $href ) . '"' : ''; ?> class="group flex items-start justify-between gap-4 py-3.5">
 									<span><span class="block text-sm font-bold"><?php echo esc_html( $p[0] ); ?></span><span class="mt-0.5 block text-[13px] text-ink-dim"><?php echo esc_html( $p[1] ?? '' ); ?></span></span>
-									<span class="mt-0.5 shrink-0 text-ink-dim transition-colors group-hover:text-orange-400"><?php tecknotrove_the_icon( 'ArrowUpRight', 16 ); ?></span>
-								</a>
+									<?php if ( $href ) : ?><span class="mt-0.5 shrink-0 text-ink-dim transition-colors group-hover:text-orange-400"><?php tecknotrove_the_icon( 'ArrowUpRight', 16 ); ?></span><?php endif; ?>
+								</<?php echo $tag; ?>>
 							</li>
 						<?php endforeach; ?>
 					</ul>

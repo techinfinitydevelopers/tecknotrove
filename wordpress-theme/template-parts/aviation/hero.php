@@ -26,7 +26,9 @@ $accent = $v['accent'] ?: '#0091d1';
 		<?php endif; ?>
 		<h1 class="max-w-4xl text-4xl font-black leading-[1.03] tracking-tight sm:text-6xl"><?php echo esc_html( $v['h1'] ); ?></h1>
 		<?php if ( ! empty( $v['intro'] ) ) : ?>
-			<p class="mt-6 max-w-2xl text-base text-white/75 sm:text-lg"><?php echo esc_html( $v['intro'] ); ?></p>
+			<div class="mt-6 max-w-3xl space-y-4 text-base text-white/75 sm:text-lg">
+				<?php foreach ( preg_split( '/\R+/', trim( $v['intro'] ) ) as $para ) : ?><p><?php echo esc_html( $para ); ?></p><?php endforeach; ?>
+			</div>
 		<?php endif; ?>
 		<div class="mt-9 flex flex-wrap items-center gap-4">
 			<?php if ( ! empty( $v['cta1_label'] ) ) tecknotrove_the_button( $v['cta1_label'], [ 'href' => $v['cta1_url'] ?: '#contact', 'variant' => 'solid' ] ); ?>

@@ -30,3 +30,10 @@ See "Wireframe gap plan" in `wordpress-theme/BUILD_LOG.md`.
 - Real content: only Cargo Loader (from `Aviation/BROCHURE/Cargo High Loader (1).pdf`, images cropped into `assets/images/aviation/`). All other aviation copy is DRAFT, pending client content.
 - Doc typo: "Airside Driving Simulators" listed twice in Industry Hub line; Simulation Technologies section links Digital Twins/ISTC/TMS/Team Play (assumed).
 - Gotcha: `definitions.php` reuses `$col` in the menu loop; `aviation-defs.php` redefines it.
+
+## Client copy received 2026-10-27 (draft, not final)
+- Files (Downloads): "Tecknotrove Aviation Pages (1).docx" (page map + Aviation industry page copy), "GSE Simulators.docx" (hub), "Cargo Loader & High Loader Simulator.docx" (product), "Aviation Hub Menu Layout (1).docx" (same tree as the first menu doc). Copy extracted to `C:\Users\milli\cg\docs\*.txt` (scratch).
+- Copy proposes URLs `/industries/aviation/...` (we built `/aviation/...`); page map product list differs from menu doc (adds Boarding Bridge [confirm], Fuel Tanker, Ramp Safety VR, Walk-Around VR, AR/VR digitisation, Hangar add-on, 6 Supported Technologies items instead of Digital Twins/ISTC pages).
+- Facts in copy conflict with homepage stats: 28 countries / 1,000+ projects vs 35+ / 1,500+; manufacturing in Gujarat vs Mumbai HQ. Warranty 1 yr + AMC, delivery 6-8 weeks, life ~5 yrs.
+- Cargo video: https://www.youtube.com/watch?v=CNAXDgL6Se0. 13 gallery images named but files not supplied. Title tags + meta descriptions supplied per page; keyword table pending (SE Ranking).
+- Only 3 of 6 pages have final-ish copy; other hubs/products still draft in `tools/seed-aviation.php`.

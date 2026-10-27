@@ -5,7 +5,7 @@ $url    = $v['video_url'] ?? '';
 $embed  = '';
 if ( preg_match( '~(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]{11})~', $url, $m ) ) $embed = 'https://www.youtube.com/embed/' . $m[1];
 ?>
-<section class="bg-[#0a0d12] py-20 text-white sm:py-24">
+<section id="video" class="bg-[#0a0d12] py-20 text-white sm:py-24">
 	<div class="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-10 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
 		<div>
 			<p class="mono-label mb-5 text-[11px]" style="color: <?php echo esc_attr( $accent ); ?>;"><?php echo esc_html( $v['label'] ?: 'Video Demo' ); ?></p>
