@@ -10,4 +10,11 @@
 
 <div class="grain" aria-hidden="true"></div>
 
-<?php tecknotrove_the_layout( 'header' ); ?>
+<?php
+// Aviation is a site within the site: its own navbar replaces the main one.
+if ( tecknotrove_is_aviation() ) {
+	get_template_part( 'template-parts/layout/navbar-aviation' );
+} else {
+	tecknotrove_the_layout( 'header' );
+}
+?>

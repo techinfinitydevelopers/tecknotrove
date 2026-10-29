@@ -13,6 +13,16 @@
     onNavScroll();
   }
 
+  /* ---------- Aviation navbar: mobile panel ---------- */
+  var avToggle = document.getElementById("tt-av-toggle");
+  var avPanel = document.getElementById("tt-av-panel");
+  if (avToggle && avPanel) {
+    avToggle.addEventListener("click", function () {
+      var open = avPanel.classList.toggle("hidden") === false;
+      avToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+
   /* ---------- Mobile menu toggle ---------- */
   var menuToggle = document.getElementById("tt-menu-toggle");
   var mobileMenu = document.getElementById("tt-mobile-menu");

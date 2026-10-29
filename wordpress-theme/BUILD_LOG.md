@@ -100,3 +100,8 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - New/changed widgets: tiles gain link label + badge ("Coming soon", non-clickable when no URL), `tt_av_notes` (equipment types / scenarios strip), `tt_av_related_content` (blogs/news/social), multi-paragraph hero intro, video anchor `#video`, 7 key-feature tabs.
 - Client markers ([confirm offered], [Placeholder ...]) kept visible on purpose. Gallery still uses brochure crops (13 client images not supplied).
 - Verified: rendered text of each page matches the docs (script in scratch), titles/descriptions output. Other hubs/products unchanged draft.
+
+## 2026-10-29 Aviation sector navbar + aesthetic pass
+- Aviation pages now use their own navbar (`navbar-aviation.php`) in place of the main one; sticky sub-menu strip removed from page data (seeds re-run).
+- UI pass on aviation templates: shared section header (`head.php`), numbered hover-lift cards, FAQ cards, rounded gallery/CTA panel, hero gradient. Fixed sub-menu sticking inside its Elementor wrapper (moot now).
+- Verified: aviation/hub/product pages show `#tt-av-nav`, other pages keep `#tt-nav`. Restarted Apache/MySQL (MySQL had stopped).

@@ -89,7 +89,6 @@ tt_set_elementor( $av_page, [
 	$hero( [], 'Aviation Training Simulators for Airports, Airlines and Ground Handlers',
 		"Tecknotrove designs and manufactures training simulators and VR training solutions for the aviation industry. Our simulators are built for airports, airlines, ground handlers, aviation training institutes and MRO training institutes, and they cover the equipment and vehicles that operate on the airside: aircraft pushback and towing, cargo loaders, baggage tractors, catering trucks, passenger buses, fire trucks and airside light vehicles.\nEvery system is designed and built at our manufacturing facility in Gujarat, India, and supplied worldwide through authorised distribution and integration partners in India, the Middle East, Africa, Europe and Southeast Asia. Since 2002, Tecknotrove has delivered more than 1,000 simulation projects across 28 countries.",
 		$img . 'sector-aviation.jpg', 'Request a Quote', 'Download the Airside Simulator Brochure' ),
-	$subnav(),
 	tt_section( 'tt_av_hub_sections', [ 'accent' => $A, 'heading' => '', 'hubs' => tt_rows( $industry ) ] ),
 	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why Choose Tecknotrove', 'heading' => 'Why Choose Tecknotrove', 'columns' => '3', 'dark' => 'yes',
 		'tiles' => $lead( [ 'Wrench', 'UsersThree', 'ShieldCheck', 'Lightning', 'Gauge', 'Cube' ], [
@@ -131,7 +130,6 @@ tt_set_elementor( $gse, [
 	$hero( $crumb( [ [ 'Aviation', $home ], [ 'GSE Simulators' ] ] ), 'GSE Simulators for Ground Handling Training',
 		"Tecknotrove ground support equipment (GSE) simulators are replicas of the equipment that works around the aircraft during turnaround: pushback tractors, cargo and high loaders, baggage tractors and catering trucks. Each simulator reproduces the actual cab, controls and equipment dynamics inside a realistic virtual airside, so operators learn and are assessed with no risk to aircraft, people or GSE.\nGSE simulators are bought by ground handling companies, airlines, airports and aviation training institutes that need to train new operators, refresh experienced ones and test them against a consistent standard. Every unit is designed and manufactured by Tecknotrove in India and supplied worldwide.",
 		$img . 'sector-aviation.jpg', 'Request a Quote', 'Download the Airside Simulator Brochure' ),
-	$subnav(),
 	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Related Products', 'heading' => 'GSE Simulator Range', 'columns' => '3', 'tiles' => $rows( [
 		[ 'Cube', 'Aircraft Pushback & Towing Simulator', 'Towbar and towbarless pushback training with real aircraft dynamics, on a 3DOF motion platform.', $pr_u( 'aircraft-pushback-simulator' ), 'View Pushback Simulator' ],
 		[ 'Cube', 'Cargo Loader & High Loader Simulator', 'Main deck and lower deck loading techniques on narrow and wide-body Airbus and Boeing aircraft.', $pr_u( 'cargo-loader-simulator' ), 'View Cargo Loader Simulator' ],
@@ -180,7 +178,6 @@ $cargo_sections = [
 	$hero( $crumb( [ [ 'Aviation', $home ], [ 'GSE Simulators', $hub_u( 'gse-simulators' ) ], [ 'Cargo Loader & High Loader Simulator' ] ] ), 'Cargo Loader and High Loader Simulator',
 		"The Tecknotrove Cargo Loader and High Loader Simulator trains and evaluates operators on safe aircraft cargo loading. Its design is based on the actual equipment, replicating the controls, levers and dynamics of a range of cargo loader and high loader models. Operators learn main deck and lower deck loading techniques on a variety of narrow and wide-body aircraft, in a realistic airside environment and in complete safety.\nIt is built for ground handling companies, cargo handlers, airlines, airports and aviation training institutes that need to train new operators and test experienced ones. The simulator is designed and manufactured by Tecknotrove in India and is available as a full-scale simulator or a portable VR version.",
 		$av . 'cargo-hero.jpg', 'Request a Quote', 'Watch the Demo' ),
-	$subnav(),
 	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Applications', 'heading' => 'Applications and Training Modules', 'columns' => '4',
 		'tiles' => $lead( [ 'Wrench', 'Cube', 'MapTrifold', 'ShieldCheck', 'SealCheck', 'Gauge', 'Eye' ], [
 			'Equipment familiarisation: controls, pre-checks and safe operation of the loader.',

@@ -37,3 +37,9 @@ See "Wireframe gap plan" in `wordpress-theme/BUILD_LOG.md`.
 - Facts in copy conflict with homepage stats: 28 countries / 1,000+ projects vs 35+ / 1,500+; manufacturing in Gujarat vs Mumbai HQ. Warranty 1 yr + AMC, delivery 6-8 weeks, life ~5 yrs.
 - Cargo video: https://www.youtube.com/watch?v=CNAXDgL6Se0. 13 gallery images named but files not supplied. Title tags + meta descriptions supplied per page; keyword table pending (SE Ranking).
 - Only 3 of 6 pages have final-ish copy; other hubs/products still draft in `tools/seed-aviation.php`.
+
+## Sector navbar (2026-10-29)
+- Aviation is a site-within-a-site: `tecknotrove_is_aviation()` (inc/aviation.php) is true on /aviation/, hub pages and aviation products; `header.php` then renders `template-parts/layout/navbar-aviation.php` instead of the main navbar (wireframe "SECTOR NAV"). Digital Twins/ISTC keep the main nav.
+- Aviation navbar: logo + "Aviation" | Home | 4 hubs (dropdown of products) | Tecknotrove.com | Enquire Now; hamburger panel below 1280px. The old sticky `tt_av_subnav` strip is removed from seeds (widget class still exists).
+- Other sectors (Defence, Driving, OESD) will follow the same pattern: own navbar part + `is_<sector>()` check.
+- aviation layout doc (2) is identical to (1).

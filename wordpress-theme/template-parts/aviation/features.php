@@ -2,11 +2,10 @@
 /** @var array $v  accent, label, heading, groups[title,icon,body,bullets,image] (bullets: one per line) */
 $accent = $v['accent'] ?: '#0091d1';
 ?>
-<section class="bg-bg-elevated py-20 sm:py-24" data-av-tabs>
+<section class="bg-bg-elevated py-24 sm:py-32" data-av-tabs style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
-		<?php if ( ! empty( $v['label'] ) ) : ?><p class="mono-label mb-5 text-[11px]" style="color: <?php echo esc_attr( $accent ); ?>;"><?php echo esc_html( $v['label'] ); ?></p><?php endif; ?>
-		<h2 class="max-w-3xl text-3xl font-black leading-[1.05] tracking-tight sm:text-5xl" data-reveal><?php echo esc_html( $v['heading'] ?: 'Key features.' ); ?></h2>
-		<div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
+		<?php $v['heading'] = $v['heading'] ?: 'Key features.'; include __DIR__ . '/head.php'; ?>
+		<div class="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
 			<div class="flex gap-2 overflow-x-auto lg:flex-col lg:overflow-visible" role="tablist">
 				<?php foreach ( $v['groups'] as $i => $g ) : ?>
 					<button type="button" role="tab" data-av-tab="<?php echo (int) $i; ?>" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>" class="tt-av-tab flex shrink-0 items-center gap-3 rounded-xl border border-line bg-bg px-4 py-3.5 text-left text-sm font-bold transition-colors" style="--accent: <?php echo esc_attr( $accent ); ?>;">
@@ -17,7 +16,7 @@ $accent = $v['accent'] ?: '#0091d1';
 			</div>
 			<div>
 				<?php foreach ( $v['groups'] as $i => $g ) : ?>
-					<div data-av-panel="<?php echo (int) $i; ?>" class="grid grid-cols-1 gap-8 rounded-2xl border border-line bg-bg p-6 sm:p-8 md:grid-cols-2" <?php echo $i ? 'hidden' : ''; ?>>
+					<div data-av-panel="<?php echo (int) $i; ?>" class="grid grid-cols-1 gap-10 rounded-3xl border border-line bg-bg p-7 sm:p-10 md:grid-cols-2" <?php echo $i ? 'hidden' : ''; ?>>
 						<div>
 							<h3 class="text-2xl font-black tracking-tight"><?php echo esc_html( $g['title'] ); ?></h3>
 							<p class="mt-3 text-sm leading-relaxed text-ink-dim"><?php echo esc_html( $g['body'] ); ?></p>

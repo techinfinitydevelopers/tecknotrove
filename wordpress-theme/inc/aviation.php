@@ -56,6 +56,16 @@ function tecknotrove_av_hub_products( $hub_id ) {
 	] );
 }
 
+/** True on the Aviation industry page, hub pages and Aviation product pages (these get the Aviation navbar). */
+function tecknotrove_is_aviation() {
+	if ( is_singular( 'hub' ) || is_page( 'aviation' ) ) return true;
+	if ( is_singular( 'product' ) ) {
+		$sector = get_page_by_path( 'aviation', OBJECT, 'sector' );
+		return $sector && (int) get_post_meta( get_the_ID(), 'tt_sector_id', true ) === $sector->ID;
+	}
+	return false;
+}
+
 /** Menu data for the Aviation sub-navigation: [ [hub post, [product posts]] ]. */
 function tecknotrove_av_menu() {
 	$out = [];

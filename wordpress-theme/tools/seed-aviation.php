@@ -49,7 +49,6 @@ $pr_u  = fn( $s ) => home_url( "/products/$s/" );
 $crumb = fn( $rows ) => tt_rows( array_map( fn( $r ) => [ 'label' => $r[0], 'url' => tt_link( $r[1] ?? '' ) ], $rows ) );
 $tiles = fn( $rows ) => tt_rows( array_map( fn( $r ) => [ 'icon' => $r[0], 'title' => $r[1], 'desc' => $r[2] ?? '', 'url' => tt_link( $r[3] ?? '' ) ], $rows ) );
 $faqs  = fn( $rows ) => tt_rows( array_map( fn( $r ) => [ 'q' => $r[0], 'a' => $r[1] ], $rows ) );
-$subnav = fn() => tt_section( 'tt_av_subnav', [ 'accent' => $A, 'label' => 'Tecknotrove Aviation', 'home_url' => tt_link( $home ), 'cta_label' => 'Enquire Now', 'cta_url' => tt_link( home_url( '/contact/' ) ) ] );
 $cta = fn( $h, $b, $c1 = 'Enquire Now', $c2 = 'Download Brochure' ) => tt_section( 'tt_av_cta', [ 'heading' => $h, 'body' => $b, 'cta1_label' => $c1, 'cta1_url' => tt_link( home_url( '/contact/' ) ), 'cta2_label' => $c2, 'cta2_url' => tt_link( '#brochure' ) ] );
 $hero = fn( $crumbs, $h1, $intro, $image, $c1, $c2 = '' ) => tt_section( 'tt_av_hero', [
 	'accent' => $A, 'crumbs' => $crumbs, 'h1' => $h1, 'intro' => $intro, 'image' => tt_img( $image ),
@@ -308,7 +307,6 @@ foreach ( $products as $slug => $p ) {
 
 	tt_set_elementor( $prod_ids[ $slug ], [
 		$hero( $crumb( [ [ 'Aviation', $home ], [ $hub['title'], $hub_u( $p['hub'] ) ], [ $p['title'] ] ] ), $p['h1'], $p['intro'], $p['image'], 'Request a Quote', 'Download Brochure' ),
-		$subnav(),
 		tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Applications', 'heading' => 'Applications & training modules', 'columns' => '3', 'tiles' => $tiles( $p['modules'] ) ] ),
 		tt_section( 'tt_av_features', [ 'accent' => $A, 'label' => 'Key Features', 'heading' => 'What is in the ' . $p['title'], 'groups' => tt_rows( array_map( fn( $g ) => array_merge( $g, [ 'image' => tt_img( $g['image'] ?? '' ) ] ), $p['features'] ) ) ] ),
 		tt_section( 'tt_av_video', [ 'accent' => $A, 'label' => 'Video Demo', 'heading' => 'See the ' . $p['title'] . ' in action', 'body' => 'Watch the operator station, instructor station and airside environment working together.', 'poster' => tt_img( $p['gallery'][0] ? $av . $p['gallery'][0][0] : '' ) ] ),
@@ -336,7 +334,6 @@ foreach ( $hubs as $slug => $h ) {
 	if ( ! empty( $h['tech'] ) ) {
 		tt_set_elementor( $hub_ids[ $slug ], [
 			$hero( $crumb( [ [ 'Aviation', $home ], [ $h['title'] ] ] ), $h['h1'], $h['intro'], $img . 'sector-aviation.jpg', 'Enquire Now' ),
-			$subnav(),
 			tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Technologies & Services', 'heading' => 'Shared across every aviation product', 'columns' => '2', 'tiles' => $tiles( [
 				[ 'Globe', 'Digital Twins', 'Virtual replicas of equipment and airside environments. Common page across products and hubs.', home_url( '/digital-twins/' ) ],
 				[ 'Monitor', 'Integrated Simulation Training Center (ISTC)', 'Multiple simulators and instructor stations in one managed training centre. Common page across products and hubs.', home_url( '/istc/' ) ],
@@ -349,7 +346,6 @@ foreach ( $hubs as $slug => $h ) {
 	$prod_tiles = $tiles( array_map( fn( $ps ) => [ 'Cube', $products[ $ps ]['title'], mb_strimwidth( $products[ $ps ]['intro'], 0, 110, '…' ), $pr_u( $ps ) ], $h['products'] ) );
 	tt_set_elementor( $hub_ids[ $slug ], [
 		$hero( $crumb( [ [ 'Aviation', $home ], [ $h['title'] ] ] ), $h['h1'], $h['intro'], $img . 'sector-aviation.jpg', 'Enquire Now', 'Download Brochure' ),
-		$subnav(),
 		tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Related Products', 'heading' => 'Simulators in this hub', 'columns' => count( $h['products'] ) > 3 ? '4' : '2', 'tiles' => $prod_tiles ] ),
 		tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Tecknotrove Advantage', 'heading' => 'The Tecknotrove advantage', 'columns' => '4', 'dark' => 'yes', 'tiles' => $tiles( $advantage ) ] ),
 		tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why invest', 'heading' => 'Why ' . $h['who'] . ' invest in ' . $h['title'], 'columns' => '3', 'tiles' => $tiles( array_map( fn( $w ) => [ $w[0], $w[1], $w[2] ], $h['why'] ) ) ] ),
@@ -372,7 +368,6 @@ foreach ( $hubs as $s => $h ) {
 $av_page = tt_upsert_post( 'page', 'aviation', 'Aviation' );
 tt_set_elementor( $av_page, [
 	$hero( [], 'Aviation simulators built for the apron, the airside and the hangar.', 'Tecknotrove designs and manufactures ground support, airside driving and maintenance training simulators for airports, ground handlers, airlines and MROs worldwide.', $img . 'sector-aviation.jpg', 'Enquire Now', 'Download Brochure' ),
-	$subnav(),
 	tt_section( 'tt_av_hub_sections', [ 'accent' => $A, 'heading' => 'Explore Aviation training solutions', 'hubs' => tt_rows( $industry ) ] ),
 	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why Choose Tecknotrove', 'heading' => 'Why choose Tecknotrove for aviation', 'columns' => '4', 'dark' => 'yes', 'tiles' => $tiles( [
 		[ 'Wrench', 'Manufacturer, not reseller', 'Every subsystem is engineered in-house, so each simulator ships as one integrated system.' ],
@@ -406,7 +401,6 @@ $common = [
 foreach ( $common as $id => $c ) {
 	tt_set_elementor( $id, [
 		$hero( $crumb( [ [ 'Aviation', $home ], [ 'Supported Technologies', $hub_u( 'supported-technologies' ) ], [ $c[0] ] ] ), $c[0], $c[1], $img . 'sector-aviation.jpg', 'Enquire Now' ),
-		$subnav(),
 		tt_section( 'tt_content_split', [ 'accent' => $A, 'label' => 'Overview', 'heading' => $c[2], 'body' => $c[3], 'image' => tt_img( $av . 'cargo-sim-view.jpg' ), 'reverse' => 'no', 'bullets' => [], 'cta_label' => 'Enquire Now', 'cta_url' => tt_link( home_url( '/contact/' ) ) ] ),
 		$cta( 'Talk to our aviation team.', 'Tell us about your airport, equipment and training goals.' ),
 	] );
