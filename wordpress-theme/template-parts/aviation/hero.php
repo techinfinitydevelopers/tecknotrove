@@ -6,12 +6,12 @@ $paras  = ! empty( $v['intro'] ) ? preg_split( '/\R+/', trim( $v['intro'] ) ) : 
 <section class="relative flex min-h-[86vh] flex-col justify-end overflow-hidden text-white" style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="absolute inset-0 bg-[#06090d]">
 		<?php if ( ! empty( $v['image'] ) ) : ?>
-			<img src="<?php echo esc_url( $v['image'] ); ?>" alt="" class="absolute inset-0 h-full w-full scale-105 object-cover" />
+			<img src="<?php echo esc_url( $v['image'] ); ?>" alt="" data-av-parallax class="absolute inset-x-0 -top-[8%] h-[116%] w-full object-cover will-change-transform" />
 		<?php endif; ?>
 		<div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(6,9,13,0.92) 0%, rgba(6,9,13,0.55) 55%, rgba(6,9,13,0.25) 100%), linear-gradient(180deg, rgba(6,9,13,0.35) 0%, rgba(6,9,13,0) 40%, rgba(6,9,13,0.95) 100%);"></div>
 		<div class="tt-av-glow absolute inset-0"></div>
 	</div>
-	<div class="relative z-10 mx-auto w-full max-w-[1400px] px-5 pb-16 pt-40 sm:px-8 sm:pb-20">
+	<div data-av-hero-copy class="relative z-10 mx-auto w-full max-w-[1400px] px-5 pb-16 pt-40 sm:px-8 sm:pb-20">
 		<?php if ( ! empty( $v['crumbs'] ) ) : ?>
 			<p class="mono-label mb-7 inline-flex flex-wrap items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-[10.5px] text-white/60 backdrop-blur">
 				<?php foreach ( $v['crumbs'] as $i => $c ) : ?>

@@ -61,6 +61,7 @@ $defs['tt_av_tiles'] = [
 		$t( 'label', 'Small label' ), $t( 'heading', 'Heading' ), $ta( 'intro', 'Intro' ),
 		[ 'id' => 'columns', 'label' => 'Columns', 'type' => 'select', 'options' => [ '2' => '2', '3' => '3', '4' => '4' ], 'default' => '4' ],
 		[ 'id' => 'dark', 'label' => 'Dark background', 'type' => 'select', 'options' => $av_yesno, 'default' => 'no' ],
+			[ 'id' => 'layout', 'label' => 'Layout', 'type' => 'select', 'options' => [ 'cards' => 'Cards', 'list' => 'Numbered list (lighter)' ], 'default' => 'cards' ],
 		$rep( 'tiles', 'Tiles', [
 			$t( 'icon', 'Icon name (Phosphor, e.g. Cube)', 'Cube' ), $t( 'title', 'Title' ), $ta( 'desc', 'Description' ), $url( 'url', 'Link (optional; empty = not clickable)' ),
 			$t( 'cta', 'Link label (default: View)' ), $t( 'badge', 'Badge (e.g. Coming soon)' ),
@@ -138,4 +139,11 @@ $defs['tt_av_cta'] = [
 	'icon'   => 'eicon-call-to-action',
 	'fields' => array_merge( [ $t( 'heading', 'Heading', 'Talk to our aviation team.' ), $ta( 'body', 'Text' ) ], $av_cta ),
 	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/cta', [], [ 'v' => $v ] ); },
+];
+
+$defs['tt_av_marquee'] = [
+	'title'  => 'TT Aviation Scrolling Ticker',
+	'icon'   => 'eicon-slider-push',
+	'fields' => [ $av_accent, $ta( 'items', 'Items (one per line)' ) ],
+	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/marquee', [], [ 'v' => $v ] ); },
 ];

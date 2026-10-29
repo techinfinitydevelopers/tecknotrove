@@ -105,3 +105,7 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - Aviation pages now use their own navbar (`navbar-aviation.php`) in place of the main one; sticky sub-menu strip removed from page data (seeds re-run).
 - UI pass on aviation templates: shared section header (`head.php`), numbered hover-lift cards, FAQ cards, rounded gallery/CTA panel, hero gradient. Fixed sub-menu sticking inside its Elementor wrapper (moot now).
 - Verified: aviation/hub/product pages show `#tt-av-nav`, other pages keep `#tt-nav`. Restarted Apache/MySQL (MySQL had stopped).
+
+## 2026-10-29 Aviation scroll animations + lighter sections
+- Hero image parallax + copy fade, accent scroll-progress line in the Aviation navbar, staggered reveals (`[data-stagger]` sets `--i`), scrolling ticker widget `tt_av_marquee` (industry + GSE hub), numbered "list" layout for tiles (`layout` = list) used by Why Choose, Advantage and Why Invest; card icons tilt on hover.
+- Client copy is never truncated (line-clamp removed on purpose).

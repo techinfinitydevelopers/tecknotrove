@@ -116,6 +116,39 @@
     });
   }
 
+  /* ---------- Aviation: stagger delays, hero parallax, scroll progress ---------- */
+  document.querySelectorAll("[data-stagger]").forEach(function (group) {
+    Array.prototype.forEach.call(group.querySelectorAll(":scope > [data-reveal]"), function (el, i) {
+      el.style.setProperty("--i", String(i % 6));
+    });
+  });
+  var avImg = document.querySelector("[data-av-parallax]");
+  var avCopy = document.querySelector("[data-av-hero-copy]");
+  var avBar = document.getElementById("tt-av-progress");
+  if ((avImg || avBar) && !reduceMotion) {
+    var avTick = false;
+    var avUpdate = function () {
+      avTick = false;
+      var y = window.scrollY;
+      if (avImg && y < window.innerHeight * 1.2) {
+        avImg.style.transform = "translate3d(0," + (y * 0.18).toFixed(1) + "px,0)";
+        if (avCopy) {
+          var f = Math.min(1, y / (window.innerHeight * 0.7));
+          avCopy.style.opacity = String(1 - f * 0.6);
+          avCopy.style.transform = "translate3d(0," + (y * -0.06).toFixed(1) + "px,0)";
+        }
+      }
+      if (avBar) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        avBar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0).toFixed(3) + ")";
+      }
+    };
+    window.addEventListener("scroll", function () {
+      if (!avTick) { avTick = true; requestAnimationFrame(avUpdate); }
+    }, { passive: true });
+    avUpdate();
+  }
+
   /* ---------- Generic scroll-reveal: [data-reveal] fades/slides in ---------- */
   var revealEls = document.querySelectorAll("[data-reveal]");
   if (revealEls.length) {

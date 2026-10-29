@@ -89,8 +89,16 @@ tt_set_elementor( $av_page, [
 	$hero( [], 'Aviation Training Simulators for Airports, Airlines and Ground Handlers',
 		"Tecknotrove designs and manufactures training simulators and VR training solutions for the aviation industry. Our simulators are built for airports, airlines, ground handlers, aviation training institutes and MRO training institutes, and they cover the equipment and vehicles that operate on the airside: aircraft pushback and towing, cargo loaders, baggage tractors, catering trucks, passenger buses, fire trucks and airside light vehicles.\nEvery system is designed and built at our manufacturing facility in Gujarat, India, and supplied worldwide through authorised distribution and integration partners in India, the Middle East, Africa, Europe and Southeast Asia. Since 2002, Tecknotrove has delivered more than 1,000 simulation projects across 28 countries.",
 		$img . 'sector-aviation.jpg', 'Request a Quote', 'Download the Airside Simulator Brochure' ),
+	tt_section( 'tt_av_marquee', [ 'accent' => $A, 'items' => "Aircraft pushback and towing
+Cargo and high loaders
+Baggage tractors
+Catering trucks
+Passenger buses
+Fire trucks (ARFF)
+Airside light vehicles
+Line and base maintenance" ] ),
 	tt_section( 'tt_av_hub_sections', [ 'accent' => $A, 'heading' => '', 'hubs' => tt_rows( $industry ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why Choose Tecknotrove', 'heading' => 'Why Choose Tecknotrove', 'columns' => '3', 'dark' => 'yes',
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why Choose Tecknotrove', 'heading' => 'Why Choose Tecknotrove', 'columns' => '3', 'dark' => 'yes', 'layout' => 'list',
 		'tiles' => $lead( [ 'Wrench', 'UsersThree', 'ShieldCheck', 'Lightning', 'Gauge', 'Cube' ], [
 			'Customised training programmes: modules are built around your airside environment, training language, objectives, equipment types and assessment criteria. Past incidents can be recreated on the simulator so operators train on the situations that matter to you.',
 			'Standardised training: every operator reaches the same skill level for safe ground operations, which supports a faster, more consistent aircraft turnaround.',
@@ -130,6 +138,12 @@ tt_set_elementor( $gse, [
 	$hero( $crumb( [ [ 'Aviation', $home ], [ 'GSE Simulators' ] ] ), 'GSE Simulators for Ground Handling Training',
 		"Tecknotrove ground support equipment (GSE) simulators are replicas of the equipment that works around the aircraft during turnaround: pushback tractors, cargo and high loaders, baggage tractors and catering trucks. Each simulator reproduces the actual cab, controls and equipment dynamics inside a realistic virtual airside, so operators learn and are assessed with no risk to aircraft, people or GSE.\nGSE simulators are bought by ground handling companies, airlines, airports and aviation training institutes that need to train new operators, refresh experienced ones and test them against a consistent standard. Every unit is designed and manufactured by Tecknotrove in India and supplied worldwide.",
 		$img . 'sector-aviation.jpg', 'Request a Quote', 'Download the Airside Simulator Brochure' ),
+	tt_section( 'tt_av_marquee', [ 'accent' => $A, 'items' => "Pushback tractors
+Cargo and high loaders
+Baggage tractors
+Catering trucks
+Turnaround training
+Virtual airside" ] ),
 	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Related Products', 'heading' => 'GSE Simulator Range', 'columns' => '3', 'tiles' => $rows( [
 		[ 'Cube', 'Aircraft Pushback & Towing Simulator', 'Towbar and towbarless pushback training with real aircraft dynamics, on a 3DOF motion platform.', $pr_u( 'aircraft-pushback-simulator' ), 'View Pushback Simulator' ],
 		[ 'Cube', 'Cargo Loader & High Loader Simulator', 'Main deck and lower deck loading techniques on narrow and wide-body Airbus and Boeing aircraft.', $pr_u( 'cargo-loader-simulator' ), 'View Cargo Loader Simulator' ],
@@ -137,7 +151,7 @@ tt_set_elementor( $gse, [
 		[ 'Cube', 'Hi-Lift Catering Truck Simulator', 'Lift operation, docking at the aircraft door and safe positioning on the stand.', $pr_u( 'catering-truck-simulator' ), 'View Catering Truck Simulator' ],
 		[ 'Cube', 'Passenger Boarding Bridge Simulator', '[confirm offered] bridge drive, alignment and docking to the aircraft door.', '', '', 'Coming soon' ],
 	] ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Tecknotrove Advantage', 'heading' => 'Tecknotrove Advantage', 'columns' => '3', 'dark' => 'yes',
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Tecknotrove Advantage', 'heading' => 'Tecknotrove Advantage', 'columns' => '3', 'dark' => 'yes', 'layout' => 'list',
 		'tiles' => $lead( [ 'Wrench', 'ArrowsClockwise', 'Gauge', 'MapTrifold', 'ChartBar' ], [
 			'Real equipment controls: operator cabs replicate the actual seat, force feedback steering, levers and controls in ergonomically correct positions.',
 			'Equipment-specific or convertible: choose an equipment-specific cab, or a convertible kit that runs several GSE types on one simulator base unit.',
@@ -145,7 +159,7 @@ tt_set_elementor( $gse, [
 			'Your airside, your aircraft: a virtual airside built to ICAO markings and signage, with narrow and wide-body aircraft, remote bays and aerobridges, or a digital twin of your own airport.',
 			'Built-in assessment: real-time evaluation of skill, knowledge, safety and productivity, with a stored report for every trainee.',
 		] ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why invest', 'heading' => 'Why Ground Handlers Invest in GSE Simulators', 'columns' => '3',
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why invest', 'heading' => 'Why Ground Handlers Invest in GSE Simulators', 'columns' => '3', 'layout' => 'list',
 		'tiles' => $lead( [ 'ShieldCheck', 'Coins', 'SealCheck', 'Lightning', 'Gauge', 'Eye' ], [
 			'Aircraft damage is the costliest mistake on the ramp. Operators make their first pushbacks, dockings and loader approaches on the simulator, not next to a real aircraft.',
 			'Equipment stays in service. Training on simulators keeps pushback tractors, loaders and catering trucks on the ramp instead of out of operation for training.',

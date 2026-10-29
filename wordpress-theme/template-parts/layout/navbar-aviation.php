@@ -44,6 +44,7 @@ $here   = (int) get_queried_object_id();
 		</button>
 	</nav>
 
+	<span id="tt-av-progress" aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-0 h-[2px] w-full origin-left scale-x-0" style="background: <?php echo esc_attr( $accent ); ?>;"></span>
 	<div id="tt-av-panel" class="hidden max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 bg-[#06090d] px-5 pb-8 pt-4 xl:hidden">
 		<a href="<?php echo esc_url( $home ); ?>" class="block py-3 text-base font-bold">Home</a>
 		<?php foreach ( $menu as $m ) : ?>

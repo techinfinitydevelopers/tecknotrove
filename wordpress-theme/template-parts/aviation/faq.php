@@ -7,7 +7,7 @@ $accent = $v['accent'] ?: '#0091d1';
 		<div class="lg:sticky lg:top-40 lg:self-start">
 			<?php $v['label'] = $v['label'] ?: 'FAQ'; $v['heading'] = $v['heading'] ?: 'Common questions.'; include __DIR__ . '/head.php'; ?>
 		</div>
-		<div class="space-y-3">
+		<div data-stagger class="space-y-3">
 			<?php foreach ( $v['items'] as $i => $item ) : ?>
 				<div class="tt-faq-item rounded-2xl border border-line bg-bg-elevated px-6 transition-colors hover:border-line-strong sm:px-8">
 					<button class="tt-faq-q flex w-full items-center justify-between gap-6 py-6 text-left">

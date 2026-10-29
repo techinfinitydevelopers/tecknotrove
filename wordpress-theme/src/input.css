@@ -403,3 +403,14 @@ a.tt-av-card:hover, .tt-av-card.is-lift:hover { transform: translateY(-4px); bor
 /* Let the sticky aviation sub-menu stick against the whole page, not its Elementor wrapper */
 .elementor-element:has(.tt-av-subnav), .elementor-widget-container:has(.tt-av-subnav) { display: contents; }
 .tt-av-link { position: relative; } .tt-av-link::after { content: ""; position: absolute; left: .875rem; right: .875rem; bottom: 0; height: 1px; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform .25s; } .tt-av-link:hover::after { transform: scaleX(1); }
+
+/* Aviation: staggered reveals, numbered list rows, ticker, hero parallax */
+.tt-av-num { color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--accent,#0091d1) 70%, transparent); transition: color .4s, -webkit-text-stroke-color .4s; }
+.tt-av-row:hover .tt-av-num { color: var(--accent,#0091d1); }
+.tt-av-row { transition: background-color .4s; }
+.tt-av-row:hover { background: linear-gradient(90deg, color-mix(in srgb, var(--accent,#0091d1) 7%, transparent), transparent 70%); }
+[data-stagger] > [data-reveal] { transition-delay: calc(var(--i, 0) * 70ms); }
+.tt-av-marquee-track { animation: tt-av-marquee 38s linear infinite; }
+.tt-av-marquee:hover .tt-av-marquee-track { animation-play-state: paused; }
+@keyframes tt-av-marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .tt-av-marquee-track { animation: none; } [data-stagger] > [data-reveal] { transition-delay: 0s; } }

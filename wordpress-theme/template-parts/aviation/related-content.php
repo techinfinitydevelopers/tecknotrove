@@ -7,7 +7,7 @@ $cols   = [ 'Blog' => 'Blogs', 'News' => 'News', 'Social' => 'Social posts' ];
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
 		<p class="mono-label tt-av-eyebrow mb-6 text-[11px]" style="color: <?php echo esc_attr( $accent ); ?>;">Related Content</p>
 		<h2 class="max-w-3xl text-3xl font-black leading-[1.05] tracking-tight sm:text-[3.25rem]" data-reveal><?php echo esc_html( $v['heading'] ?: 'Related content' ); ?></h2>
-		<div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+		<div data-stagger class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
 			<?php foreach ( $cols as $type => $label ) :
 				$items = array_filter( $v['items'], fn( $i ) => ( $i['type'] ?? '' ) === $type ); ?>
 				<div data-reveal class="tt-av-card is-lift rounded-3xl border border-line bg-bg-elevated p-7">

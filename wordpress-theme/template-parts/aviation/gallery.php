@@ -5,7 +5,7 @@ $accent = $v['accent'] ?: '#0091d1';
 <section class="bg-bg py-24 sm:py-32" style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
 		<?php $v['heading'] = $v['heading'] ?: 'Gallery.'; include __DIR__ . '/head.php'; ?>
-		<div class="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+		<div data-stagger class="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
 			<?php foreach ( $v['images'] as $i => $im ) : ?>
 				<figure data-reveal class="group relative overflow-hidden rounded-3xl bg-bg-panel <?php echo 0 === $i ? 'col-span-2 row-span-2' : ''; ?>">
 					<div class="<?php echo 0 === $i ? 'aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[440px]' : 'aspect-[4/3]'; ?>">
