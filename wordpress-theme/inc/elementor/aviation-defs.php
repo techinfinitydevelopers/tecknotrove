@@ -47,7 +47,7 @@ $defs['tt_av_hub_sections'] = [
 		$rep( 'hubs', 'Hubs', [
 			$t( 'title', 'Hub title (H2)' ), $ta( 'intro', 'Short intro' ),
 			$ta( 'products', 'Products: one per line as  Name | one-liner | link' ),
-			$url( 'url', 'Hub page link' ), $t( 'link_label', 'Link label', 'Explore hub' ),
+			$url( 'url', 'Hub page link' ), $t( 'link_label', 'Link label', 'Explore hub' ), $im( 'image', 'Card image' ),
 		], [], 'title' ),
 	],
 	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/hub-sections', [], [ 'v' => $v ] ); },
@@ -61,7 +61,7 @@ $defs['tt_av_tiles'] = [
 		$t( 'label', 'Small label' ), $t( 'heading', 'Heading' ), $ta( 'intro', 'Intro' ),
 		[ 'id' => 'columns', 'label' => 'Columns', 'type' => 'select', 'options' => [ '2' => '2', '3' => '3', '4' => '4' ], 'default' => '4' ],
 		[ 'id' => 'dark', 'label' => 'Dark background', 'type' => 'select', 'options' => $av_yesno, 'default' => 'no' ],
-			[ 'id' => 'layout', 'label' => 'Layout', 'type' => 'select', 'options' => [ 'cards' => 'Cards', 'list' => 'Numbered list (lighter)' ], 'default' => 'cards' ],
+			[ 'id' => 'layout', 'label' => 'Layout', 'type' => 'select', 'options' => [ 'cards' => 'Cards', 'list' => 'Numbered list (lighter)', 'scroll' => 'Horizontal scroll strip' ], 'default' => 'cards' ],
 		$rep( 'tiles', 'Tiles', [
 			$t( 'icon', 'Icon name (Phosphor, e.g. Cube)', 'Cube' ), $t( 'title', 'Title' ), $ta( 'desc', 'Description' ), $url( 'url', 'Link (optional; empty = not clickable)' ),
 			$t( 'cta', 'Link label (default: View)' ), $t( 'badge', 'Badge (e.g. Coming soon)' ),

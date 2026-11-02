@@ -3,7 +3,7 @@
 $accent = $v['accent'] ?: '#0091d1';
 $cols   = [ 'Blog' => 'Blogs', 'News' => 'News', 'Social' => 'Social posts' ];
 ?>
-<section class="bg-bg py-24 sm:py-32" style="--accent: <?php echo esc_attr( $accent ); ?>;">
+<section class="tt-av-sheet bg-bg py-24 sm:py-32" style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
 		<p class="mono-label tt-av-eyebrow mb-6 text-[11px]" style="color: <?php echo esc_attr( $accent ); ?>;">Related Content</p>
 		<h2 class="max-w-3xl text-3xl font-black leading-[1.05] tracking-tight sm:text-[3.25rem]" data-reveal><?php echo esc_html( $v['heading'] ?: 'Related content' ); ?></h2>

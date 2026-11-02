@@ -149,6 +149,45 @@
     avUpdate();
   }
 
+  /* ---------- Aviation: scroll-focus list rows, pinned horizontal strip ---------- */
+  var avFocus = document.querySelectorAll("[data-av-focus] > li");
+  if (avFocus.length && !reduceMotion) {
+    var focusTick = false;
+    var focusUpdate = function () {
+      focusTick = false;
+      var mid = window.innerHeight * 0.5;
+      avFocus.forEach(function (li) {
+        var r = li.getBoundingClientRect();
+        var d = Math.abs(r.top + r.height / 2 - mid) / mid;
+        li.style.setProperty("--f", Math.max(0.28, 1 - d * 0.8).toFixed(2));
+      });
+    };
+    window.addEventListener("scroll", function () {
+      if (!focusTick) { focusTick = true; requestAnimationFrame(focusUpdate); }
+    }, { passive: true });
+    focusUpdate();
+  }
+  if (window.gsap && window.ScrollTrigger && !reduceMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.matchMedia().add("(min-width: 1024px)", function () {
+      document.querySelectorAll("[data-av-hscroll]").forEach(function (sec) {
+        var track = sec.querySelector("[data-av-hscroll-track]");
+        var bar = sec.querySelector("[data-av-hscroll-bar]");
+        if (!track) return;
+        var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
+        gsap.to(track, {
+          x: function () { return -dist(); },
+          ease: "none",
+          scrollTrigger: {
+            trigger: sec, start: "top top", end: function () { return "+=" + dist(); },
+            pin: true, scrub: 0.6, invalidateOnRefresh: true,
+            onUpdate: function (st) { if (bar) bar.style.transform = "scaleX(" + st.progress.toFixed(3) + ")"; }
+          }
+        });
+      });
+    });
+  }
+
   /* ---------- Generic scroll-reveal: [data-reveal] fades/slides in ---------- */
   var revealEls = document.querySelectorAll("[data-reveal]");
   if (revealEls.length) {

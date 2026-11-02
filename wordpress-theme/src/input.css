@@ -414,3 +414,15 @@ a.tt-av-card:hover, .tt-av-card.is-lift:hover { transform: translateY(-4px); bor
 .tt-av-marquee:hover .tt-av-marquee-track { animation-play-state: paused; }
 @keyframes tt-av-marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .tt-av-marquee-track { animation: none; } [data-stagger] > [data-reveal] { transition-delay: 0s; } }
+
+/* Aviation: stacked sheets, hero entrance, image clip reveal, scroll-focus rows */
+.tt-av-sheet { position: relative; margin-top: -2.5rem; border-radius: 2.5rem 2.5rem 0 0; }
+.tt-av-in { opacity: 0; transform: translateY(24px); animation: tt-av-in .9s cubic-bezier(.16,1,.3,1) forwards; animation-delay: var(--d, 0s); }
+@keyframes tt-av-in { to { opacity: 1; transform: none; } }
+.tt-av-clip { clip-path: inset(0 0 100% 0); transition: clip-path 1.1s cubic-bezier(.16,1,.3,1); }
+.tt-av-clip-img { transform: scale(1.18); transition: transform 1.6s cubic-bezier(.16,1,.3,1), scale 1.2s ease-out; }
+.tt-revealed .tt-av-clip { clip-path: inset(0); }
+.tt-revealed .tt-av-clip-img { transform: none; }
+.group:hover .tt-av-clip-img { scale: 1.06; }
+[data-av-focus] .tt-av-row > * { opacity: var(--f, 1); transition: opacity .35s; }
+@media (prefers-reduced-motion: reduce) { .tt-av-in { opacity: 1; transform: none; animation: none; } .tt-av-clip { clip-path: none; transition: none; } .tt-av-clip-img { transform: none; } }

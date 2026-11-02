@@ -109,3 +109,9 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 ## 2026-10-29 Aviation scroll animations + lighter sections
 - Hero image parallax + copy fade, accent scroll-progress line in the Aviation navbar, staggered reveals (`[data-stagger]` sets `--i`), scrolling ticker widget `tt_av_marquee` (industry + GSE hub), numbered "list" layout for tiles (`layout` = list) used by Why Choose, Advantage and Why Invest; card icons tilt on hover.
 - Client copy is never truncated (line-clamp removed on purpose).
+
+## 2026-11-02 Aviation UI pass 3
+- Hub cards are photo-led (new `image` field on hub repeater; seeded with brochure crops as placeholders), clip-path image reveal on scroll.
+- Sections stack as rounded "sheets" (`.tt-av-sheet`), hero text staggers in on load, headings use the existing `data-split-lines` mask animation.
+- Tiles widget: layout `list` now has sticky left heading + scroll-focus rows (`data-av-focus`, `--f`); new layout `scroll` = pinned horizontal strip (GSAP ScrollTrigger, desktop only; plain swipe strip on mobile). Used for Simulation Technologies and Cargo modules.
+- Hub photos are placeholders until client supplies real ones.

@@ -4,7 +4,7 @@ $accent = $v['accent'] ?: '#0091d1';
 $items  = array_values( array_filter( array_map( 'trim', preg_split( '/\R/', (string) ( $v['items'] ?? '' ) ) ) ) );
 if ( ! $items ) return;
 ?>
-<section class="tt-av-marquee relative overflow-hidden border-y border-line bg-bg py-6" aria-hidden="true" style="--accent: <?php echo esc_attr( $accent ); ?>;">
+<section class="tt-av-marquee relative overflow-hidden border-y border-line bg-bg pb-16 pt-6" aria-hidden="true" style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="tt-av-marquee-track flex w-max items-center">
 		<?php for ( $copy = 0; $copy < 2; $copy++ ) : ?>
 			<ul class="flex shrink-0 items-center">

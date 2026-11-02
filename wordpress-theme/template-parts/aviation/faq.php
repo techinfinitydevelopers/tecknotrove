@@ -2,7 +2,7 @@
 /** @var array $v  accent, label, heading, items[q,a] */
 $accent = $v['accent'] ?: '#0091d1';
 ?>
-<section class="bg-bg py-24 sm:py-32" style="--accent: <?php echo esc_attr( $accent ); ?>;">
+<section class="tt-av-sheet bg-bg py-24 sm:py-32" style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-[0.75fr_1.4fr] lg:gap-20">
 		<div class="lg:sticky lg:top-40 lg:self-start">
 			<?php $v['label'] = $v['label'] ?: 'FAQ'; $v['heading'] = $v['heading'] ?: 'Common questions.'; include __DIR__ . '/head.php'; ?>
