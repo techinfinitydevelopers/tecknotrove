@@ -3,17 +3,17 @@
 $accent = $v['accent'] ?: '#0091d1';
 $paras  = ! empty( $v['intro'] ) ? preg_split( '/\R+/', trim( $v['intro'] ) ) : [];
 ?>
-<section class="relative flex min-h-[86vh] flex-col justify-end overflow-hidden text-white" style="--accent: <?php echo esc_attr( $accent ); ?>;">
+<section class="relative flex min-h-[100svh] flex-col justify-end overflow-hidden text-white" style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="absolute inset-0 bg-[#06090d]">
 		<?php if ( ! empty( $v['image'] ) ) : ?>
-			<img src="<?php echo esc_url( $v['image'] ); ?>" alt="" data-av-parallax class="absolute inset-x-0 -top-[8%] h-[116%] w-full object-cover will-change-transform" />
+			<img src="<?php echo esc_url( $v['image'] ); ?>" alt="" data-av-parallax class="absolute inset-x-0 -top-[5%] h-[110%] w-full object-cover will-change-transform" />
 		<?php endif; ?>
-		<div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(6,9,13,0.92) 0%, rgba(6,9,13,0.55) 55%, rgba(6,9,13,0.25) 100%), linear-gradient(180deg, rgba(6,9,13,0.35) 0%, rgba(6,9,13,0) 40%, rgba(6,9,13,0.95) 100%);"></div>
+		<div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(6,9,13,0.85) 0%, rgba(6,9,13,0.35) 50%, rgba(6,9,13,0.15) 100%), linear-gradient(180deg, rgba(6,9,13,0.55) 0%, rgba(6,9,13,0) 30%, rgba(6,9,13,0.9) 100%);"></div>
 		<div class="tt-av-glow absolute inset-0"></div>
 	</div>
-	<div data-av-hero-copy class="relative z-10 mx-auto w-full max-w-[1400px] px-5 pb-16 pt-40 sm:px-8 sm:pb-20">
+	<div data-av-hero-copy class="relative z-10 mx-auto w-full max-w-[1400px] px-5 pb-14 pt-32 sm:px-8 sm:pb-16">
 		<?php if ( ! empty( $v['crumbs'] ) ) : ?>
-			<p style="--d:.05s" class="tt-av-in mono-label mb-7 inline-flex flex-wrap items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-[10.5px] text-white/60 backdrop-blur">
+			<p style="--d:.05s" class="tt-av-in mono-label mb-6 inline-flex flex-wrap items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-[10.5px] text-white/60 backdrop-blur">
 				<?php foreach ( $v['crumbs'] as $i => $c ) : ?>
 					<?php if ( $i ) echo '<span class="opacity-40">/</span>'; ?>
 					<?php if ( ! empty( $c['url'] ) ) : ?><a href="<?php echo esc_url( $c['url'] ); ?>" class="transition-colors hover:text-white"><?php echo esc_html( $c['label'] ); ?></a>
@@ -21,19 +21,25 @@ $paras  = ! empty( $v['intro'] ) ? preg_split( '/\R+/', trim( $v['intro'] ) ) : 
 				<?php endforeach; ?>
 			</p>
 		<?php elseif ( ! empty( $v['eyebrow'] ) ) : ?>
-			<span class="mono-label mb-7 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-[10.5px] text-white backdrop-blur">
+			<span style="--d:.05s" class="tt-av-in mono-label mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-[10.5px] text-white backdrop-blur">
 				<span class="h-1.5 w-1.5 rounded-full" style="background: <?php echo esc_attr( $accent ); ?>; box-shadow: 0 0 12px <?php echo esc_attr( $accent ); ?>;"></span><?php echo esc_html( $v['eyebrow'] ); ?>
 			</span>
 		<?php endif; ?>
-		<h1 style="--d:.15s" class="tt-av-in max-w-4xl text-balance text-[2.5rem] font-black leading-[1.02] tracking-[-0.02em] sm:text-6xl lg:text-7xl"><?php echo esc_html( $v['h1'] ); ?></h1>
-		<?php if ( $paras ) : ?>
-			<div style="--d:.3s" class="tt-av-in mt-8 max-w-2xl space-y-4">
-				<?php foreach ( $paras as $i => $para ) : ?><p class="<?php echo 0 === $i ? 'text-lg leading-relaxed text-white/85 sm:text-xl' : 'text-sm leading-relaxed text-white/55 sm:text-base'; ?>"><?php echo esc_html( $para ); ?></p><?php endforeach; ?>
+		<div class="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.3fr_0.9fr] lg:gap-16">
+			<div>
+				<h1 style="--d:.15s" class="tt-av-in text-balance text-[2.25rem] font-black leading-[1.04] tracking-[-0.02em] sm:text-5xl lg:text-[3.6rem]"><?php echo esc_html( $v['h1'] ); ?></h1>
+				<div style="--d:.45s" class="tt-av-in mt-9 flex flex-wrap items-center gap-4">
+					<?php if ( ! empty( $v['cta1_label'] ) ) tecknotrove_the_button( $v['cta1_label'], [ 'href' => $v['cta1_url'] ?: '#contact', 'variant' => 'solid' ] ); ?>
+					<?php if ( ! empty( $v['cta2_label'] ) ) tecknotrove_the_button( $v['cta2_label'], [ 'href' => $v['cta2_url'] ?: '#', 'variant' => 'outline-light' ] ); ?>
+				</div>
 			</div>
-		<?php endif; ?>
-		<div style="--d:.45s" class="tt-av-in mt-10 flex flex-wrap items-center gap-4">
-			<?php if ( ! empty( $v['cta1_label'] ) ) tecknotrove_the_button( $v['cta1_label'], [ 'href' => $v['cta1_url'] ?: '#contact', 'variant' => 'solid' ] ); ?>
-			<?php if ( ! empty( $v['cta2_label'] ) ) tecknotrove_the_button( $v['cta2_label'], [ 'href' => $v['cta2_url'] ?: '#', 'variant' => 'outline-light' ] ); ?>
+			<?php if ( $paras ) : ?>
+				<div style="--d:.3s" class="tt-av-in rounded-3xl border border-white/12 bg-[#06090d]/55 p-6 backdrop-blur-xl sm:p-7">
+					<?php foreach ( $paras as $i => $para ) : ?>
+						<p class="<?php echo 0 === $i ? 'text-[15px] leading-relaxed text-white/90' : 'mt-4 border-t border-white/10 pt-4 text-[13px] leading-relaxed text-white/70'; ?>"><?php echo esc_html( $para ); ?></p>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>

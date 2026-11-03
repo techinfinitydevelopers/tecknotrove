@@ -115,3 +115,5 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - Sections stack as rounded "sheets" (`.tt-av-sheet`), hero text staggers in on load, headings use the existing `data-split-lines` mask animation.
 - Tiles widget: layout `list` now has sticky left heading + scroll-focus rows (`data-av-focus`, `--f`); new layout `scroll` = pinned horizontal strip (GSAP ScrollTrigger, desktop only; plain swipe strip on mobile). Used for Simulation Technologies and Cargo modules.
 - Hub photos are placeholders until client supplies real ones.
+
+- 2026-11-03: Aviation hero restructured (headline + CTAs left, intro in glass card right, 100svh, lighter overlay, parallax scale 110%) so CTAs stay above the fold.
