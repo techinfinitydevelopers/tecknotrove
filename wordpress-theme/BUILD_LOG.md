@@ -125,3 +125,5 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - 2026-11-03: Aviation navbar rebuilt as centred-logo layout (Home + 3 hubs left | logo + AVIATION | last hub + Tecknotrove.com + Enquire right), per client reference image.
 
 - 2026-11-03: Aviation hubs section = featured card (hub 01, image left, product list right) + 3 image cards with product chips (one-liners in title tooltips; full list on hub pages).
+
+- 2026-11-03: Simulation Technologies set back to the horizontal scroll strip layout.

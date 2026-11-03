@@ -116,7 +116,7 @@ Line and base maintenance" ] ),
 			'Less equipment downtime: your GSE stays in operation while operators train, and the simulator flags operator behaviour that damages equipment.',
 			'Built in-house, delivered fast: we design, build and support every simulator ourselves. Most projects are delivered within 6 to 8 weeks, depending on customisation.',
 		] ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Simulation Technologies', 'heading' => 'Simulation Technologies', 'columns' => '4', 'layout' => 'showcase',
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Simulation Technologies', 'heading' => 'Simulation Technologies', 'columns' => '4', 'layout' => 'scroll',
 		'tiles' => $lead( [ 'Gauge', 'Monitor', 'MapTrifold', 'ChartBar', 'UsersThree', 'Waveform', 'ArrowsClockwise' ], [
 			'Fidelity range: low fidelity portable simulators with a built-in instructor station, medium fidelity simulators with a separate instructor station and motion option, and high fidelity simulators with advanced instructor station, motion system and 180-degree curved projection.',
 			'VR and desktop versions: VR modules and desktop simulators for pre-employment screening, familiarisation and safety training at lower cost.',
