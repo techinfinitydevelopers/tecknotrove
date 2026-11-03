@@ -97,12 +97,12 @@ $bg = $dark ? 'bg-[#0a0d12] text-white' : 'bg-bg-elevated';
 <?php elseif ( 'scroll' === $layout ) : ?>
 <section class="tt-av-sheet relative flex flex-col justify-center overflow-hidden py-24 sm:py-28 lg:min-h-screen <?php echo $bg; ?>" data-av-hscroll style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<?php if ( $dark ) : ?><div class="tt-av-glow pointer-events-none absolute inset-0"></div><div class="tt-av-grid-bg pointer-events-none absolute inset-0"></div><?php endif; ?>
-	<div class="relative mx-auto max-w-[1400px] px-5 sm:px-8">
+	<div class="relative mx-auto w-full max-w-[1400px] px-5 sm:px-8">
 		<?php include __DIR__ . '/head.php'; ?>
 	</div>
 	<div class="relative mt-14">
-		<div data-av-hscroll-track class="tt-av-track flex gap-5 overflow-x-auto px-5 pb-4 sm:px-8 lg:overflow-visible lg:will-change-transform" style="scroll-snap-type: x mandatory;">
-			<?php foreach ( $v['tiles'] as $i => $t ) $tile( $t, $i, 'w-[82vw] shrink-0 snap-start sm:w-[22rem] lg:w-[24rem]' ); ?>
+		<div data-av-hscroll-track class="tt-av-track relative flex gap-5 overflow-x-auto px-5 pb-10 pt-4 sm:px-8 lg:overflow-visible lg:will-change-transform" style="scroll-snap-type: x mandatory;">
+			<?php foreach ( $v['tiles'] as $i => $t ) : ?><div data-av-arc class="tt-av-arc flex w-[82vw] shrink-0 snap-start sm:w-[22rem] lg:w-[24rem]"><?php $tile( $t, $i, 'w-full' ); ?></div><?php endforeach; ?>
 			<span class="hidden shrink-0 lg:block lg:w-[calc(50vw-12rem)]" aria-hidden="true"></span>
 		</div>
 		<div class="mx-auto mt-6 hidden max-w-[1400px] px-8 lg:block"><div class="h-px w-full bg-line"><span data-av-hscroll-bar class="block h-px origin-left scale-x-0" style="background: <?php echo esc_attr( $accent ); ?>;"></span></div></div>

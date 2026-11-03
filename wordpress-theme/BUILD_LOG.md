@@ -127,3 +127,5 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - 2026-11-03: Aviation hubs section = featured card (hub 01, image left, product list right) + 3 image cards with product chips (one-liners in title tooltips; full list on hub pages).
 
 - 2026-11-03: Simulation Technologies set back to the horizontal scroll strip layout.
+
+- 2026-11-03: Horizontal strip cards travel on an arc (per-frame perspective/rotateY/translateY/scale from card position, desktop only; wrapper `[data-av-arc]` so reveal transforms do not clash). Heading left-aligned (w-full on container).
