@@ -121,3 +121,5 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 ## 2026-11-03 Reference components
 - Hero: lead sentence only, rest of client copy behind "Read more" (details).
 - Tiles widget: new `image` field + layouts `featured` (big card + image cards) and `showcase` (numbered list, image swaps on hover/click). Used for Simulation Technologies, Cargo modules, GSE range, Related Simulators. Images are brochure-crop placeholders (map in seed-aviation-copy.php `$tile_img`).
+
+- 2026-11-03: Aviation navbar rebuilt as centred-logo layout (Home + 3 hubs left | logo + AVIATION | last hub + Tecknotrove.com + Enquire right), per client reference image.
