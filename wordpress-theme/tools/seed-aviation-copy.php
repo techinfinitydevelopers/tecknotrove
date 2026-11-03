@@ -9,15 +9,24 @@
 require __DIR__ . '/seed-aviation.php';
 
 // Rich rows: icon, title, desc, url, cta, badge.
+// Placeholder images (brochure crops) by tile title, until the client supplies real photos.
+$tile_img = [
+	'Fidelity range' => 'cargo-station.jpg', 'VR and desktop versions' => 'cargo-sim-view.jpg', 'Virtual airside environment' => 'terrain-2.jpg',
+	'Instructor software and testing' => 'instructor-module.jpg', 'Group training' => 'teamplay.jpg', 'Motion and display' => 'cargo-gallery-2.jpg', 'Convertible kits' => 'cargo-gallery-3.jpg',
+	'Equipment familiarisation' => 'training-module.jpg', 'Procedural training on high loader and belt loader' => 'cargo-gallery-1.jpg', 'Aircraft-specific cargo loading techniques' => 'cargo-hero.jpg',
+	'Incident preparedness training' => 'terrain-3.jpg', 'Operator testing and certification' => 'instructor-module.jpg', 'Equipment-specific training' => 'cargo-sim-view.jpg', 'Airside familiarisation' => 'terrain-4.jpg',
+	'Aircraft Pushback & Towing Simulator' => 'terrain-3.jpg', 'Cargo Loader & High Loader Simulator' => 'cargo-hero.jpg', 'Baggage Tractor Simulator' => 'cargo-gallery-2.jpg',
+	'Hi-Lift Catering Truck Simulator' => 'cargo-gallery-3.jpg', 'Airside Driving Simulator' => 'terrain-1.jpg',
+];
 $rows = fn( $list ) => tt_rows( array_map( fn( $r ) => [
-	'icon' => $r[0], 'title' => $r[1], 'desc' => $r[2] ?? '', 'url' => tt_link( $r[3] ?? '' ), 'cta' => $r[4] ?? '', 'badge' => $r[5] ?? '',
+	'icon' => $r[0], 'title' => $r[1], 'desc' => $r[2] ?? '', 'url' => tt_link( $r[3] ?? '' ), 'cta' => $r[4] ?? '', 'badge' => $r[5] ?? '', 'image' => tt_img( isset( $tile_img[ $r[1] ] ) ? $av . $tile_img[ $r[1] ] : '' ),
 ], $list ) );
 // "Lead: sentence" -> title + desc.
-$lead = function ( $icons, $items ) use ( $rows ) {
+$lead = function ( $icons, $items, $images = [] ) use ( $rows ) {
 	$out = [];
 	foreach ( $items as $i => $s ) {
 		$p = explode( ': ', $s, 2 );
-		$out[] = [ $icons[ $i % count( $icons ) ], rtrim( $p[0], '.' ), $p[1] ?? '' ];
+		$out[] = [ $icons[ $i % count( $icons ) ], rtrim( $p[0], '.' ), $p[1] ?? '', '', '', '', $images[ $i ] ?? '' ];
 	}
 	return $rows( $out );
 };
@@ -107,7 +116,7 @@ Line and base maintenance" ] ),
 			'Less equipment downtime: your GSE stays in operation while operators train, and the simulator flags operator behaviour that damages equipment.',
 			'Built in-house, delivered fast: we design, build and support every simulator ourselves. Most projects are delivered within 6 to 8 weeks, depending on customisation.',
 		] ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Simulation Technologies', 'heading' => 'Simulation Technologies', 'columns' => '4', 'layout' => 'scroll',
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Simulation Technologies', 'heading' => 'Simulation Technologies', 'columns' => '4', 'layout' => 'showcase',
 		'tiles' => $lead( [ 'Gauge', 'Monitor', 'MapTrifold', 'ChartBar', 'UsersThree', 'Waveform', 'ArrowsClockwise' ], [
 			'Fidelity range: low fidelity portable simulators with a built-in instructor station, medium fidelity simulators with a separate instructor station and motion option, and high fidelity simulators with advanced instructor station, motion system and 180-degree curved projection.',
 			'VR and desktop versions: VR modules and desktop simulators for pre-employment screening, familiarisation and safety training at lower cost.',
@@ -144,7 +153,7 @@ Baggage tractors
 Catering trucks
 Turnaround training
 Virtual airside" ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Related Products', 'heading' => 'GSE Simulator Range', 'columns' => '3', 'tiles' => $rows( [
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Related Products', 'heading' => 'GSE Simulator Range', 'columns' => '3', 'layout' => 'featured', 'tiles' => $rows( [
 		[ 'Cube', 'Aircraft Pushback & Towing Simulator', 'Towbar and towbarless pushback training with real aircraft dynamics, on a 3DOF motion platform.', $pr_u( 'aircraft-pushback-simulator' ), 'View Pushback Simulator' ],
 		[ 'Cube', 'Cargo Loader & High Loader Simulator', 'Main deck and lower deck loading techniques on narrow and wide-body Airbus and Boeing aircraft.', $pr_u( 'cargo-loader-simulator' ), 'View Cargo Loader Simulator' ],
 		[ 'Cube', 'Baggage Tractor Simulator', 'Safe towing of baggage carts on GSE roads, aprons and around parked aircraft.', $pr_u( 'baggage-tractor-simulator' ), 'View Baggage Tractor Simulator' ],
@@ -192,7 +201,7 @@ $cargo_sections = [
 	$hero( $crumb( [ [ 'Aviation', $home ], [ 'GSE Simulators', $hub_u( 'gse-simulators' ) ], [ 'Cargo Loader & High Loader Simulator' ] ] ), 'Cargo Loader and High Loader Simulator',
 		"The Tecknotrove Cargo Loader and High Loader Simulator trains and evaluates operators on safe aircraft cargo loading. Its design is based on the actual equipment, replicating the controls, levers and dynamics of a range of cargo loader and high loader models. Operators learn main deck and lower deck loading techniques on a variety of narrow and wide-body aircraft, in a realistic airside environment and in complete safety.\nIt is built for ground handling companies, cargo handlers, airlines, airports and aviation training institutes that need to train new operators and test experienced ones. The simulator is designed and manufactured by Tecknotrove in India and is available as a full-scale simulator or a portable VR version.",
 		$av . 'cargo-hero.jpg', 'Request a Quote', 'Watch the Demo' ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Applications', 'heading' => 'Applications and Training Modules', 'columns' => '4', 'layout' => 'scroll',
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Applications', 'heading' => 'Applications and Training Modules', 'columns' => '4', 'layout' => 'showcase',
 		'tiles' => $lead( [ 'Wrench', 'Cube', 'MapTrifold', 'ShieldCheck', 'SealCheck', 'Gauge', 'Eye' ], [
 			'Equipment familiarisation: controls, pre-checks and safe operation of the loader.',
 			'Procedural training on high loader and belt loader: step-by-step loading and unloading procedures.',
@@ -227,7 +236,7 @@ $cargo_sections = [
 		[ 'How long does delivery take?', 'Most projects are delivered within 6 to 8 weeks, depending on the configuration and level of customisation.' ],
 		[ 'What warranty and support are included?', 'Every simulator carries a one-year international warranty with online and offline support. After that, an extended warranty or annual maintenance contract (AMC) covers maintenance and regular software updates.' ],
 	] ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Related Simulators', 'heading' => 'Related Simulators', 'columns' => '3', 'tiles' => $rows( [
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Related Simulators', 'heading' => 'Related Simulators', 'columns' => '3', 'layout' => 'featured', 'tiles' => $rows( [
 		[ 'Cube', 'Aircraft Pushback & Towing Simulator', 'GSE Simulators', $pr_u( 'aircraft-pushback-simulator' ) ],
 		[ 'Cube', 'Baggage Tractor Simulator', 'GSE Simulators', $pr_u( 'baggage-tractor-simulator' ) ],
 		[ 'Cube', 'Hi-Lift Catering Truck Simulator', 'GSE Simulators', $pr_u( 'catering-truck-simulator' ) ],

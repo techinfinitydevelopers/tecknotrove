@@ -117,3 +117,7 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - Hub photos are placeholders until client supplies real ones.
 
 - 2026-11-03: Aviation hero restructured (headline + CTAs left, intro in glass card right, 100svh, lighter overlay, parallax scale 110%) so CTAs stay above the fold.
+
+## 2026-11-03 Reference components
+- Hero: lead sentence only, rest of client copy behind "Read more" (details).
+- Tiles widget: new `image` field + layouts `featured` (big card + image cards) and `showcase` (numbered list, image swaps on hover/click). Used for Simulation Technologies, Cargo modules, GSE range, Related Simulators. Images are brochure-crop placeholders (map in seed-aviation-copy.php `$tile_img`).

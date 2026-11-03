@@ -33,11 +33,21 @@ $paras  = ! empty( $v['intro'] ) ? preg_split( '/\R+/', trim( $v['intro'] ) ) : 
 					<?php if ( ! empty( $v['cta2_label'] ) ) tecknotrove_the_button( $v['cta2_label'], [ 'href' => $v['cta2_url'] ?: '#', 'variant' => 'outline-light' ] ); ?>
 				</div>
 			</div>
-			<?php if ( $paras ) : ?>
+			<?php if ( $paras ) :
+				// Lead = first sentence; the rest of the client copy sits behind "Read more".
+				$first = preg_split( '/(?<=[.!?])\s+/', $paras[0], 2 );
+				$lead  = $first[0];
+				$more  = array_values( array_filter( array_merge( [ $first[1] ?? '' ], array_slice( $paras, 1 ) ) ) ); ?>
 				<div style="--d:.3s" class="tt-av-in rounded-3xl border border-white/12 bg-[#06090d]/55 p-6 backdrop-blur-xl sm:p-7">
-					<?php foreach ( $paras as $i => $para ) : ?>
-						<p class="<?php echo 0 === $i ? 'text-[15px] leading-relaxed text-white/90' : 'mt-4 border-t border-white/10 pt-4 text-[13px] leading-relaxed text-white/70'; ?>"><?php echo esc_html( $para ); ?></p>
-					<?php endforeach; ?>
+					<p class="text-base leading-relaxed text-white/90 sm:text-[17px]"><?php echo esc_html( $lead ); ?></p>
+					<?php if ( $more ) : ?>
+						<details class="tt-av-more mt-4 border-t border-white/10 pt-4">
+							<summary class="flex cursor-pointer list-none items-center gap-2 text-[13px] font-semibold" style="color: <?php echo esc_attr( $accent ); ?>;"><span class="tt-av-more-open">Read more</span><span class="tt-av-more-close">Show less</span><?php tecknotrove_the_icon( 'Plus', 14 ); ?></summary>
+							<div class="mt-4 space-y-3 text-[13px] leading-relaxed text-white/75">
+								<?php foreach ( $more as $para ) : ?><p><?php echo esc_html( $para ); ?></p><?php endforeach; ?>
+							</div>
+						</details>
+					<?php endif; ?>
 				</div>
 			<?php endif; ?>
 		</div>

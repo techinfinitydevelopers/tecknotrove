@@ -426,3 +426,20 @@ a.tt-av-card:hover, .tt-av-card.is-lift:hover { transform: translateY(-4px); bor
 .group:hover .tt-av-clip-img { scale: 1.06; }
 [data-av-focus] .tt-av-row > * { opacity: var(--f, 1); transition: opacity .35s; }
 @media (prefers-reduced-motion: reduce) { .tt-av-in { opacity: 1; transform: none; animation: none; } .tt-av-clip { clip-path: none; transition: none; } .tt-av-clip-img { transform: none; } }
+
+.tt-av-more summary::-webkit-details-marker { display: none; }
+.tt-av-more .tt-av-more-close { display: none; }
+.tt-av-more[open] .tt-av-more-close { display: inline; }
+.tt-av-more[open] .tt-av-more-open { display: none; }
+.tt-av-more[open] summary svg { transform: rotate(45deg); }
+
+/* Aviation: list + image showcase */
+.tt-av-showitem { opacity: .4; transition: opacity .35s; }
+.tt-av-showitem:hover, .tt-av-showitem[aria-current="true"] { opacity: 1; }
+.tt-av-showitem .tt-av-showdesc { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.16,1,.3,1); }
+.tt-av-showitem .tt-av-showdesc-in { overflow: hidden; min-height: 0; }
+.tt-av-showitem[aria-current="true"] .tt-av-showdesc { grid-template-rows: 1fr; }
+.tt-av-showbar { transform: scaleY(0); transition: transform .45s cubic-bezier(.16,1,.3,1); }
+li:has(> .tt-av-showitem[aria-current="true"]) > .tt-av-showbar { transform: scaleY(1); }
+.tt-av-showimg { opacity: 0; transform: scale(1.05); transition: opacity .6s ease, transform 1.2s cubic-bezier(.16,1,.3,1); }
+.tt-av-showimg.is-on { opacity: 1; transform: none; }

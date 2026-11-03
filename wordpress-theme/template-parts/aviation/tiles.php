@@ -3,7 +3,7 @@
 $accent = $v['accent'] ?: '#0091d1';
 $cols   = [ '2' => 'sm:grid-cols-2', '3' => 'sm:grid-cols-2 lg:grid-cols-3', '4' => 'sm:grid-cols-2 lg:grid-cols-4' ][ (string) $v['columns'] ] ?? 'sm:grid-cols-2 lg:grid-cols-4';
 $dark   = 'yes' === ( $v['dark'] ?? 'no' );
-$layout = in_array( $v['layout'] ?? 'cards', [ 'list', 'scroll' ], true ) ? $v['layout'] : 'cards';
+$layout = in_array( $v['layout'] ?? 'cards', [ 'list', 'scroll', 'featured', 'showcase' ], true ) ? $v['layout'] : 'cards';
 $tile   = function ( $t, $i, $extra = '' ) use ( $accent, $dark ) {
 	$tag = ! empty( $t['url'] ) ? 'a' : 'div'; ?>
 	<<?php echo $tag; ?> <?php echo 'a' === $tag ? 'href="' . esc_url( $t['url'] ) . '"' : ''; ?> data-reveal class="tt-av-card <?php echo 'div' === $tag ? 'is-lift' : ''; ?> group relative flex flex-col overflow-hidden rounded-2xl border p-7 <?php echo esc_attr( $extra ); ?> <?php echo $dark ? 'border-white/10 bg-white/[0.035] hover:bg-white/[0.06]' : 'border-line bg-bg'; ?>">
@@ -19,9 +19,82 @@ $tile   = function ( $t, $i, $extra = '' ) use ( $accent, $dark ) {
 		<?php if ( 'a' === $tag ) : ?><span class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold transition-all group-hover:gap-2.5" style="color: <?php echo esc_attr( $accent ); ?>;"><?php echo esc_html( ! empty( $t['cta'] ) ? $t['cta'] : 'View' ); ?> <?php tecknotrove_the_icon( 'ArrowUpRight', 15 ); ?></span><?php endif; ?>
 	</<?php echo $tag; ?>>
 <?php };
+$media  = function ( $t, $class = '' ) use ( $accent ) {
+	if ( ! empty( $t['image'] ) ) { echo '<img src="' . esc_url( $t['image'] ) . '" alt="" loading="lazy" class="' . esc_attr( $class ) . ' h-full w-full object-cover" />'; return; }
+	echo '<span class="flex h-full w-full items-center justify-center" style="background: linear-gradient(135deg, ' . esc_attr( tecknotrove_hex_to_rgba( $accent, 0.22 ) ) . ', ' . esc_attr( tecknotrove_hex_to_rgba( $accent, 0.05 ) ) . '); color: ' . esc_attr( $accent ) . ';">';
+	tecknotrove_the_icon( $t['icon'] ?: 'Cube', 44 );
+	echo '</span>';
+};
 $bg = $dark ? 'bg-[#0a0d12] text-white' : 'bg-bg-elevated';
 ?>
-<?php if ( 'scroll' === $layout ) : ?>
+<?php if ( 'featured' === $layout ) :
+	$first = $v['tiles'][0] ?? null;
+	$rest  = array_slice( $v['tiles'], 1 );
+	$gc    = [ 1 => 'lg:grid-cols-1', 2 => 'lg:grid-cols-2', 3 => 'lg:grid-cols-3' ][ count( $rest ) ] ?? 'lg:grid-cols-4'; ?>
+<section class="tt-av-sheet relative overflow-hidden bg-bg-elevated py-24 sm:py-32" style="--accent: <?php echo esc_attr( $accent ); ?>;">
+	<div class="relative mx-auto max-w-[1400px] px-5 sm:px-8">
+		<?php include __DIR__ . '/head.php'; ?>
+		<?php if ( $first ) : $tag = ! empty( $first['url'] ) ? 'a' : 'div'; ?>
+			<<?php echo $tag; ?> <?php echo 'a' === $tag ? 'href="' . esc_url( $first['url'] ) . '"' : ''; ?> data-reveal class="tt-av-card group mt-14 grid grid-cols-1 overflow-hidden rounded-[1.75rem] border border-line bg-bg p-3 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)] lg:grid-cols-[1.05fr_1fr]">
+				<div class="relative min-h-[260px] overflow-hidden rounded-[1.25rem] bg-bg-panel lg:min-h-[340px]"><?php $media( $first, 'absolute inset-0 transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]' ); ?></div>
+				<div class="flex flex-col justify-between gap-8 p-6 sm:p-9">
+					<div>
+						<span class="mono-label rounded-full border border-line-strong px-3 py-1 text-[10px] text-ink-dim"><?php echo esc_html( ! empty( $first['badge'] ) ? $first['badge'] : 'Featured' ); ?></span>
+						<h3 class="mt-6 text-2xl font-black leading-tight tracking-tight sm:text-4xl"><?php echo esc_html( $first['title'] ); ?></h3>
+						<?php if ( ! empty( $first['desc'] ) ) : ?><p class="mt-4 max-w-md text-[15px] leading-relaxed text-ink-dim"><?php echo esc_html( $first['desc'] ); ?></p><?php endif; ?>
+					</div>
+					<?php if ( 'a' === $tag ) : ?><span class="inline-flex items-center gap-2 text-sm font-bold transition-all group-hover:gap-3" style="color: <?php echo esc_attr( $accent ); ?>;"><?php echo esc_html( ! empty( $first['cta'] ) ? $first['cta'] : 'View' ); ?> <?php tecknotrove_the_icon( 'ArrowUpRight', 15 ); ?></span><?php endif; ?>
+				</div>
+			</<?php echo $tag; ?>>
+		<?php endif; ?>
+		<?php if ( $rest ) : ?>
+			<div data-stagger class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 <?php echo esc_attr( $gc ); ?>">
+				<?php foreach ( $rest as $i => $t ) : $tag = ! empty( $t['url'] ) ? 'a' : 'div'; ?>
+					<<?php echo $tag; ?> <?php echo 'a' === $tag ? 'href="' . esc_url( $t['url'] ) . '"' : ''; ?> data-reveal class="tt-av-card <?php echo 'div' === $tag ? 'is-lift' : ''; ?> group flex flex-col overflow-hidden rounded-[1.5rem] border border-line bg-bg p-3">
+						<div class="relative aspect-[4/3] overflow-hidden rounded-[1.1rem] bg-bg-panel">
+							<?php $media( $t, 'absolute inset-0 transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]' ); ?>
+							<span class="mono-label absolute right-3 top-3 rounded-full bg-bg/90 px-2.5 py-1 text-[9.5px] text-ink-dim backdrop-blur"><?php echo esc_html( ! empty( $t['badge'] ) ? $t['badge'] : sprintf( '%02d', $i + 2 ) ); ?></span>
+						</div>
+						<div class="flex flex-1 flex-col p-4 pb-3">
+							<h3 class="text-[1.02rem] font-bold leading-snug"><?php echo esc_html( $t['title'] ); ?></h3>
+							<?php if ( ! empty( $t['desc'] ) ) : ?><p class="mt-2 text-[13.5px] leading-relaxed text-ink-dim"><?php echo esc_html( $t['desc'] ); ?></p><?php endif; ?>
+						</div>
+					</<?php echo $tag; ?>>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</section>
+
+<?php elseif ( 'showcase' === $layout ) : ?>
+<section class="tt-av-sheet relative overflow-hidden bg-bg-elevated py-24 sm:py-32" data-av-show style="--accent: <?php echo esc_attr( $accent ); ?>;">
+	<div class="relative mx-auto max-w-[1400px] px-5 sm:px-8">
+		<?php include __DIR__ . '/head.php'; ?>
+		<div class="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+			<ol class="order-2 lg:order-1">
+				<?php foreach ( $v['tiles'] as $i => $t ) : ?>
+					<li class="relative border-b border-line first:border-t">
+						<span class="tt-av-showbar absolute inset-y-0 left-0 w-0.5 origin-top" style="background: <?php echo esc_attr( $accent ); ?>;"></span>
+						<button type="button" data-av-show-item="<?php echo (int) $i; ?>" aria-current="<?php echo 0 === $i ? 'true' : 'false'; ?>" class="tt-av-showitem block w-full py-6 pl-6 pr-2 text-left sm:py-7">
+							<span class="mono-label text-[10.5px] text-ink-dim">(<?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?>)</span>
+							<span class="mt-1 block text-2xl font-bold leading-tight tracking-tight sm:text-[2rem]"><?php echo esc_html( $t['title'] ); ?></span>
+							<?php if ( ! empty( $t['desc'] ) ) : ?><span class="tt-av-showdesc"><span class="tt-av-showdesc-in block max-w-lg pt-3 text-[15px] leading-relaxed text-ink-dim"><?php echo esc_html( $t['desc'] ); ?></span></span><?php endif; ?>
+						</button>
+					</li>
+				<?php endforeach; ?>
+			</ol>
+			<div class="order-1 lg:sticky lg:top-32 lg:order-2 lg:self-start">
+				<div class="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-line bg-bg-panel">
+					<?php foreach ( $v['tiles'] as $i => $t ) : ?>
+						<div data-av-show-img="<?php echo (int) $i; ?>" class="tt-av-showimg absolute inset-0 <?php echo 0 === $i ? 'is-on' : ''; ?>"><?php $media( $t ); ?></div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<?php elseif ( 'scroll' === $layout ) : ?>
 <section class="tt-av-sheet relative flex flex-col justify-center overflow-hidden py-24 sm:py-28 lg:min-h-screen <?php echo $bg; ?>" data-av-hscroll style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<?php if ( $dark ) : ?><div class="tt-av-glow pointer-events-none absolute inset-0"></div><div class="tt-av-grid-bg pointer-events-none absolute inset-0"></div><?php endif; ?>
 	<div class="relative mx-auto max-w-[1400px] px-5 sm:px-8">

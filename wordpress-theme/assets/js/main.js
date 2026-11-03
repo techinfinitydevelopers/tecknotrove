@@ -149,6 +149,19 @@
     avUpdate();
   }
 
+  /* ---------- Aviation: list + image showcase ---------- */
+  document.querySelectorAll("[data-av-show]").forEach(function (sec) {
+    var items = sec.querySelectorAll("[data-av-show-item]");
+    var imgs = sec.querySelectorAll("[data-av-show-img]");
+    var set = function (n) {
+      items.forEach(function (it, k) { it.setAttribute("aria-current", k === n ? "true" : "false"); });
+      imgs.forEach(function (im, k) { im.classList.toggle("is-on", k === n); });
+    };
+    items.forEach(function (it, n) {
+      ["mouseenter", "focus", "click"].forEach(function (ev) { it.addEventListener(ev, function () { set(n); }); });
+    });
+  });
+
   /* ---------- Aviation: scroll-focus list rows, pinned horizontal strip ---------- */
   var avFocus = document.querySelectorAll("[data-av-focus] > li");
   if (avFocus.length && !reduceMotion) {
