@@ -129,3 +129,5 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - 2026-11-03: Simulation Technologies set back to the horizontal scroll strip layout.
 
 - 2026-11-03: Horizontal strip cards travel on an arc (per-frame perspective/rotateY/translateY/scale from card position, desktop only; wrapper `[data-av-arc]` so reveal transforms do not clash). Heading left-aligned (w-full on container).
+
+- 2026-11-04: Simulation Technologies strip rewritten as a path animation (replaces the arc tilt): one row, pinned; cards rise from below the title (first 14% of scroll), then travel left to right along a curve (y = f(screen x), tilt = path tangent x0.7), first card leads on the right. Desktop only; mobile = swipe strip. Per-frame transforms in main.js `render()`.

@@ -187,36 +187,58 @@
         var track = sec.querySelector("[data-av-hscroll-track]");
         var bar = sec.querySelector("[data-av-hscroll-bar]");
         if (!track) return;
-        var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
-        var arcs = Array.prototype.slice.call(track.querySelectorAll("[data-av-arc]"));
-        // Cards travel along an arc: tilted, lowered and smaller near the screen edges, flat at the centre.
-        var arc = function () {
-          var vw = window.innerWidth;
-          var x = gsap.getProperty(track, "x") || 0;
-          arcs.forEach(function (el) {
-            var cx = el.offsetLeft + el.offsetWidth / 2 + x;
-            var t = (cx - vw / 2) / (vw / 2);
-            var tc = Math.max(-1.3, Math.min(1.3, t));
-            var a = Math.min(Math.abs(t), 1.5);
-            var fade = Math.max(0.35, 1 - Math.max(0, a - 0.8) * 1.1);
-            el.style.transform = "perspective(1400px) translate3d(0," + (a * a * 64).toFixed(1) + "px,0) rotateY(" + (-tc * 26).toFixed(2) + "deg) rotateZ(" + (tc * 3.5).toFixed(2) + "deg) scale(" + (1 - a * 0.1).toFixed(3) + ")";
-            el.style.opacity = fade.toFixed(2);
-          });
+        var cards = Array.prototype.slice.call(track.querySelectorAll("[data-av-arc]"));
+        var n = cards.length;
+        var gap = 20;
+        var state = { p: 0 };
+        cards.forEach(function (el) {
+          el.style.transformOrigin = "50% 50%";
+          Array.prototype.forEach.call(el.querySelectorAll("[data-reveal]"), function (r) { r.classList.add("tt-revealed"); });
+        });
+        var smooth = function (a, b, x) { var t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+        // Height of the path at horizontal screen position u (0..1): low at the left edge, crest near 55%,
+        // dipping again towards the right edge. Cards ride this curve and tilt along its tangent.
+        var path = function (u) {
+          var rise = 1 - smooth(-0.05, 0.55, u);
+          var fall = smooth(0.72, 1.1, u);
+          return rise * rise * 150 + fall * fall * 90;
         };
-        gsap.to(track, {
-          x: function () { return -dist(); },
-          ease: "none",
+        var geom = function () {
+          var vw = window.innerWidth;
+          var cw = cards[0].offsetWidth;
+          var step = cw + gap;
+          // First card leads (right); the row starts with it at 55% of the screen and ends with the last three cards resting in view.
+          return { vw: vw, cw: cw, step: step, start: vw * 0.55 - (n - 1) * step, end: vw * 0.2 };
+        };
+        var render = function () {
+          var g = geom();
+          var p = state.p;
+          var enter = 1 - Math.pow(1 - Math.min(1, p / 0.14), 3); // cards rise from below the title first
+          var shift = g.start + (g.end - g.start) * p;
+          cards.forEach(function (el, i) {
+            var x = shift + (n - 1 - i) * g.step;
+            var u = (x + g.cw / 2) / g.vw;
+            var y = path(u) + (1 - enter) * 280;
+            var slope = (path(u + 0.01) - path(u - 0.01)) / (0.02 * g.vw);
+            var ang = Math.atan(slope) * 57.2958 * 0.7;
+            var o = Math.max(0, Math.min(1, (u + 0.1) / 0.2)) * Math.max(0, Math.min(1, (1.1 - u) / 0.2)) * enter;
+            el.style.transform = "translate3d(" + x.toFixed(1) + "px," + y.toFixed(1) + "px,0) rotate(" + ang.toFixed(2) + "deg)";
+            el.style.opacity = o.toFixed(3);
+          });
+          if (bar) bar.style.transform = "scaleX(" + p.toFixed(3) + ")";
+        };
+        var dist = function () { var g = geom(); return g.end - g.start; };
+        gsap.to(state, {
+          p: 1, ease: "none", onUpdate: render,
           scrollTrigger: {
-            trigger: sec, start: "top top", end: function () { return "+=" + dist(); },
-            pin: true, scrub: 0.6, invalidateOnRefresh: true,
-            onUpdate: function (st) { if (bar) bar.style.transform = "scaleX(" + st.progress.toFixed(3) + ")"; arc(); },
-            onRefresh: arc
+            trigger: sec, start: "top top", end: function () { return "+=" + Math.round(dist() * 0.8); },
+            pin: true, scrub: 0.5, invalidateOnRefresh: true, onRefresh: render
           }
         });
-        arc();
+        render();
       });
       return function () {
-        document.querySelectorAll("[data-av-arc]").forEach(function (el) { el.style.transform = ""; el.style.opacity = ""; });
+        document.querySelectorAll("[data-av-arc]").forEach(function (el) { el.style.transform = ""; el.style.opacity = ""; el.style.transformOrigin = ""; });
       };
     });
   }

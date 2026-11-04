@@ -445,4 +445,4 @@ li:has(> .tt-av-showitem[aria-current="true"]) > .tt-av-showbar { transform: sca
 .tt-av-showimg.is-on { opacity: 1; transform: none; }
 
 /* Aviation: arc-travelling cards (transform is set per frame by main.js on desktop) */
-@media (min-width: 1024px) { .tt-av-arc { will-change: transform, opacity; transform-origin: 50% 80%; backface-visibility: hidden; } }
+@media (min-width: 1024px) { .tt-av-arc { will-change: transform, opacity; } }
