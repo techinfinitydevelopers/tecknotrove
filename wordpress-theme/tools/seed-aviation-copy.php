@@ -109,10 +109,11 @@ Fire trucks (ARFF)
 Airside light vehicles
 Line and base maintenance" ] ),
 	tt_section( 'tt_av_hub_sections', [ 'accent' => $A, 'label' => 'Aviation hubs', 'heading' => 'Four hubs. One connected training ecosystem.', 'intro' => 'Pick a hub to see the simulators, technologies and training modules inside it.', 'hubs' => tt_rows( $industry ) ] ),
-	tt_section( 'tt_av_map', [ 'accent' => $A, 'label' => 'The airside', 'heading' => 'Every vehicle on the stand, *simulated.*',
+	// Airside bento hidden on request (2026-11-04); set $show_airside = true to bring it back.
+	...( ! empty( $show_airside ) ? [ tt_section( 'tt_av_map', [ 'accent' => $A, 'label' => 'The airside', 'heading' => 'Every vehicle on the stand, *simulated.*',
 		'intro' => 'One simulator for each machine your ramp team drives. Pick one to see how it trains operators.',
 		'items' => implode( "\n", array_map( fn( $p ) => $p[0] . ' | ' . $p[1] . ' | ' . $p[2],
-			array_slice( array_values( array_filter( array_merge( ...array_map( fn( $h ) => $h[1], array_slice( array_values( $I ), 0, 2 ) ) ), fn( $p ) => ! empty( $p[2] ) ) ), 0, 6 ) ) ) ] ),
+			array_slice( array_values( array_filter( array_merge( ...array_map( fn( $h ) => $h[1], array_slice( array_values( $I ), 0, 2 ) ) ), fn( $p ) => ! empty( $p[2] ) ) ), 0, 6 ) ) ) ] ) ] : [] ),
 	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why Choose Tecknotrove', 'heading' => 'Why Choose Tecknotrove', 'columns' => '3', 'dark' => '', 'layout' => 'story',
 		'tiles' => $lead( [ 'Wrench', 'UsersThree', 'ShieldCheck', 'Lightning', 'Gauge', 'Cube' ], [
 			'Customised training programmes: modules are built around your airside environment, training language, objectives, equipment types and assessment criteria. Past incidents can be recreated on the simulator so operators train on the situations that matter to you.',

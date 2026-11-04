@@ -210,3 +210,5 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - Navbar no longer hides on scroll (always visible; still turns solid after 40px).
 - Navbar band removed: bar always transparent (no blur/dark strip). Once the hero frame scrolls past, the white logo crossfades to logo-blue.png and the Menu toggle turns navy so they stay readable on light sections. Verified at scroll 0/500 (white) and 1400 (blue logo, navy menu).
 - Full-screen menu hub names smaller: 1.9/3rem/3.6rem -> 1.5/2/2.4rem.
+- Pushed a283c70 and deployed static export (carousel + fan) to Vercel; live /aviation/ shows the pill navbar.
+- Airside bento section hidden from the Aviation page (seed: wrapped in $show_airside flag, default off). Template/widget kept.
