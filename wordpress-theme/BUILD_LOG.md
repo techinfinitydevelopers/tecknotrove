@@ -212,3 +212,5 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - Full-screen menu hub names smaller: 1.9/3rem/3.6rem -> 1.5/2/2.4rem.
 - Pushed a283c70 and deployed static export (carousel + fan) to Vercel; live /aviation/ shows the pill navbar.
 - Airside bento section hidden from the Aviation page (seed: wrapped in $show_airside flag, default off). Template/widget kept.
+- Pushed d0de32f and deployed to Vercel (carousel + fan); airside section absent on both live /aviation/ pages.
+- Floating Enquire Now button: logo blue #16478e (sampled from logo-blue.png), dark #15161c sweep on hover; new 'brand' button variant. Applies site-wide (footer.php).

@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function tecknotrove_button( $label, $args = [] ) {
 	$defaults = [
 		'href'   => '#',
-		'variant'=> 'solid', // solid | outline | outline-light | dark | outline-dark | light
+		'variant'=> 'solid', // solid | outline | outline-light | dark | outline-dark | light | brand
 		'sweep'  => 'orange', // orange | blue | dark
 		'class'  => '',
 		'target' => '',
@@ -21,6 +21,7 @@ function tecknotrove_button( $label, $args = [] ) {
 		'solid'        => 'bg-[#15161c] text-white',
 		'dark'         => 'bg-[#15161c] text-white',
 		'light'        => 'bg-white text-nav-bg',
+		'brand'        => 'bg-[#16478e] text-white', // logo blue
 		'outline'      => 'border border-line-strong bg-transparent text-ink group-hover:border-transparent',
 		'outline-light'=> 'border border-white/35 bg-transparent text-white group-hover:border-transparent',
 		'outline-dark' => 'border border-[#170800]/35 bg-transparent text-[#170800] group-hover:border-transparent',
