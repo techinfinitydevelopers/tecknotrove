@@ -17,6 +17,8 @@ $tile_img = [
 	'Incident preparedness training' => 'terrain-3.jpg', 'Operator testing and certification' => 'instructor-module.jpg', 'Equipment-specific training' => 'cargo-sim-view.jpg', 'Airside familiarisation' => 'terrain-4.jpg',
 	'Aircraft Pushback & Towing Simulator' => 'terrain-3.jpg', 'Cargo Loader & High Loader Simulator' => 'cargo-hero.jpg', 'Baggage Tractor Simulator' => 'cargo-gallery-2.jpg',
 	'Hi-Lift Catering Truck Simulator' => 'cargo-gallery-3.jpg', 'Airside Driving Simulator' => 'terrain-1.jpg',
+	'Customised training programmes' => 'training-module.jpg', 'Standardised training' => 'instructor-module.jpg', 'Fewer airside incidents' => 'terrain-3.jpg',
+	'Emergency preparedness' => 'terrain-4.jpg', 'Less equipment downtime' => 'cargo-gallery-2.jpg', 'Built in-house, delivered fast' => 'cargo-station.jpg',
 ];
 $rows = fn( $list ) => tt_rows( array_map( fn( $r ) => [
 	'icon' => $r[0], 'title' => $r[1], 'desc' => $r[2] ?? '', 'url' => tt_link( $r[3] ?? '' ), 'cta' => $r[4] ?? '', 'badge' => $r[5] ?? '', 'image' => tt_img( isset( $tile_img[ $r[1] ] ) ? $av . $tile_img[ $r[1] ] : '' ),
@@ -106,8 +108,12 @@ Passenger buses
 Fire trucks (ARFF)
 Airside light vehicles
 Line and base maintenance" ] ),
-	tt_section( 'tt_av_hub_sections', [ 'accent' => $A, 'heading' => '', 'hubs' => tt_rows( $industry ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why Choose Tecknotrove', 'heading' => 'Why Choose Tecknotrove', 'columns' => '3', 'dark' => 'yes', 'layout' => 'list',
+	tt_section( 'tt_av_hub_sections', [ 'accent' => $A, 'label' => 'Aviation hubs', 'heading' => 'Four hubs. One connected training ecosystem.', 'intro' => 'Pick a hub to see the simulators, technologies and training modules inside it.', 'hubs' => tt_rows( $industry ) ] ),
+	tt_section( 'tt_av_map', [ 'accent' => $A, 'label' => 'The airside', 'heading' => 'Every vehicle on the stand, *simulated.*',
+		'intro' => 'One simulator for each machine your ramp team drives. Pick one to see how it trains operators.',
+		'items' => implode( "\n", array_map( fn( $p ) => $p[0] . ' | ' . $p[1] . ' | ' . $p[2],
+			array_slice( array_values( array_filter( array_merge( ...array_map( fn( $h ) => $h[1], array_slice( array_values( $I ), 0, 2 ) ) ), fn( $p ) => ! empty( $p[2] ) ) ), 0, 6 ) ) ) ] ),
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Why Choose Tecknotrove', 'heading' => 'Why Choose Tecknotrove', 'columns' => '3', 'dark' => '', 'layout' => 'story',
 		'tiles' => $lead( [ 'Wrench', 'UsersThree', 'ShieldCheck', 'Lightning', 'Gauge', 'Cube' ], [
 			'Customised training programmes: modules are built around your airside environment, training language, objectives, equipment types and assessment criteria. Past incidents can be recreated on the simulator so operators train on the situations that matter to you.',
 			'Standardised training: every operator reaches the same skill level for safe ground operations, which supports a faster, more consistent aircraft turnaround.',
@@ -116,7 +122,7 @@ Line and base maintenance" ] ),
 			'Less equipment downtime: your GSE stays in operation while operators train, and the simulator flags operator behaviour that damages equipment.',
 			'Built in-house, delivered fast: we design, build and support every simulator ourselves. Most projects are delivered within 6 to 8 weeks, depending on customisation.',
 		] ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Simulation Technologies', 'heading' => 'Simulation Technologies', 'columns' => '4', 'layout' => 'scroll',
+	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Simulation Technologies', 'heading' => 'Simulation Technologies', 'columns' => '4', 'layout' => 'riff',
 		'tiles' => $lead( [ 'Gauge', 'Monitor', 'MapTrifold', 'ChartBar', 'UsersThree', 'Waveform', 'ArrowsClockwise' ], [
 			'Fidelity range: low fidelity portable simulators with a built-in instructor station, medium fidelity simulators with a separate instructor station and motion option, and high fidelity simulators with advanced instructor station, motion system and 180-degree curved projection.',
 			'VR and desktop versions: VR modules and desktop simulators for pre-employment screening, familiarisation and safety training at lower cost.',
@@ -185,10 +191,10 @@ Virtual airside" ] ),
 		[ 'Are VR versions of the GSE simulators available?', 'Yes. VR versions are available for pre-employment screening, familiarisation, safety training and emergency preparedness, at a lower cost than full-scale simulators.' ],
 		[ 'Can the simulators include our own airport and aircraft types?', 'Yes. Training modules, aircraft types, equipment models, training language and assessment criteria can all be customised, and we can build a 3D digital twin of your airside.' ],
 	] ) ] ),
-	tt_section( 'tt_av_tiles', [ 'accent' => $A, 'label' => 'Other Aviation Hubs', 'heading' => 'Other Aviation Hubs', 'columns' => '3', 'tiles' => $rows( [
-		[ 'AirplaneTilt', 'Airside Driving Simulators', 'Train and test everyone who drives on the airfield.', $hub_u( 'airside-driving-simulators' ), 'Explore hub' ],
-		[ 'AirplaneTilt', 'Aircraft Maintenance Training Solutions', 'VR inspection and maintenance training for engineers.', $hub_u( 'aircraft-maintenance-training' ), 'Explore hub' ],
-		[ 'AirplaneTilt', 'Supported Technologies & Services', 'Digital twins, assessment tools and on-site training.', $hub_u( 'supported-technologies' ), 'Explore hub' ],
+	tt_section( 'tt_av_index', [ 'accent' => $A, 'label' => 'Other Aviation Hubs', 'heading' => 'Keep exploring', 'rows' => tt_rows( [
+		[ 'title' => 'Airside Driving Simulators', 'desc' => 'Train and test everyone who drives on the airfield.', 'url' => tt_link( $hub_u( 'airside-driving-simulators' ) ), 'image' => tt_img( $av . 'terrain-1.jpg' ) ],
+		[ 'title' => 'Aircraft Maintenance Training Solutions', 'desc' => 'VR inspection and maintenance training for engineers.', 'url' => tt_link( $hub_u( 'aircraft-maintenance-training' ) ), 'image' => tt_img( $av . 'training-module.jpg' ) ],
+		[ 'title' => 'Supported Technologies & Services', 'desc' => 'Digital twins, assessment tools and on-site training.', 'url' => tt_link( $hub_u( 'supported-technologies' ) ), 'image' => tt_img( $av . 'instructor-module.jpg' ) ],
 	] ) ] ),
 	$cta_req( 'Find the right GSE simulator for your operation', 'Tell us which equipment and aircraft types your operators handle. We will recommend a configuration and send a detailed quote.', 'Download Brochure' ),
 ] );

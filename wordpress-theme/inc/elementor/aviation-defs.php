@@ -43,10 +43,10 @@ $defs['tt_av_hub_sections'] = [
 	'icon'   => 'eicon-posts-grid',
 	'fields' => [
 		$av_accent,
-		$t( 'heading', 'Heading' ),
+		$t( 'label', 'Small label', 'Aviation hubs' ), $t( 'heading', 'Heading' ), $ta( 'intro', 'Intro' ),
 		$rep( 'hubs', 'Hubs', [
 			$t( 'title', 'Hub title (H2)' ), $ta( 'intro', 'Short intro' ),
-			$ta( 'products', 'Products: one per line as  Name | one-liner | link' ),
+			$ta( 'products', 'Products: one per line as  Name | one-liner | link | image URL (optional)' ),
 			$url( 'url', 'Hub page link' ), $t( 'link_label', 'Link label', 'Explore hub' ), $im( 'image', 'Card image' ),
 		], [], 'title' ),
 	],
@@ -61,7 +61,7 @@ $defs['tt_av_tiles'] = [
 		$t( 'label', 'Small label' ), $t( 'heading', 'Heading' ), $ta( 'intro', 'Intro' ),
 		[ 'id' => 'columns', 'label' => 'Columns', 'type' => 'select', 'options' => [ '2' => '2', '3' => '3', '4' => '4' ], 'default' => '4' ],
 		[ 'id' => 'dark', 'label' => 'Dark background', 'type' => 'select', 'options' => $av_yesno, 'default' => 'no' ],
-			[ 'id' => 'layout', 'label' => 'Layout', 'type' => 'select', 'options' => [ 'cards' => 'Cards', 'list' => 'Numbered list (lighter)', 'scroll' => 'Horizontal scroll strip', 'featured' => 'Featured card + image cards', 'showcase' => 'List with image that changes on hover' ], 'default' => 'cards' ],
+			[ 'id' => 'layout', 'label' => 'Layout', 'type' => 'select', 'options' => [ 'cards' => 'Cards', 'list' => 'Numbered list (lighter)', 'scroll' => 'Horizontal scroll strip', 'featured' => 'Featured card + image cards', 'showcase' => 'List with image that changes on hover', 'riff' => 'Layered card carousel (riff)', 'story' => 'Story panel (image + titles)' ], 'default' => 'cards' ],
 		$rep( 'tiles', 'Tiles', [
 			$t( 'icon', 'Icon name (Phosphor, e.g. Cube)', 'Cube' ), $t( 'title', 'Title' ), $ta( 'desc', 'Description' ), $url( 'url', 'Link (optional; empty = not clickable)' ),
 			$t( 'cta', 'Link label (default: View)' ), $t( 'badge', 'Badge (e.g. Coming soon)' ), $im( 'image', 'Image (used by Featured and Showcase layouts)' ),
@@ -146,4 +146,24 @@ $defs['tt_av_marquee'] = [
 	'icon'   => 'eicon-slider-push',
 	'fields' => [ $av_accent, $ta( 'items', 'Items (one per line)' ) ],
 	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/marquee', [], [ 'v' => $v ] ); },
+];
+
+$defs['tt_av_map'] = [
+	'title'  => 'TT Aviation Simulator Bento (photos)',
+	'icon'   => 'eicon-map-pin',
+	'fields' => [
+		$av_accent, $t( 'label', 'Small label', 'The airside' ), $t( 'heading', 'Heading' ), $ta( 'intro', 'Intro' ),
+		$ta( 'items', 'Vehicles (up to 6): one per line as  Name | one-liner | link | image URL (optional)' ),
+	],
+	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/map', [], [ 'v' => $v ] ); },
+];
+
+$defs['tt_av_index'] = [
+	'title'  => 'TT Aviation Index (hover preview)',
+	'icon'   => 'eicon-bullet-list',
+	'fields' => [
+		$av_accent, $t( 'label', 'Small label' ), $t( 'heading', 'Heading' ),
+		$rep( 'rows', 'Rows', [ $t( 'title', 'Title' ), $t( 'desc', 'One-liner' ), $url( 'url', 'Link' ), $im( 'image', 'Preview image' ) ], [], 'title' ),
+	],
+	'render' => function ( $v ) { tecknotrove_el_render_part( 'aviation/index', [], [ 'v' => $v ] ); },
 ];

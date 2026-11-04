@@ -1,7 +1,7 @@
 <?php
 /** @var array $v  heading, body, cta1_label, cta1_url, cta2_label, cta2_url */
 ?>
-<section id="contact" class="bg-bg px-5 py-16 sm:px-8 sm:py-24">
+<section id="contact" class="bg-bg px-5 pb-14 pt-4 sm:px-8 sm:pb-20 sm:pt-6">
 	<div class="relative mx-auto max-w-[1400px] overflow-hidden rounded-[2rem] bg-orange px-8 py-14 text-[#170800] sm:px-14 sm:py-20">
 		<div class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-white/20 blur-3xl"></div>
 		<div class="pointer-events-none absolute inset-0 opacity-[0.07]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 48px 48px;"></div>

@@ -79,3 +79,24 @@ add_action( 'init', function () {
 	$s = get_option( 'elementor_cpt_support', [] );
 	if ( is_array( $s ) && ! in_array( 'hub', $s, true ) ) { $s[] = 'hub'; update_option( 'elementor_cpt_support', $s ); }
 }, 20 );
+
+/**
+ * Section heading with a highlighter bar behind its second half.
+ * "*text*" marks the highlighted part explicitly; otherwise the second sentence, or the last two words, are highlighted.
+ */
+function tecknotrove_av_heading( $text ) {
+	$text = trim( (string) $text );
+	if ( '' === $text ) return '';
+	if ( preg_match( '/^(.*?)\*(.+?)\*(.*)$/su', $text, $m ) ) {
+		[ $a, $hl, $b ] = [ $m[1], $m[2], $m[3] ];
+	} elseif ( preg_match( '/^(.+?[.!?])\s+(.+)$/su', $text, $m ) ) {
+		[ $a, $hl, $b ] = [ $m[1], $m[2], '' ];
+		return esc_html( $a ) . '<br><span class="tt-hl">' . esc_html( $hl ) . '</span>'; // second sentence starts its own line
+	} else {
+		$w = preg_split( '/\s+/', $text );
+		$n = count( $w ) >= 4 ? 2 : 1;
+		if ( count( $w ) < 2 ) return esc_html( $text );
+		[ $a, $hl, $b ] = [ implode( ' ', array_slice( $w, 0, -$n ) ) . ' ', implode( ' ', array_slice( $w, -$n ) ), '' ];
+	}
+	return esc_html( $a ) . '<span class="tt-hl">' . esc_html( $hl ) . '</span>' . esc_html( $b );
+}
