@@ -198,3 +198,7 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 - Padding above the bottom CTA reduced: CTA pt 24px (was 96px), FAQ pb 48px (was 112px); gap FAQ -> CTA card ~136px -> ~72px.
 - Why Choose: titles column now matches the image height (grid stretch, heading top = image top, list bottom = image bottom; closed rows share spare space, open row auto). Image no longer sticky. Verified equal heights at 1440x900 (660px) and 1366x768 (628px) with first/middle/last item open.
 - Why Choose caption plate: only the active caption takes space (others absolute), fixed 4.5/5.5rem height removed, caption 1.9rem, plate padding tightened. Plate 65px at 1440w (was ~110px).
+
+## Closing CTA redesign (user: "v basic")
+- template-parts/aviation/cta.php: flat navy (#062440) card, no orange/glow/grid gradients. Left: "Get started" label, highlighter heading (accent bar, white text, via tecknotrove_av_heading), body in light blue, light + outline-light buttons, three "what happens next" step cards (#0b3254, lift on hover). Right: cargo simulator screenshot in a rounded frame with a navy cutout notch holding an ice-blue "6-8 weeks typical delivery" chip (from client copy). Verified by screenshot at 1440x900.
+- Reverted the closing CTA redesign (user asked); back to the committed orange CTA with reduced padding.

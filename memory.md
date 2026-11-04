@@ -43,3 +43,9 @@ See "Wireframe gap plan" in `wordpress-theme/BUILD_LOG.md`.
 - Aviation navbar: logo + "Aviation" | Home | 4 hubs (dropdown of products) | Tecknotrove.com | Enquire Now; hamburger panel below 1280px. The old sticky `tt_av_subnav` strip is removed from seeds (widget class still exists).
 - Other sectors (Defence, Driving, OESD) will follow the same pattern: own navbar part + `is_<sector>()` check.
 - aviation layout doc (2) is identical to (1).
+
+## Aviation UI decisions (2026-11-04)
+- User dislikes gradients on section backgrounds; use flat ice/baby/powder blues (#e6f4fa / #c3e2f5 / #b6dce6).
+- Highlighter headings: static marker bar on lower part of the line (no animation); `*text*` in heading marks the highlight.
+- Sections should fit one screen on desktop where possible; user flags excess padding quickly.
+- Pushes: GitHub only (no Vercel). static-export/ is stale and left uncommitted.
