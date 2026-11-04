@@ -11,16 +11,24 @@ $here   = (int) get_queried_object_id();
 ?>
 <header id="tt-av-nav" class="tt-av-nav fixed inset-x-0 top-0 z-50 text-white" style="--accent: <?php echo esc_attr( $accent ); ?>;">
 	<div class="tt-av-nav-bar relative z-10">
-		<nav class="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-4 px-5 sm:px-8" aria-label="Aviation">
-			<a href="<?php echo esc_url( $home ); ?>" class="flex items-center gap-3" aria-label="<?php bloginfo( 'name' ); ?> Aviation home">
-				<span role="img" aria-label="<?php bloginfo( 'name' ); ?>" class="block aspect-[4/1] h-7 bg-contain bg-left bg-no-repeat sm:h-8" style="background-image: url('<?php echo esc_url( $logo ); ?>');"></span>
-				<span class="mono-label hidden items-center gap-1.5 border-l border-white/25 pl-3 text-[10px] leading-none tracking-[0.28em] text-white/85 sm:flex"><span class="h-1.5 w-1.5 rounded-full" style="background: <?php echo esc_attr( $accent ); ?>; box-shadow: 0 0 10px <?php echo esc_attr( $accent ); ?>;"></span>AVIATION</span>
+		<nav class="mx-auto mt-4 grid h-[76px] max-w-[1400px] grid-cols-[1fr_auto] items-center gap-4 px-5 sm:px-8 xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]" aria-label="Aviation">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center justify-self-start" aria-label="<?php bloginfo( 'name' ); ?> home">
+				<span role="img" aria-label="<?php bloginfo( 'name' ); ?>" class="tt-av-logo relative block aspect-[4/1] h-7 sm:h-8"><span class="tt-av-logo-w absolute inset-0 bg-contain bg-left bg-no-repeat" style="background-image: url('<?php echo esc_url( $logo ); ?>');"></span><span class="tt-av-logo-b absolute inset-0 bg-contain bg-left bg-no-repeat" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-blue.png' ); ?>');"></span></span>
 			</a>
-			<div class="flex items-center gap-2 sm:gap-3">
-				<a href="#contact" data-av-menu-close class="hidden shrink-0 rounded-full px-5 py-2.5 text-[13px] font-bold text-white transition-transform hover:-translate-y-0.5 sm:inline-block" style="background: <?php echo esc_attr( $accent ); ?>;">Enquire Now</a>
-				<button type="button" id="tt-av-toggle" class="tt-av-burger group flex items-center gap-3 rounded-full border border-white/25 bg-white/5 py-2 pl-4 pr-2 text-[13px] font-bold backdrop-blur transition-colors hover:border-white/60" aria-label="Open menu" aria-expanded="false" aria-controls="tt-av-menu">
+
+			<div class="tt-av-pill hidden items-center gap-1 rounded-full bg-white p-1.5 pl-2 text-[13.5px] text-[#062440] shadow-[0_10px_30px_-12px_rgba(6,36,64,.45)] xl:flex">
+				<a href="<?php echo esc_url( $home ); ?>" class="flex items-center gap-2 rounded-full px-3.5 py-2 font-bold<?php echo is_page( 'aviation' ) ? ' bg-[#e6f4fa]' : ''; ?>"><span class="h-1.5 w-1.5 rounded-full" style="background: <?php echo esc_attr( $accent ); ?>;"></span>Aviation</a>
+				<?php foreach ( $menu as $m ) : $hub = $m['hub']; $label = trim( str_replace( [ ' Training Solutions', ' & Services', ' Simulators' ], '', html_entity_decode( $hub->post_title, ENT_QUOTES ) ) ); ?>
+					<a href="<?php echo esc_url( get_permalink( $hub ) ); ?>" class="rounded-full px-3 py-2 font-medium transition-colors hover:text-[#062440]<?php echo $here === $hub->ID ? ' bg-[#e6f4fa] text-[#062440]' : ' text-[#062440]/55'; ?>"><?php echo esc_html( $label ); ?></a>
+				<?php endforeach; ?>
+				<a href="#contact" data-av-menu-close class="ml-2 rounded-full bg-[#062440] px-5 py-2.5 font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.15)] transition-transform hover:-translate-y-0.5">Enquire Now</a>
+			</div>
+
+			<div class="flex items-center justify-self-end gap-5">
+				<a href="#contact" data-av-menu-close class="hidden shrink-0 rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-[#062440] sm:inline-block xl:hidden">Enquire Now</a>
+				<button type="button" id="tt-av-toggle" class="tt-av-burger group flex items-center gap-2.5 rounded-full py-1.5 pl-1 pr-1.5 text-[13.5px] text-white/75 transition-colors hover:text-white" aria-label="Open menu" aria-expanded="false" aria-controls="tt-av-menu">
 					<span class="relative block h-4 overflow-hidden leading-4"><span class="tt-av-burger-txt block"><span class="block">Menu</span><span class="block">Close</span></span></span>
-					<span class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#06090d]"><i class="tt-av-burger-l"></i><i class="tt-av-burger-l"></i></span>
+					<span class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#062440]"><i class="tt-av-burger-l"></i><i class="tt-av-burger-l"></i></span>
 				</button>
 			</div>
 		</nav>
@@ -36,7 +44,7 @@ $here   = (int) get_queried_object_id();
 						<li class="tt-av-menu-item" style="--d: <?php echo esc_attr( $i ); ?>;">
 							<a href="<?php echo esc_url( get_permalink( $hub ) ); ?>" data-av-menu-hub="<?php echo esc_attr( $i ); ?>" class="tt-av-menu-hub group flex items-baseline gap-4 border-b border-white/10 py-4 sm:gap-6 sm:py-5<?php echo $here === $hub->ID ? ' is-current' : ''; ?>">
 								<span class="mono-label w-7 shrink-0 text-[11px] text-white/40">0<?php echo esc_html( $i + 1 ); ?></span>
-								<span class="tt-av-menu-name flex-1 text-[1.9rem] font-black leading-[1.05] tracking-tight sm:text-5xl xl:text-[3.6rem]"><?php echo esc_html( $hub->post_title ); ?></span>
+								<span class="tt-av-menu-name flex-1 text-[1.5rem] font-black leading-[1.1] tracking-tight sm:text-[2rem] xl:text-[2.4rem]"><?php echo esc_html( $hub->post_title ); ?></span>
 								<span class="tt-av-menu-arrow hidden shrink-0 sm:block"><?php tecknotrove_the_icon( 'ArrowUpRight', 28 ); ?></span>
 							</a>
 						</li>

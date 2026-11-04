@@ -47,8 +47,10 @@
     });
     var onAvNavScroll = function () {
       var y = window.scrollY;
-      avNav.classList.toggle("is-solid", y > 40);
-      if (!avOpen) avNav.classList.toggle("is-hidden", y > 320 && y > lastY + 2 ? true : y < lastY - 2 ? false : avNav.classList.contains("is-hidden") && y > 320);
+      // dark logo/menu once the dark hero frame has scrolled out from under the bar
+      var heroF = document.querySelector(".tt-av-hero-frame");
+      var heroEnd = heroF ? heroF.getBoundingClientRect().bottom + y - 60 : 40;
+      avNav.classList.toggle("is-solid", y > heroEnd);
       lastY = y;
     };
     window.addEventListener("scroll", onAvNavScroll, { passive: true });

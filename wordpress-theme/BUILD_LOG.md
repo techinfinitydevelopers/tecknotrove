@@ -202,3 +202,11 @@ Read `tecknotrove_wireframe.xlsx` (7 sheets: legend, homepage, PDP, 4 sectors). 
 ## Closing CTA redesign (user: "v basic")
 - template-parts/aviation/cta.php: flat navy (#062440) card, no orange/glow/grid gradients. Left: "Get started" label, highlighter heading (accent bar, white text, via tecknotrove_av_heading), body in light blue, light + outline-light buttons, three "what happens next" step cards (#0b3254, lift on hover). Right: cargo simulator screenshot in a rounded frame with a navy cutout notch holding an ice-blue "6-8 weeks typical delivery" chip (from client copy). Verified by screenshot at 1440x900.
 - Reverted the closing CTA redesign (user asked); back to the committed orange CTA with reduced padding.
+- Deployed static export (carousel + fan) to Vercel production on user request; both /aviation/ pages serve the new hero + menu.
+
+## Navbar v3 (reference: BridgeAI pill nav)
+- Left: Tecknotrove logo (links to main site home). Centre (xl+): white pill with "• Aviation" (active state ice blue) + 4 hub links (GSE, Airside Driving, Aircraft Maintenance, Supported Technologies; current hub highlighted) + navy "Enquire Now" button inside the pill. Right: "Tecknotrove.com ↗" + quiet "Menu" toggle (full-screen menu kept for products/mobile). Below xl: logo + white Enquire Now + Menu. Pill fades out when the menu is open. Hub titles decoded before shortening.
+- Navbar: moved down 16px (mt-4), removed the Tecknotrove.com link from the bar (still in the full-screen menu footer).
+- Navbar no longer hides on scroll (always visible; still turns solid after 40px).
+- Navbar band removed: bar always transparent (no blur/dark strip). Once the hero frame scrolls past, the white logo crossfades to logo-blue.png and the Menu toggle turns navy so they stay readable on light sections. Verified at scroll 0/500 (white) and 1400 (blue logo, navy menu).
+- Full-screen menu hub names smaller: 1.9/3rem/3.6rem -> 1.5/2/2.4rem.

@@ -48,4 +48,4 @@ See "Wireframe gap plan" in `wordpress-theme/BUILD_LOG.md`.
 - User dislikes gradients on section backgrounds; use flat ice/baby/powder blues (#e6f4fa / #c3e2f5 / #b6dce6).
 - Highlighter headings: static marker bar on lower part of the line (no animation); `*text*` in heading marks the highlight.
 - Sections should fit one screen on desktop where possible; user flags excess padding quickly.
-- Pushes: GitHub only (no Vercel). static-export/ is stale and left uncommitted.
+- Vercel deploys only on explicit user request (2026-11-04: deployed carousel + fan). Regenerate with tools/static-export.py first.

@@ -581,7 +581,14 @@ li:has(> .tt-av-showitem[aria-current="true"]) > .tt-av-showbar { transform: sca
 
 /* Aviation navbar: minimal bar + full-screen menu */
 .tt-av-nav-bar { transition: transform .5s cubic-bezier(.65,0,.2,1), background-color .4s ease, border-color .4s ease; background: linear-gradient(180deg, rgba(6,9,13,.55), rgba(6,9,13,0)); border-bottom: 1px solid transparent; }
-.tt-av-nav.is-solid .tt-av-nav-bar { background: rgba(6,9,13,.78); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom-color: rgba(255,255,255,.08); }
+/* no band behind the bar; after the hero the logo and Menu switch to dark versions instead */
+.tt-av-nav-bar, .tt-av-nav.is-solid .tt-av-nav-bar { background: transparent !important; border-bottom-color: transparent !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.tt-av-logo-w, .tt-av-logo-b, .tt-av-burger, .tt-av-burger > span:last-child { transition: opacity .3s ease, color .3s ease, background-color .3s ease; }
+.tt-av-logo-b { opacity: 0; }
+.tt-av-nav.is-solid:not(.is-open) .tt-av-logo-w { opacity: 0; }
+.tt-av-nav.is-solid:not(.is-open) .tt-av-logo-b { opacity: 1; }
+.tt-av-nav.is-solid:not(.is-open) .tt-av-burger { color: #062440; }
+.tt-av-nav.is-solid:not(.is-open) .tt-av-burger > span:last-child { background: #062440; color: #fff; }
 .tt-av-nav.is-hidden .tt-av-nav-bar { transform: translateY(-100%); }
 .tt-av-nav.is-open .tt-av-nav-bar { background: transparent; border-bottom-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; transform: none; }
 .tt-av-burger-txt { transition: transform .45s cubic-bezier(.65,0,.2,1); }
@@ -697,3 +704,5 @@ li:has(> .tt-av-showitem[aria-current="true"]) > .tt-av-showbar { transform: sca
 
 /* story: titles column stretches to the image height; closed rows share the spare space */
 @media (min-width: 1024px) { .tt-av-story-item { flex: 1 1 auto; } .tt-av-story-item.is-on { flex: 0 0 auto; } .tt-av-story-list > li:last-child { border-bottom-width: 0; } }
+.tt-av-pill { transition: opacity .3s ease, transform .3s ease; }
+.tt-av-nav.is-open .tt-av-pill { opacity: 0; transform: translateY(-6px); pointer-events: none; }
